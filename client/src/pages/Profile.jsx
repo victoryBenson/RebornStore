@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProfile } from '../redux/features/auth/authActions';
 import { getUser } from '../../../server/controllers/userController';
 

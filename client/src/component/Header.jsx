@@ -4,45 +4,37 @@ import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries, CiHome } from "react-icons/ci";
 import { MdCategory, MdOutlineConnectWithoutContact } from "react-icons/md";
 import { BiPurchaseTag } from "react-icons/bi";
-import {
-  RiArrowDownSLine,
-  RiArrowUpSLine,
-} from "react-icons/ri";
+import { RiArrowDownSLine,  RiArrowUpSLine } from "react-icons/ri";
 import { LuHelpCircle, LuSunMoon } from "react-icons/lu";
 import { IoArrowUndoOutline, IoListCircleOutline } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { SocialMedia } from "./SocialMedia";
 import { BsCartCheck } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  ShowCustomer,
-  ShowOnLogin,
-  ShowOnLogout,
-  ShowAdmin,
-} from "./hiddenLinks";
-import { LogoutUser } from "../redux/features/auth/authActions";
-import { Reset_Auth } from "../redux/features/auth/authSlice";
+// import { useDispatch, useSelector } from "react-redux";
+import { ShowCustomer, ShowOnLogin, ShowOnLogout, ShowAdmin} from "./hiddenLinks";
+// import { LogoutUser } from "../redux/features/auth/authActions";
+// import { Reset_Auth } from "../redux/features/auth/authSlice";
 import { TbChecklist } from "react-icons/tb";
 import { RxUpdate } from "react-icons/rx";
 import { AiFillDashboard } from "react-icons/ai";
 import MobileDropdown from "./MobileSideMenu";
 import MobileSideMenu from "./MobileSideMenu";
 import { FaShopify } from "react-icons/fa6";
+import { UserAuth } from "../contexts/AuthContext";
 
 
 export const Header = () => {
     const [menu, setMenu] = useState(false);
     const [mobile, setMobile] = useState(false);
-    const { cartItems, cartTotalQuantity } = useSelector((state) => state.cart);
-    const { currentUser, } = useSelector((state) => state.auth);
-    const logout = useSelector(state => state.auth)
-    const dispatch = useDispatch();
+    const {Login, loading, errorMsg, currentUser,setCurrentUser} = UserAuth()
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
-    const location = useLocation()
-    // console.log(logout.isLoading)
+    const location = useLocation();
+    const {username, role, profilePicture} = currentUser
+    console.log(role, username, profilePicture)
+    
 
 
     const cartegoryDropDown = () => {
@@ -79,17 +71,17 @@ export const Header = () => {
             behavior: 'smooth'
         }
     )
-  }
+  };
+
+
+
+
 
   const Logout = async () => {
-    try {
-        await dispatch(LogoutUser());
-        await dispatch(Reset_Auth());
-        navigate("/");
-    } catch (error) {
-        console.log(error)
-    }
-  };
+    sessionStorage.removeItem('user')
+    setCurrentUser({})
+    navigate('/')  
+}
 
 
   return (
@@ -168,7 +160,7 @@ export const Header = () => {
                             <img
                             src={
                                 currentUser
-                                ? `${isActive && `${currentUser?.profilePicture}`} ` : null
+                                ? `${isActive && `${profilePicture}`} ` : null
                             }
                             className="rounded-full"
                             />
@@ -176,7 +168,7 @@ export const Header = () => {
                         <h1 className="capitalize">
                             Hi,
                             <span className="px-1">
-                                {currentUser ? <span className="font-semibold capitalize">{currentUser.username}</span> : "user"}
+                                {currentUser ? <span className="font-semibold capitalize">{username}</span> : "user"}
                             </span>
                         </h1>
                         {menu ? <RiArrowDownSLine /> : <RiArrowUpSLine />}
@@ -189,15 +181,16 @@ export const Header = () => {
                                     <img
                                     src={
                                         currentUser
-                                        ? currentUser?.profilePicture
-                                        : `https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg`
+                                        ? profilePicture
+                                        : 
+                                        `https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg`
                                     }
                                     alt="image"
                                     />
                                 </p>
                                 <p className="flex flex-col px-2">
                                     <span className="font-bold capitalize">
-                                    {currentUser ? currentUser.username : "user"}
+                                    {currentUser ? username : "user"}
                                     </span>
                                     <span className="font-light">Nigeria</span>
                                 </p>
@@ -284,7 +277,7 @@ export const Header = () => {
                         <p  className="relative">
                             <BsCartCheck size={30}/>
                             <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
-                                {cartTotalQuantity}
+                                {/* {cartTotalQuantity} */}
                             </span>
                         </p>
                     </NavLink>

@@ -3,7 +3,7 @@ import { Loader } from "../component/Loader";
 import "react-responsive-modal/styles.css";
 import {  Product } from "../component/Product";
 import {TbShoppingBagSearch } from "react-icons/tb";
-import {  useSelector } from "react-redux";
+
 import { CiFilter } from "react-icons/ci";
 import { SearchNotFound } from "../component/NotFound";
 import FilterMobileView from "../component/products/FilterMobileView";

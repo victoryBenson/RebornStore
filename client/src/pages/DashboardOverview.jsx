@@ -3,7 +3,6 @@ import { Loader } from '../component/Loader'
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { MdOutlineSell } from "react-icons/md";
-import { useDispatch, useSelector } from 'react-redux';
 import { UsersTotal, deleteUser, getUsers } from '../redux/features/user/userAction';
 import { getTotalProduct } from '../redux/features/product/productAction';
 import 'react-responsive-modal/styles.css';

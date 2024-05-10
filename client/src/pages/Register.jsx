@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef} from 'react'
 import {Link, useNavigate } from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux';
 import { Logo } from '../component/Logo';
 import { Reset_Auth } from '../redux/features/auth/authSlice';
 import { LuEye, LuEyeOff} from "react-icons/lu";

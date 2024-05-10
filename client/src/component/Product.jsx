@@ -9,8 +9,7 @@ import { truncateString } from '../utils/index.js';
 import { CiCirclePlus } from "react-icons/ci";
 import { BsCartX } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
-import { addToCart, decreaseCart, displayCart, increaseCart } from '../redux/features/cartSlide.js';
-import {useDispatch, useSelector} from "react-redux";
+// import { addToCart, decreaseCart, displayCart, increaseCart } from '../redux/features/cartSlide.js';
 import { RiHeart2Line } from "react-icons/ri";
 
 

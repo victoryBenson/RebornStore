@@ -42,7 +42,7 @@ export const Register = async (req, res, next) => {
     //generate token
     const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET)
     
-    console.log(`the registered token is ${token}`)
+    // console.log(`the registered token is ${token}`)
 
     if (user) {
         const { password, ...rest } = user._doc;
@@ -81,12 +81,14 @@ export const Login = async (req, res, next) => {
   
     if (user && verifyPwd) {
        //hide password
-      // user.password = undefined
+      user.password = undefined
+      // const userData = {  token: token, Id: user._id }
+  
       res
         .cookie("token", token, {path: "/", httpOnly: true, expires: new Date(Date.now() + 1000 * 300)})
         .header("authorization", `Bearer ${token}`)
         .status(201)
-        .json(user)
+        .json({user, token})
     } 
   
   } catch (err) {

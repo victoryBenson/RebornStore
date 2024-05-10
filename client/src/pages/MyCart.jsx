@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import "aos/dist/aos.css"
 import { BsCartCheck, BsTrash3 } from "react-icons/bs";
-import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { FaArrowLeftLong} from "react-icons/fa6";
-import { decreaseCart, increaseCart, removeCart} from '../redux/features/cartSlide';
+// import { decreaseCart, increaseCart, removeCart} from '../redux/features/cartSlide';
 import { PiCurrencyNgn } from "react-icons/pi";
 import { FiMinus} from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { PayButton } from '../component/PayButton';
 
 export const MyCart = () => {
-    const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.cart)
+    // const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.cart)
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
        
     const scrollToTop = () => {
         window.scrollTo(0,0)
