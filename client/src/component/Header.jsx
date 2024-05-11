@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries, CiHome } from "react-icons/ci";
@@ -22,12 +22,14 @@ import MobileDropdown from "./MobileSideMenu";
 import MobileSideMenu from "./MobileSideMenu";
 import { FaShopify } from "react-icons/fa6";
 import { UserAuth } from "../contexts/AuthContext";
+import { CartContext } from "../contexts/CartContext";
 
 
 export const Header = () => {
     const [menu, setMenu] = useState(false);
     const [mobile, setMobile] = useState(false);
     const {Login, loading, errorMsg, currentUser,setCurrentUser} = UserAuth()
+    const {itemAmount} = useContext(CartContext)
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
@@ -80,10 +82,6 @@ export const Header = () => {
         navigate('/')  
     }
   
-
-
-
-
 
   return (
     <header className={`${isActive && 'fixed inset-0 top-0  transition-all duration-200 bg-white'} ${location.pathname == '/' && 'fixed'} z-[999] h-20  inset-0 flex items-center justify-center w-[100%] m-0 p-0`}>
@@ -278,7 +276,7 @@ export const Header = () => {
                         <p  className="relative">
                             <BsCartCheck size={30}/>
                             <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
-                                {/* {cartTotalQuantity} */}
+                                {itemAmount}
                             </span>
                         </p>
                     </NavLink>

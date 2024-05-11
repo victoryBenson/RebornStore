@@ -4,10 +4,10 @@ import { LandingPage } from "./pages/LandingPage";
 import {Footer} from "./component/Footer"
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import {MyCart} from "./pages/MyCart"
+import {MyCart} from "./pages/MyCart"
 // import { useDispatch, useSelector } from "react-redux";
 // import { getTotals } from "./redux/features/cartSlide";
-// import { NotFound } from "./component/NotFound";
+import { NotFound } from "./component/NotFound";
 // import { CheckoutSuccess } from "./pages/CheckoutSuccess";
 import { Layout } from "./component/Layout";
 import { ConditionRoute } from "./component/ConditionRoute";
@@ -65,12 +65,12 @@ function App() {
                     {/* </Route> */}
                 </Route>
                 <Route path="login" element={<Login/>}/>
-                {/* <Route path="register" element={<Register/>}/>
-                <Route path="userDetails" element = {<AccountPage/>}/>
+                {/* <Route path="register" element={<Register/>}/> */}
+                {/* <Route path="userDetails" element = {<AccountPage/>}/> */}
                 <Route path="mycart" element={<MyCart/>}/>
-                <Route path="/checkout-success" element={<CheckoutSuccess/>}/>
-                <Route path="paymentBtn" element={<PayButton/>}/>
-                <Route path="*" element={<NotFound/>}/>  */}
+                {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
+                {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
+                <Route path="*" element={<NotFound/>}/> 
                 <Route path="dashboard" element={<Dashboard/>}>
                     {/* protected route */}
                     <Route element={<RequireAuth/>}>

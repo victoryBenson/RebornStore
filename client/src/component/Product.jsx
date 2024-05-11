@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BsBagCheck } from "react-icons/bs";
 import { TiArrowMaximise } from "react-icons/ti";
@@ -10,6 +10,8 @@ import { CiCirclePlus } from "react-icons/ci";
 import { BsCartX } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
 import { RiHeart2Line } from "react-icons/ri";
+import { CartContext } from '../contexts/CartContext.jsx';
+import { toast } from 'react-toastify';
 
 
 export const Product = ({product}) => {
@@ -19,12 +21,15 @@ export const Product = ({product}) => {
     const [Color, setColor] = useState(color[1])
     const [Size, setSize] = useState(size[0])
     const [Image, setImage] = useState(image[0])
+    const {addToCart, increaseCart, decreaseCart, itemAmount} = useContext(CartContext)
+   
+
 
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
-    const handleAddToCart = (product) => {
-        // dispatch(addToCart(product))
+    const handleAddToCart = () => {
+        addToCart(product, _id)
     }
 
     const scrollToTop = () => {
@@ -117,14 +122,14 @@ export const Product = ({product}) => {
                                         <p className='space-x-3 sm:w-1/3 justify-center flex mx-2 items-center bg-gray-light/50 p-3 rounded-full'>
                                             <CiCircleMinus 
                                                 size={30} 
-                                                onClick={() => dispatch(decreaseCart(_id))} 
-                                                className='mx-1 cursor-pointer hover:opacity-10 transition-all'
+                                                onClick={() => decreaseCart(_id)} 
+                                                className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
                                             /> 
-                                            <span>00</span>
+                                            <span>{itemAmount}</span>
                                             <CiCirclePlus 
                                                 size={30} 
-                                                onClick={() => dispatch(increaseCart(_id))}
-                                                className='mx-1 cursor-pointer hover:opacity-10 transition-all'
+                                                onClick={() => increaseCart(_id)}
+                                                className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
                                             /> 
                                         </p>
                                         <p className='w-full py-3'>

@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom';
 import { PiCurrencyNgn } from "react-icons/pi";
 import { FiMinus} from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
+import { CartItems } from "../component/CartItems";
+
 
 
 export const MyCart = () => {
+    const {total, increaseCart, decreaseCart, itemAmount, cart, removeCart} = useContext(CartContext)
        
     const scrollToTop = () => {
         window.scrollTo(0,0)
@@ -21,42 +26,20 @@ export const MyCart = () => {
                     <BsCartCheck/>
                     <span className='pl-1'>
                         Shopping Bag
-                        ({cartTotalQuantity})
+                        ({itemAmount})
                     </span>
                 </p>
             </div>
-            { !cartItems.length ? (
+            { !itemAmount? (
                 <div className='flex flex-col h-[100vh] justify-center items-center font-bold mt-5'>
                     <p className='text-xl p-2'>Your cart is currently empty</p>
                     <MdOutlineRemoveShoppingCart size={40}/>
                 </div>
             ): 
                 <div className='class'>
-                    {cartItems.map((item) => {
+                    {cart.map((item) => {
                         return (
-                            <div key={item._id} className='h-40 p-2 my-4 space-x-2 flex text-sm rounded shadow bg-white'>
-                                <div className=' flex w-1/2 rounded-lg h-full'>
-                                    <img src={item?.image[0]} alt="image" className='h-full w-full object-cover rounded-lg ' />
-                                </div>
-                                <div className='flex flex-col items-start justify-center w-full px-1'>
-                                    <p className={` md:text-[1rem] overflow-auto sm:overflow-hidden capitalize font-bold`}>{item?.name}</p>
-                                    <div className='flex items-center justify-between w-full py-2'>
-                                        <p className='flex items-center'>
-                                            <PiCurrencyNgn className='mt-1'/>
-                                            {item.price?.toLocaleString()}
-                                        </p>
-                                        <p onClick={()=> dispatch(removeCart(item._id))} className='hover:opacity-70 cursor-pointer bg-brown text-ivory flex items-center justify-center p-1 rounded shadow'>
-                                            <BsTrash3/> 
-                                            <span className='sm: flex capitalize '>remove</span>
-                                        </p>
-                                    </div>
-                                    <p className='py-1 rounded-lg flex justify-start items-center text-sm m-2 sm:w-32 w-28 '>
-                                        <FiMinus onClick={() => dispatch(decreaseCart(item._id))} className='cursor-pointer hover:opacity-70 transition-all'/>
-                                        <span className='font-bold mx-4'>{item.cartQuantity}</span>
-                                        <AiOutlinePlus onClick={() => dispatch(increaseCart(item._id))} className='cursor-pointer hover:opacity-70 transition-all'/>
-                                    </p>
-                                </div>
-                            </div>
+                            <CartItems key={item._id} item={item}/>
                         )
                     })}
                 </div>
@@ -72,7 +55,7 @@ export const MyCart = () => {
                         </span>
                         <span className='flex items-center ml-2 font-extrabold text-lg'>
                             <PiCurrencyNgn className='mt-1'/>
-                            {cartTotalAmount.toLocaleString()}
+                            {total.toLocaleString()}
                         </span>
                     </p>
                     <p className='flex flex-wrap justify-between items-center'>
@@ -89,7 +72,7 @@ export const MyCart = () => {
                         Check-Out (
                         <span className='flex items-center'>
                             <PiCurrencyNgn className='mt-1'/>
-                            {cartTotalAmount.toLocaleString()}
+                            {total.toLocaleString()}
                         </span>
                         )
                     </button>
