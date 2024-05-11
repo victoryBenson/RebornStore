@@ -1,47 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import { UpdateProfile } from '../redux/features/auth/authActions';
-import { getUser } from '../../../server/controllers/userController';
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
+import { UserAuth } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 
 export const UserProfile = () => {
-    const dispatch = useDispatch()
-    const { currentUser, isLoading } = useSelector((state) => state.auth);
-    // console.log(currentUser);
-
+    const { updateUser} = useContext(UserContext)
+    const {currentUser} = UserAuth()
+    const [loading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState()
+    const navigate = useNavigate();
 
 
     const initialState = {
-        username: currentUser?.username || "",
-        email: currentUser?.email || "",
-        address: currentUser?.address || "", 
-        phone: currentUser?.phone || "",
-        password: currentUser?.password || "",
-        profilePicture: currentUser?.profilePicture || "",
+        username:  "",
+        email: "",
+        address: "", 
+        phone:  "",
+        password: "",
+        profilePicture:  "",
         confirmPassword: ""
     }
     const [formData, setFormData] = useState(initialState);
     const {username, email, address, phone, password, confirmPassword, profilePicture} = formData;
-    // console.log(`the passoword is ${password}`)
-
-    // useEffect(() => {
-    //     if(currentUser === null){
-    //         dispatch(getUser())
-    //     }
-    // }, [dispatch, currentUser])
+    
     
     useEffect(() => {
         if(currentUser){
             setFormData({
-                username: currentUser?.username || "",
-                email: currentUser?.email || "",
-                address: currentUser?.address || "", 
-                phone: currentUser?.phone || "",
-                password: currentUser?.password || "",
-                profilePicture: currentUser?.profilePicture || "",
+                username: currentUser?.username,
+                email: currentUser?.email,
+                address: currentUser?.address, 
+                phone: currentUser?.phone,
+                password: currentUser?.password,
+                profilePicture: currentUser?.profilePicture,
                 confirmPassword: ""
             })
         }
-    }, [dispatch, currentUser])
+    }, [ currentUser])
     
 
     const handleChange = (e) => {
@@ -52,20 +49,26 @@ export const UserProfile = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-
-        const userData = {
-            username,
-            email,
-            address,
-            phone,
-            profilePicture,
-            password
+        setLoading(true);
+        try {
+            await updateUser(formData)
+            setLoading(false)
+            toast.success("user updated successfully")
+        } catch (error) {
+            setLoading(false)
+            setErrorMsg(error.message)
+            console.log(error.message)
+            toast.error(error.message)
         }
-        await dispatch(UpdateProfile(userData))
     }
 
+    useEffect(() =>{
+        const token = sessionStorage.getItem('token')
+        !token && navigate('/login') 
+    },[])
+
   return (
-    <section className='text-sm md:w-[80%] transition-all p-1 bg-ivory'>
+    <section className='text-sm md:w-[80%] transition-all p-1 bg-brown3'>
         <form onSubmit={handleSubmit} className='h-screen mx-2'>
             <div className=''>
                 <div className=' gap-2 items-center justify-center'>
@@ -89,9 +92,9 @@ export const UserProfile = () => {
                                     name="username"
                                     value={username}
                                     placeholder="username"
-                                    className="w-full p-2 outline-none border border-gray/10 rounded"
+                                    className="w-full p-3 outline-none border border-gray/10 rounded"
                                     onChange={handleChange}
-                                    defaultValue={currentUser?.username}
+                                    // defaultValue={currentUser?.username}
                                 />
                             </div>
                             <div className="w-full">
@@ -101,9 +104,9 @@ export const UserProfile = () => {
                                 name="email"
                                 value={email}
                                 placeholder="user@gmail.com"
-                                className="w-full p-2 outline-none border border-gray/10 rounded"
+                                className="w-full p-3 outline-none border border-gray/10 rounded"
                                 onChange={handleChange}
-                                defaultValue={currentUser?.email}
+                                // defaultValue={currentUser?.email}
                                 />
                             </div>
                         </div>
@@ -116,7 +119,7 @@ export const UserProfile = () => {
                                     value={address}
                                     onChange={handleChange}
                                     placeholder="Enter your nearest address"
-                                    className="w-full p-2 outline-none border border-gray/10 rounded"
+                                    className="w-full p-3 outline-none border border-gray/10 rounded"
                                 />
                             </div>
                             <div className="w-full ">
@@ -126,7 +129,7 @@ export const UserProfile = () => {
                                     name="phone"
                                     value={phone}
                                     placeholder="Phone number"
-                                    className="w-full p-2 outline-none border border-gray/10 rounded"
+                                    className="w-full p-3 outline-none border border-gray/10 rounded"
                                     onChange={handleChange}
                                     defaultValue={currentUser?.phone}
                                 />
@@ -140,7 +143,7 @@ export const UserProfile = () => {
                                 name="password"
                                 value={password}
                                 placeholder="Current Password"
-                                className="w-full p-2 outline-none border border-gray/10 rounded"
+                                className="w-full p-3 outline-none border border-gray/10 rounded"
                                 onChange={handleChange}
                                 defaultValue={currentUser?.password}
                                 />
@@ -152,14 +155,14 @@ export const UserProfile = () => {
                                 name="confirmPassword"
                                 value={confirmPassword}
                                 placeholder="retype new password"
-                                className="w-full p-2 outline-none border border-gray/10 rounded"
+                                className="w-full p-3 outline-none border border-gray/10 rounded"
                                 onChange={handleChange}
                                 />
                             </div>
                         </div>
                         <div className="mx-2 self-end space-x-2">
-                            <button disabled={isLoading} className="bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">
-                                { isLoading? 'Saving Changes...Please wait!' : 'Save Changes'}
+                            <button disabled={loading} className="bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">
+                                { loading? 'Saving Changes...Please wait!' : 'Save Changes'}
                             </button>
                         </div>
                     </div>

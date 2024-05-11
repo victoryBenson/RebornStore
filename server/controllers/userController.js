@@ -79,7 +79,7 @@ export const updateUser = async (req, res, next) => {
 
       const updateProfile = await user.save();
       res.status(200).json(updateProfile);
-      
+  
       } 
 } 
 catch (err) {

@@ -41,7 +41,8 @@ const userSchema = mongoose.Schema(
       lowercase: true
     },
     address: {
-      type: Object,
+      type: String,
+      default: 'Nigeria'
       
     },
     phone: {

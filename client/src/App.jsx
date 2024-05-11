@@ -14,13 +14,13 @@ import { ConditionRoute } from "./component/ConditionRoute";
 // import { RequireAuth } from "./component/RequireAuth";
 // import { PayButton } from "./component/PayButton";
 // import { AccountPage } from "./pages/AccountPage";
-// import { Dashboard } from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard";
 // import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
-// import { UserProfile } from "./pages/Profile";
+import { UserProfile } from "./pages/Profile";
 // import { HomeDashboard } from "./pages/DashboardOverview";
 // import { AdminProducts } from "./pages/AdminProducts";
-// import { Orders } from "./pages/Order";
+import { Orders } from "./pages/Order";
 // import { PayButton } from "./component/PayButton";
 // import { useEffect } from "react";
 // import { getProducts } from "./redux/features/product/productAction";
@@ -29,6 +29,7 @@ import axios from "axios";
 import { PromoDisplay } from "./component/PromoDisplay";
 // import ShopLayout from "./component/Shop/ShopLayout";
 import Shop from "./component/Shop";
+import { RequireAuth } from "./component/RequireAuth";
 
 
 
@@ -70,12 +71,15 @@ function App() {
                 <Route path="/checkout-success" element={<CheckoutSuccess/>}/>
                 <Route path="paymentBtn" element={<PayButton/>}/>
                 <Route path="*" element={<NotFound/>}/>  */}
-                {/* <Route path="dashboard" element={<Dashboard/>}>
-                    <Route path="profile" element={<UserProfile/>}/>
-                    <Route path="home-dashboard" element={<HomeDashboard/>}/>
-                    <Route path="admin-products" element={<AdminProducts/>}/>
-                    <Route path="orders" element={<Orders/>}/>
-                </Route> */}
+                <Route path="dashboard" element={<Dashboard/>}>
+                    {/* protected route */}
+                    <Route element={<RequireAuth/>}>
+                        <Route path="profile" element={<UserProfile/>}/>
+                        <Route path="orders" element={<Orders/>}/>
+                    </Route>
+                    {/* <Route path="home-dashboard" element={<HomeDashboard/>}/> */}
+                    {/* <Route path="admin-products" element={<AdminProducts/>}/> */}
+                </Route>
                 <Route path="shop" element={<Shop/>}/>
             </Routes>
             <ConditionRoute>

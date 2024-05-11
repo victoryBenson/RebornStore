@@ -40,7 +40,7 @@ export const Register = async (req, res, next) => {
     console.log(`The created user is  ${user}`)
 
     //generate token
-    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET)
+    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
     
     // console.log(`the registered token is ${token}`)
 
@@ -48,7 +48,7 @@ export const Register = async (req, res, next) => {
         const { password, ...rest } = user._doc;
         res
             .status(201)
-            .cookie("token", token, {path: "/",httpOnly: true, expires: new Date(Date.now() + 1000 * 300)})
+            .cookie("token", token, {path: "/",httpOnly: true})
             .header("authorization", `Bearer ${token}`)
             .json(rest)
         }
@@ -56,7 +56,7 @@ export const Register = async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-}
+};
 
 
 //loginUser
@@ -77,15 +77,14 @@ export const Login = async (req, res, next) => {
     }
    
     //generate token
-    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET)
+    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '24h'})
   
     if (user && verifyPwd) {
        //hide password
       user.password = undefined
-      // const userData = {  token: token, Id: user._id }
   
       res
-        .cookie("token", token, {path: "/", httpOnly: true, expires: new Date(Date.now() + 1000 * 300)})
+        .cookie("token", token, {path: "/", httpOnly: true})
         .header("authorization", `Bearer ${token}`)
         .status(201)
         .json({user, token})
@@ -150,7 +149,6 @@ export const getLoginStatus = async (req, res, next) => {
 //logout
 export const Logout = async (req, res, next) => { 
     try {
-        
         const cookies = req.cookies;
         if (!cookies?.token) {
           return res.status(204).json("No content!"); //no content

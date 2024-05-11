@@ -72,7 +72,7 @@ const AuthContextProvider = ({children}) => {
             setToken(JSON.parse(token))
             setCurrentUser(JSON.parse(user))
         }
-    },[token])
+    },[])
 
   return (
     <AuthContext.Provider value={{loading, errorMsg, currentUser,token, setCurrentUser, Login, Signup}}>{children}</AuthContext.Provider>

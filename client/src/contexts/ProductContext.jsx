@@ -56,12 +56,11 @@ useEffect(() => {
             );
             setLoading(false)
             const result = await response.data
-            console.log(result)
+            // console.log(result)
             setItems(result)
             // const products = await JSON.stringify(response.data)
             // sessionStorage.setItem('products', products)
-            // return products;
-
+            return result;
         } catch (error) {
             setLoading(false)
             setErrorMsg(error.response.data.message)

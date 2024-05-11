@@ -33,7 +33,7 @@ export const Header = () => {
     const [cartegoryMenu, setCategoryMenu] = useState(false)
     const location = useLocation();
     const {username, role, profilePicture} = currentUser
-    // console.log(role, username, profilePicture)
+    
     
 
 
@@ -74,14 +74,15 @@ export const Header = () => {
   };
 
 
+    const Logout = async () => {
+        sessionStorage.removeItem('user')
+        setCurrentUser({})
+        navigate('/')  
+    }
+  
 
 
 
-  const Logout = async () => {
-    sessionStorage.removeItem('user')
-    setCurrentUser({})
-    navigate('/')  
-}
 
 
   return (
