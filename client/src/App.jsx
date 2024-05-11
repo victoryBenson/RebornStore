@@ -28,7 +28,7 @@ import axios from "axios";
 // import { getLoginStatus } from "./redux/features/auth/authActions";
 import { PromoDisplay } from "./component/PromoDisplay";
 // import ShopLayout from "./component/Shop/ShopLayout";
-// import Shop from "./component/Shop";
+import Shop from "./component/Shop";
 
 
 
@@ -76,7 +76,7 @@ function App() {
                     <Route path="admin-products" element={<AdminProducts/>}/>
                     <Route path="orders" element={<Orders/>}/>
                 </Route> */}
-                {/* <Route path="shop" element={<Shop/>}/> */}
+                <Route path="shop" element={<Shop/>}/>
             </Routes>
             <ConditionRoute>
                 <Footer/>

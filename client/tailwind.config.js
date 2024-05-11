@@ -25,8 +25,9 @@ export default {
       'red': '#FF0000', 
       'lightBrown':'#95785e', 
       'brown': '#45382c',
-      'yellow': '#FFEA00'
-    },
+      'yellow': '#FFEA00',
+      'brown3' : '#f7f4f2'
+       },
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
       oswald: ["Oswald", "sans-serif"],

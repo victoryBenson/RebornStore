@@ -22,7 +22,6 @@ export const createProduct =  async (req, res, next) => {
 //get product
 export const getProducts = async (req, res, next) => {
   try {
-    
     const products = await Product.find({}).sort("-createdAt");
   
     res.status(200).json(products);

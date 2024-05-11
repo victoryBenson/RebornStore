@@ -33,7 +33,7 @@ export const Header = () => {
     const [cartegoryMenu, setCategoryMenu] = useState(false)
     const location = useLocation();
     const {username, role, profilePicture} = currentUser
-    console.log(role, username, profilePicture)
+    // console.log(role, username, profilePicture)
     
 
 

@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BsBagCheck } from "react-icons/bs";
 import { TiArrowMaximise } from "react-icons/ti";
-import { CiCircleMinus, CiHeart } from "react-icons/ci";
+import { CiCircleMinus} from "react-icons/ci";
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { truncateString } from '../utils/index.js';
 import { CiCirclePlus } from "react-icons/ci";
 import { BsCartX } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
-// import { addToCart, decreaseCart, displayCart, increaseCart } from '../redux/features/cartSlide.js';
 import { RiHeart2Line } from "react-icons/ri";
 
 
@@ -20,23 +19,25 @@ export const Product = ({product}) => {
     const [Color, setColor] = useState(color[1])
     const [Size, setSize] = useState(size[0])
     const [Image, setImage] = useState(image[0])
-    const dispatch = useDispatch()
-    const {cartItems} = useSelector(state => state.cart)
 
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
     const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
+        // dispatch(addToCart(product))
+    }
+
+    const scrollToTop = () => {
+        window.scrollTo(0,0)
     }
     
   return (
-    <div className='shadow rounded-xl w-full md:w-60 lg:w-64 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
+    <div className='bg-white shadow rounded-xl w-full md:w-60 lg:w-64 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
         <div className='h-1/2 flex justify-center relative overflow-hidden rounded-t-xl'>
             <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/5 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                 <div className='bottom-4 flex justify-center absolute w-full'>
                     <div className='flex flex-wrap items-center justify-center gap-2'>
-                        <button onClick={()=> onOpenModal(product)} className='flex mx-2 items-center bg-white rounded-full p-2 shadow text-sm'>
+                        <button onClick={()=> {onOpenModal(product); scrollToTop}} className='flex mx-2 items-center bg-white rounded-full p-2 shadow text-sm'>
                             <TiArrowMaximise/>
                             Quick view
                         </button>
