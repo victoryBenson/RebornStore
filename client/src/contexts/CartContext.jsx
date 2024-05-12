@@ -4,6 +4,10 @@ import { toast } from 'react-toastify';
 
 export const CartContext = createContext()
 
+// const initialState = {
+//   myCart:sessionStorage.getItem('cart') ? sessionStorage.getItem('cart') : []
+// }
+
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [itemAmount, setItemAmount] = useState(0)
@@ -14,31 +18,32 @@ export const CartProvider = ({children}) => {
         const newItem = {...product, amount: 1}
         
         const cartItem = cart.find((item) => {
-          return item.id === id;
+          return item._id === id;
          });
          
-        if (cartItem >= 0) {
+        if (cartItem) {
             const newCart = [...cart].map((item) => {
-            if (item.id === id ){
-                
+            if (item._id === id ){
+                toast.info('cart quantity increased')
                 return {...item, amount: cartItem.amount + 1}
-                
             } else{
-                toast.info("Quantity increased");
                 return item
             }
         });
         setCart(newCart)
+
         } else {
             setCart([...cart, newItem])
             toast.success(`Product is added to Cart`)
         }
+
+        sessionStorage.setItem("myCart", JSON.stringify(cart))
     };
 
      // remove Item from Cart
      const removeCart = (id) => {
         const newCart = cart.filter((item)=> {
-          return item.id !== id
+          return item._id !== id
         });
         setCart(newCart)
       }
@@ -48,35 +53,35 @@ export const CartProvider = ({children}) => {
         setCart([])
       }
 
-        // increase Amount 
+    // increase Amount 
     const increaseCart = (id) => {
-        const cartItem = cart.find((item) => item.id === id);
-        addToCart(cartItem, id)
-        
+      const cartItem = cart.find((item) => item._id === id);
+      addToCart(cartItem, id)
     }
 
   
-    //decreaseAmount
-    const decreaseCart = (id) => {
-    const cartItem = cart.find((item) => item.id === id);
+   //decreaseCart
+   const decreaseCart = (id) => {
+    const cartItem = cart.find((item) => item._id === id);
     if(cartItem){
-        const newCart = cart.map((item)=> {
-        if (item.id === id){
-            return {...item, amount: cartItem.amount - 1}
+      const newCart = cart.map((item)=> {
+        if (item._id === id){
+          return {...item, amount: cartItem.amount - 1}
         }else {
-            return item
+          return item
         }
-        });
-        setCart(newCart)
+      });
+      setCart(newCart)
     }
-        if (cartItem.amount < 2) {
+      if (cartItem.amount < 2) {
         removeCart(id)
-        }
-    }
+      }
+  }
+
 
         // update item
     useEffect(() => {
-        if(cart){
+        if(cart.length){
           const amount = cart.reduce((accumulator,currentItem) => {
             return accumulator + currentItem.amount
           }, 0)
