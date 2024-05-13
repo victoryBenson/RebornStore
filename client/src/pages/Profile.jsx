@@ -6,8 +6,7 @@ import { toast } from 'react-toastify';
 
 
 export const UserProfile = () => {
-    const { updateUser} = useContext(UserContext)
-    const {currentUser} = UserAuth()
+    const { updateUser, currentUser} = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const [errorMsg, setErrorMsg] = useState()
     const navigate = useNavigate();
@@ -54,6 +53,7 @@ export const UserProfile = () => {
             await updateUser(formData)
             setLoading(false)
             toast.success("user updated successfully")
+            location.reload()
         } catch (error) {
             setLoading(false)
             setErrorMsg(error.message)
