@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import {Link, Outlet, useNavigate } from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux';
-import { validateEmail } from '../utils';
+import React, { useContext, useEffect, useState } from 'react'
+import {Link, Outlet, useNavigate, } from 'react-router-dom'
 import { toast } from 'react-toastify';
-import { loginUser } from '../redux/features/auth/authActions';
-import { Reset_Auth } from '../redux/features/auth/authSlice';
 import { Logo } from '../component/Logo';
 import { CiDark, CiLight } from 'react-icons/ci';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
-import loginImage from '../assets/image/signupImage.png'
+import { UserAuth } from '../contexts/AuthContext';
+
+
+
 
 const initialState = {
     email: "",
@@ -19,10 +18,15 @@ export const Login = () => {
     const [formData, setFormData] = useState(initialState);
     const [darkMode, setDarkMode] = useState(false)
     const {email, password} = formData;
-    const { isLoading, isError, errMessage, isLoggedIn, isSuccess} = useSelector((state) => state.auth); 
+    const {Login, loading, errorMsg} = UserAuth() 
     const navigate = useNavigate();
-    const dispatch = useDispatch()
-    const [viewPwd, setViewPwd] = useState(false)
+    const [viewPwd, setViewPwd] = useState(true)
+
+    // useEffect(()=>{
+    //     const user = sessionStorage.getItem('user')
+    //     console.log(`the user is ${user}`)
+    // },[])
+    
   
     const handleToggle = () => {
         setDarkMode(!darkMode)
@@ -33,19 +37,12 @@ export const Login = () => {
         setFormData({ ...formData, [name]: value})
     }
 
-    const togglePwd = () => {
-        let changePwd = document.getElementById('changePwd')
-        let isPassword = changePwd.getAttribute('type') === 'password'
-
-        changePwd.setAttribute(
-            'type',
-            isPassword ? 'text' : 'password'
-        )
-        
+    const handleViewPassword = () => {
         setViewPwd(!viewPwd)
     }
 
 
+    //SignIn
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -55,19 +52,9 @@ export const Login = () => {
         }
 
         userData.email = userData.email.toLowerCase();
-
-        await dispatch(loginUser(userData))
-
+        await Login(userData)
     };
-
-    useEffect(() => {
-        if(isLoggedIn && isSuccess){
-            navigate('/')
-        } else {
-            dispatch(Reset_Auth())
-        }
-    }, [isLoggedIn, isSuccess, navigate, dispatch])
-    
+   
 
   return (
     <div className={`${darkMode && "dark"} relative flex justify-center items-center mx-auto h-screen`}>
@@ -93,9 +80,9 @@ export const Login = () => {
                                 required
                             />
                         </div>
-                        <div className='relative'>
+                        <div className='relative transition-all'>
                             <label className='p-2'>Enter Password:</label>
-                            <input type="password"
+                            <input type={viewPwd? "password" : "text"}
                                 id='changePwd' 
                                 name="password" 
                                 value={password}
@@ -104,16 +91,16 @@ export const Login = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <span onClick={togglePwd} className='absolute top-[54%] right-10 text-brown transition-transform  duration-300'>{viewPwd? <LuEye /> : <LuEyeOff/>}</span>
+                            <span onClick={handleViewPassword} className='absolute top-[54%] right-10 text-brown transition-transform  duration-300 cursor-pointer'>{viewPwd? <LuEyeOff /> : <LuEye/>}</span>
                         </div>
                         <div className='text-right'>
                             <span className=''>forgot password?</span>
                         </div>
                         {/* error message */}
-                        <p className='text-red text-center text-sm'>{errMessage}</p>
+                        <p className='text-red text-center text-sm'>{errorMsg && errorMsg}</p>
                         <div >
-                            <button disabled={isLoading} className='w-full p-3 from-lightBrown to-[90%] to-brown bg-gradient-to-r text-ivory hover:opacity-90 disabled:opacity-70  hover:font-bold transition-all duration-200 rounded-lg text-center gap-2'>
-                                { isLoading? 'Loading...Please wait!' : 'LOGIN'}
+                            <button disabled={loading} className='w-full p-3 from-lightBrown to-[90%] to-brown bg-gradient-to-r text-ivory hover:opacity-90 disabled:opacity-70  hover:font-bold transition-all duration-200 rounded-lg text-center gap-2'>
+                                { loading? 'Loading...Please wait!' : 'LOGIN'}
                             </button>
                         </div>
                         <p className='text-blue underline mx-auto text-sm'>continue with google</p>

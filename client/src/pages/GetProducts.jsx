@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Loader } from "../component/Loader";
 import "react-responsive-modal/styles.css";
 import {  Product } from "../component/Product";
 import {TbShoppingBagSearch } from "react-icons/tb";
-import {  useSelector } from "react-redux";
 import { CiFilter } from "react-icons/ci";
 import { SearchNotFound } from "../component/NotFound";
 import FilterMobileView from "../component/products/FilterMobileView";
 import SideFilter from "../component/products/SideFilter";
 import Greeting from "../component/Greeting";
-
+import { ProductContext } from "../contexts/ProductContext";
 
 
 export const GetProducts = () => {
   const [isActive, setIsActive] = useState(false)
-  const {isLoading, items, isError, errMessage } = useSelector(state => state.products);
   const [mobileFilter, setMobileFilter] = useState(false)
-  const [products, setProducts] = useState(items)
+  const {errorMsg, loading, items} = useContext(ProductContext)
   const [sorted, setSorted] = useState({sorted: "id", reversed: false});
   const [searchPhrase, setSearchPhrase] = useState("")
+  const {_id, image, name, description, color,quantity, size, brand, price, oldPrice, category} = items
+  const [products, setProducts] = useState(items)
+  console.log(products)
+//   console.log(products)
+ 
 
 
     const handleMobileFilter =()=> {
-        console.log('hello')
         setMobileFilter(!mobileFilter)
     };
 
@@ -71,18 +73,18 @@ export const GetProducts = () => {
         })
     })
 
-    if (isLoading) {
+    if (loading) {
         return <div>{<Loader/>}</div>;
     }
 
-    if (isError) {
-        return <div> Error: {errMessage}</div>;
+    if (errorMsg) {
+        return <div> Error: {errorMsg}</div>;
     }
 
     return (
         <section>
-            <div className="md:flex relative ">
-                <div className="hidden md:block">
+            <div className="md:flex relative bg-brown3">
+                <div className="hidden md:block bg-lightBrown text-white">
                     <SideFilter 
                         search={search}
                         sortByName={sortByName}
@@ -92,7 +94,7 @@ export const GetProducts = () => {
                 
                 <div id="products" className=" md:w-full px-2 mt-4">
                     <Greeting/>
-                    <div className="flex items-center sticky top-16 z-50 bg-white p-2 gap-2">
+                    <div className="flex items-center sticky top-16 z-50 p-2 gap-2">
                         <div className="">
                             <div onClick={handleMobileFilter} className="flex items-center md:hidden"><CiFilter /><span className="">Filter</span></div>
                             {
@@ -114,19 +116,20 @@ export const GetProducts = () => {
                                 placeholder="Search for Products, Category, Brands etc..."
                                 value={searchPhrase}
                                 onChange={search}
+                                autoFocus
                             />
                         </div>
                     </div>
-                    {!isLoading && products.length > -1 && (
-                        <>
+                    {!loading && products.length > -1 && (
+                        <div className=" ">
                             <div>
                                 {searchPhrase.length && products.length > -1 ? (
                                     <p className="flex items-center p-3 "> <TbShoppingBagSearch />search result for - {searchPhrase}</p>
                                 ): null}
                             </div>
-                            <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 items-center mx-2">
+                            <div className=" grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 items-center mx-2">
                                 {
-                                    products.length !== 0 && !isLoading ? products.map((product) =>{
+                                    products.length !== 0 && !loading ? products.map((product) => {
                                             return <Product key={product._id} product={product} />
                                         })
                                     :
@@ -135,7 +138,7 @@ export const GetProducts = () => {
                                     )
                                 }
                             </div>                        
-                        </>
+                        </div>
                     )}
                 </div>
             </div>

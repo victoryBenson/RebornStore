@@ -1,13 +1,9 @@
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
-
-// useEffect(()=>{
-// })
+import { UserAuth } from "../contexts/AuthContext"
 
 export const ShowOnLogin = ({children}) => {
-    const {isLoggedIn} = useSelector((state) => state.auth)
+    const {token} = UserAuth()
    
-    if(isLoggedIn){
+    if(token){
         return children
     }
     return null
@@ -15,18 +11,18 @@ export const ShowOnLogin = ({children}) => {
 
 
 export const ShowCustomer = ({children}) => {
-    const {isLoggedIn, currentUser} = useSelector((state) => state.auth)
+    const {currentUser} = UserAuth()
    
-    if(isLoggedIn && currentUser?.role === "customer"){
+    if(currentUser?.role === "customer"){
         return children
     }
     return null
 }
 
 export const ShowAdmin = ({children}) => {
-    const {isLoggedIn, currentUser} = useSelector((state) => state.auth)
+    const {currentUser} = UserAuth()
    
-    if(isLoggedIn && currentUser?.role === "admin"){
+    if(currentUser?.role === "admin"){
         return children
     }
     return null
@@ -34,9 +30,9 @@ export const ShowAdmin = ({children}) => {
 
 
 export const ShowOnLogout = ({children}) => {
-    const {isLoggedIn, currentUser} = useSelector((state) => state.auth)
+    const {token} = UserAuth()
 
-    if(!isLoggedIn && !currentUser){
+    if(!token){
         return children
     }
     return null

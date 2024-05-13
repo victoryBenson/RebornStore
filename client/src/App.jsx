@@ -5,45 +5,46 @@ import {Footer} from "./component/Footer"
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {MyCart} from "./pages/MyCart"
-import { useDispatch, useSelector } from "react-redux";
-import { getTotals } from "./redux/features/cartSlide";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getTotals } from "./redux/features/cartSlide";
 import { NotFound } from "./component/NotFound";
-import { CheckoutSuccess } from "./pages/CheckoutSuccess";
+// import { CheckoutSuccess } from "./pages/CheckoutSuccess";
 import { Layout } from "./component/Layout";
 import { ConditionRoute } from "./component/ConditionRoute";
 // import { RequireAuth } from "./component/RequireAuth";
 // import { PayButton } from "./component/PayButton";
-import { AccountPage } from "./pages/AccountPage";
+// import { AccountPage } from "./pages/AccountPage";
 import { Dashboard } from "./pages/Dashboard";
-import { Register } from "./pages/Register";
+// import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { UserProfile } from "./pages/Profile";
-import { HomeDashboard } from "./pages/DashboardOverview";
-import { AdminProducts } from "./pages/AdminProducts";
+// import { HomeDashboard } from "./pages/DashboardOverview";
+// import { AdminProducts } from "./pages/AdminProducts";
 import { Orders } from "./pages/Order";
-import { PayButton } from "./component/PayButton";
-import { useEffect } from "react";
-import { getProducts } from "./redux/features/product/productAction";
+// import { PayButton } from "./component/PayButton";
+// import { useEffect } from "react";
+// import { getProducts } from "./redux/features/product/productAction";
 import axios from "axios";
-import { getLoginStatus } from "./redux/features/auth/authActions";
+// import { getLoginStatus } from "./redux/features/auth/authActions";
 import { PromoDisplay } from "./component/PromoDisplay";
-import ShopLayout from "./component/Shop/ShopLayout";
+// import ShopLayout from "./component/Shop/ShopLayout";
 import Shop from "./component/Shop";
+import { RequireAuth } from "./component/RequireAuth";
 
 
 
 function App() {
-  const cart = useSelector(state => state.cart)
+  // const cart = useSelector(state => state.cart)
     axios.defaults.withCredentials = true; 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getLoginStatus())
-    dispatch(getProducts())
-    dispatch(getTotals())
-    // dispatch(UpdateProfile())
+  // useEffect(() => {
+  //   dispatch(getLoginStatus())
+  //   dispatch(getProducts())
+  //   dispatch(getTotals())
+  //   // dispatch(UpdateProfile())
 
-  }, [cart, dispatch])
+  // }, [cart, dispatch])
 
 
   return (
@@ -64,17 +65,20 @@ function App() {
                     {/* </Route> */}
                 </Route>
                 <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
-                <Route path="userDetails" element = {<AccountPage/>}/>
+                {/* <Route path="register" element={<Register/>}/> */}
+                {/* <Route path="userDetails" element = {<AccountPage/>}/> */}
                 <Route path="mycart" element={<MyCart/>}/>
-                <Route path="/checkout-success" element={<CheckoutSuccess/>}/>
-                <Route path="paymentBtn" element={<PayButton/>}/>
+                {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
+                {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
                 <Route path="*" element={<NotFound/>}/> 
                 <Route path="dashboard" element={<Dashboard/>}>
-                    <Route path="profile" element={<UserProfile/>}/>
-                    <Route path="home-dashboard" element={<HomeDashboard/>}/>
-                    <Route path="admin-products" element={<AdminProducts/>}/>
-                    <Route path="orders" element={<Orders/>}/>
+                    {/* protected route */}
+                    <Route element={<RequireAuth/>}>
+                        <Route path="profile" element={<UserProfile/>}/>
+                        <Route path="orders" element={<Orders/>}/>
+                    </Route>
+                    {/* <Route path="home-dashboard" element={<HomeDashboard/>}/> */}
+                    {/* <Route path="admin-products" element={<AdminProducts/>}/> */}
                 </Route>
                 <Route path="shop" element={<Shop/>}/>
             </Routes>

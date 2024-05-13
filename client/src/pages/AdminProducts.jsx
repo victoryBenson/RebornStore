@@ -5,7 +5,7 @@ import { BsCartCheck, BsPlusLg } from "react-icons/bs";
 import { MdOutlineSell } from "react-icons/md";
 import { truncateString } from "../utils";
 import Modal from "react-responsive-modal";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { getProducts, getTotalProduct, updateProduct } from "../redux/features/product/productAction"; 
 // import { EditProduct } from "../component/EditProduct";
 import { CreateProduct } from "../component/CreateProduct";

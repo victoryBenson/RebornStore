@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import axios from 'axios';
 
 const backendURL = "https://reborn-api.onrender.com/api/v1/products/";

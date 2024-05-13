@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
 import { createProduct } from '../redux/features/product/productAction';
 import { RESET_AUTH } from '../redux/features/product/productSlice';
 import { toast } from 'react-toastify';

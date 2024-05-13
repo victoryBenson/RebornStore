@@ -7,7 +7,7 @@ const SideFilter = ({search, sortByName,sortByPrice}) => {
     <div className="sticky top-20 z-40 lg:w-72 inset-0 p-5 space-y-4" >
         <h1 className="flex items-center font-semibold"><TbClipboardList />Filter</h1>
         <div className="border rounded border-gray/20">
-            <select  onChange={search}  className="w-full p-3 outline-none rounded transition-all bg-white border border-gray/5" >
+            <select  onChange={search}  className="w-full p-3 outline-none rounded transition-all bg-white text-brown text-br border border-gray/5" >
                 <option value="All">All Product</option>
                 <option value="men">Men</option>
                 <option value="women">Women</option>
