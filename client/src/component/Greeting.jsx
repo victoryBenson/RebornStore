@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { UserAuth } from '../contexts/AuthContext';
+import { UserContext } from '../contexts/UserContext';
 
 
 const Greeting = () => {
-    const { currentUser } = UserAuth();
-    const {username} = currentUser
+  const {currentUser} = useContext(UserContext)
+  const {username} = currentUser
 
   return (
     <div className='p-5'>

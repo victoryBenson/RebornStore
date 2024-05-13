@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { BsCartCheck, BsPlusLg } from "react-icons/bs";
 import { MdOutlineSell } from "react-icons/md";
 import { truncateString } from "../utils";
 import Modal from "react-responsive-modal";
-// import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getTotalProduct, updateProduct } from "../redux/features/product/productAction"; 
+
 // import { EditProduct } from "../component/EditProduct";
 import { CreateProduct } from "../component/CreateProduct";
 import { AiOutlinePlus } from 'react-icons/ai';
 import { TbShoppingBagEdit } from "react-icons/tb";
+import { ProductContext } from "../contexts/ProductContext";
 
 
 
@@ -27,34 +27,23 @@ const initialState = {
 }
 
 export const AdminProducts = () => {
-  const dispatch = useDispatch()
-  const {errMessage, isLoading, isError, items} = useSelector(state => state.products)
-    // const product = useSelector(state => state.products)
-//   console.log(items)
+     const [open, setOpen] = useState(false);
+     const onOpenModal = () => setOpen(true);
+     const onCloseModal = () => setOpen(false);
+    const {items, loading, errorMsg} = useContext(ProductContext)
 
-  useEffect(() => {
-    dispatch(getProducts()),
-    dispatch(getTotalProduct())
-  }, [])
+
+    if (loading)
+        return (
+        <div className="flex justify-center items-center h-screen w-full">
+            <Loader />
+        </div>
+    );
   
-  
-  const [open, setOpen] = useState(false);
-
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
-
-if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen w-full">
-        <Loader />
-      </div>
-  );
-  
-//   if (isError) return <div className="flex justify-center ">Error:{errMessage}</div>;
+  if (errorMsg) return <div className="flex justify-center ">Error:{errorMsg}</div>;
 
   return (
-    <section className="max md:w-full mx-2 shadow">
+    <section className=" md:w-full bg-brown3">
       <div className="flex flex-wrap justify-evenly items-center py-5 space-y-4">
         <div className="cursor-pointer bg-lightBrown hover:shadow-lg transition-all w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl text-ivory">
           <p onClick={onOpenModal} className="flex items-center">
@@ -85,11 +74,21 @@ if (isLoading)
       <div>
         <h1 className="p-2 font-bold text-2xl">Products</h1>
         <div className="">
-          {items.map((item) => {
-            return (
-                <Items key={item._id} item={item}/>
-            );
-          })}
+          {
+            items? (
+                <div>
+                    {
+                        items.map((item) => {
+                            return (
+                                <Items key={item._id} item={item}/>
+                            );
+                          })
+                    }
+                </div>
+            )
+            :
+            <span>Loading...</span>
+          }
         </div>
       </div>
     </section>
@@ -113,8 +112,8 @@ export const Items = ({item}) => {
         
     });
     // const {name, brand, category, price, oldPrice, quantity, description, image} = formData
-    const products = useSelector((state) => state.products); 
-    const dispatch = useDispatch()
+    // const products = useSelector((state) => state.products); 
+    // const dispatch = useDispatch()
 
 
     const onOpenModal = () => setOpen(true);
@@ -137,7 +136,7 @@ export const Items = ({item}) => {
             category, price, oldPrice, quantity, description,image
         }
 
-        dispatch(updateProduct(productData))
+        // dispatch(updateProduct(productData))
     }
 
     return(
@@ -199,7 +198,8 @@ export const Items = ({item}) => {
                                     </div>
                                 </div>
                             </Modal>
-                            <button onClick={toggleEdit} className='shadow-lg rounded-lg p-2 px-4 bg-lightBrown text-ivory'>Edit</button>
+                            {/* <button onClick={toggleEdit} className='shadow-lg rounded-lg p-2 px-4 bg-lightBrown text-ivory'>Edit</button> */}
+                            <Link to='/editProduct'>Edit Button</Link>
                             <Modal
                                 onClose={toggleEdit}
                                 center
@@ -216,7 +216,7 @@ export const Items = ({item}) => {
                                 animationDuration={100}
                             >
                                 <EditProduct/>
-                                {/* <div className=" text-blue flex justify-center">
+                                <div className=" text-blue flex justify-center">
                                     <form onSubmit={handleUpdate} className=" w-full flex flex-col items-center">
                                         <label htmlFor="" className="font-bold p-3 text-2xl flex items-center">
                                             <TbShoppingBagEdit />
@@ -339,7 +339,7 @@ export const Items = ({item}) => {
                                             </div>
                                         </div>
                                     </form>
-                                </div> */}
+                                </div>
                             </Modal>
                             <button className='bg-red shadow-lg rounded-lg p-2 px-4 text-ivory'>Delete</button>
                         </p>

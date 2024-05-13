@@ -17,9 +17,9 @@ export const GetProducts = () => {
   const {errorMsg, loading, items} = useContext(ProductContext)
   const [sorted, setSorted] = useState({sorted: "id", reversed: false});
   const [searchPhrase, setSearchPhrase] = useState("")
-  const {_id, image, name, description, color,quantity, size, brand, price, oldPrice, category} = items
+//   const {_id, image, name, description, color,quantity, size, brand, price, oldPrice, category} = items
   const [products, setProducts] = useState(items)
-  console.log(products)
+//   console.log(products)
 //   console.log(products)
  
 

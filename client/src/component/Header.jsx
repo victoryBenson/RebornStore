@@ -26,10 +26,11 @@ export const Header = () => {
     const {logOut} = UserAuth()
     const {itemAmount} = useContext(CartContext)
     const {currentUser, setCurrentUser} = useContext(UserContext)
+    const {username, role, profilePicture} = currentUser
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
-    const [cartegoryMenu, setCategoryMenu] = useState(false)    
-    const {username, role, profilePicture} = currentUser
+    const [cartegoryMenu, setCategoryMenu] = useState(false)
+        
 
     
     const cartegoryDropDown = () => {
@@ -137,7 +138,7 @@ export const Header = () => {
                         to={`/dashboard/home-dashboard`}
                         className={({ isActive }) =>
                             isActive
-                            ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-green decoration-2 font-bold"
+                            ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"
                             : "flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
                         }
                         >
@@ -162,7 +163,7 @@ export const Header = () => {
                         <h1 className="capitalize">
                             Hi,
                             <span className="px-1">
-                                {currentUser ? <span className="font-semibold capitalize">{username}</span> : "user"}
+                                {currentUser ? <span className="font-semibold capitalize">{username}</span> : "User"}
                             </span>
                         </h1>
                         {menu ? <RiArrowDownSLine /> : <RiArrowUpSLine />}
@@ -184,7 +185,7 @@ export const Header = () => {
                                 </p>
                                 <p className="flex flex-col px-2">
                                     <span className="font-bold capitalize">
-                                    {currentUser ? username : "user"}
+                                    {currentUser ? username : "User"}
                                     </span>
                                     <span className="font-light">Nigeria</span>
                                 </p>

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 export const Dashboard = () => {
   return (
-    <div className='flex relative h-screen flex-col sm:flex-row'>
+    <div className='flex relative h-scree flex-col sm:flex-row'>
       <DashboardMenu/>
       <Outlet/>
     </div>

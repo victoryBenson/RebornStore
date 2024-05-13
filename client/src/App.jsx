@@ -17,7 +17,7 @@ import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { UserProfile } from "./pages/Profile";
 import { HomeDashboard } from "./pages/DashboardOverview";
-// import { AdminProducts } from "./pages/AdminProducts";
+import { AdminProducts } from "./pages/AdminProducts";
 import { Orders } from "./pages/Order";
 // import { PayButton } from "./component/PayButton";
 // import { useEffect } from "react";
@@ -26,6 +26,7 @@ import { PromoDisplay } from "./component/PromoDisplay";
 // import ShopLayout from "./component/Shop/ShopLayout";
 import Shop from "./component/Shop";
 import { RequireAuth } from "./component/RequireAuth";
+import { EditProduct } from "./component/EditProduct";
 
 
 
@@ -72,9 +73,10 @@ function App() {
                         <Route path="profile" element={<UserProfile/>}/>
                         <Route path="orders" element={<Orders/>}/>
                         <Route path="home-dashboard" element={<HomeDashboard/>}/>
+                        <Route path="admin-products" element={<AdminProducts/>}/>
                     </Route>
-                    {/* <Route path="admin-products" element={<AdminProducts/>}/> */}
                 </Route>
+                <Route path="/editProduct" element={<EditProduct/>}/>
                 <Route path="shop" element={<Shop/>}/>
             </Routes>
             <ConditionRoute>

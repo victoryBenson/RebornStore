@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai';
-import { createProduct } from '../redux/features/product/productAction';
-import { RESET_AUTH } from '../redux/features/product/productSlice';
 import { toast } from 'react-toastify';
 
 
@@ -19,9 +17,7 @@ const initialState = {
 
 export const CreateProduct = () => {
       const [formData, setFormData] = useState(initialState);
-      const {name, brand, category, price, oldPrice, quantity, description, image} = formData
-      const { isLoading, isError, errMessage, isSuccess} = useSelector((state) => state.products); 
-      const dispatch = useDispatch()
+      const {name, brand, category, price, oldPrice, quantity, description, image} = formData 
 
 
     const handleChange = (e) => {
@@ -38,14 +34,14 @@ export const CreateProduct = () => {
             category, price, oldPrice, quantity, description,image
         }
 
-        dispatch(createProduct(productData))
+        // dispatch(createProduct(productData))
     }
 
-    useEffect(() => {
-        if(isError){
-            toast.error("An error occurred")
-        }
-    }, [isError])
+    // useEffect(() => {
+    //     if(isError){
+    //         toast.error("An error occurred")
+    //     }
+    // }, [isError])
 
   return (
     <div className=" text-blue flex justify-center">
@@ -164,7 +160,7 @@ export const CreateProduct = () => {
                         )
                     }
                 </div>
-                <div className='text-red'>{isError && errMessage}</div>
+                {/* <div className='text-red'>{errorMsg && errorMsg}</div> */}
                 <div className="flex justify-end py-2">
                     <button type="submit" className="w-full bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">Create</button>
                 </div>
