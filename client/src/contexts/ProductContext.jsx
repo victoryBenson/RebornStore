@@ -53,14 +53,13 @@ useEffect(() => {
             const response = await axios.get(
                 `${backendURL}getProducts`,
                 config
-            );
+            )
             setLoading(false)
-            const result = await response.data
-            // console.log(result)
-            setItems(result)
-            // const products = await JSON.stringify(response.data)
-            // sessionStorage.setItem('products', products)
-            return result;
+            sessionStorage.setItem('products', JSON.stringify(response.data ))
+            setItems(response.data)
+            console.log(response.data)
+            return response.data;
+
         } catch (error) {
             setLoading(false)
             setErrorMsg(error.response.data.message)

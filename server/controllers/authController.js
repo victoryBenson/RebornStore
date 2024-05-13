@@ -41,16 +41,14 @@ export const Register = async (req, res, next) => {
 
     //generate token
     const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
-    
-    // console.log(`the registered token is ${token}`)
 
     if (user) {
-        const { password, ...rest } = user._doc;
+        user.password = undefined
         res
             .status(201)
             .cookie("token", token, {path: "/",httpOnly: true})
             .header("authorization", `Bearer ${token}`)
-            .json(rest)
+            .json({user, token})
         }
     
   } catch (err) {

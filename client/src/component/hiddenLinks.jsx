@@ -1,4 +1,6 @@
+import { useContext } from "react"
 import { UserAuth } from "../contexts/AuthContext"
+import { UserContext } from "../contexts/UserContext"
 
 export const ShowOnLogin = ({children}) => {
     const {token} = UserAuth()
@@ -11,7 +13,7 @@ export const ShowOnLogin = ({children}) => {
 
 
 export const ShowCustomer = ({children}) => {
-    const {currentUser} = UserAuth()
+    const {currentUser} = useContext(UserContext)
    
     if(currentUser?.role === "customer"){
         return children
@@ -20,7 +22,7 @@ export const ShowCustomer = ({children}) => {
 }
 
 export const ShowAdmin = ({children}) => {
-    const {currentUser} = UserAuth()
+    const {currentUser} = useContext(UserContext)
    
     if(currentUser?.role === "admin"){
         return children

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef} from 'react'
 import {Link, useNavigate } from 'react-router-dom'
 import { Logo } from '../component/Logo';
-import { Reset_Auth } from '../redux/features/auth/authSlice';
 import { LuEye, LuEyeOff} from "react-icons/lu";
-import { register } from '../redux/features/auth/authActions';
 import loginImage from '../assets/image/signupImage.png'
-
+import { UserAuth } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 // import { OAuth } from '../Component/OAuth';
 
@@ -14,12 +13,14 @@ export const Register = () => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [email, setEmail] = useState()
-    const [role, setRole] = useState("customer")
-    const { isLoading, isError, errMessage, isSuccess, isLoggedIn} = useSelector((state) => state.auth); 
+    const [role, setRole] = useState("customer") 
     const navigate = useNavigate();
-    const dispatch = useDispatch()
     const [viewPwd, setViewPwd] = useState(false)
     const errRef = useRef();
+    const {Register} = UserAuth() 
+    const [loading, setLoading] = useState(false)
+    const [currentUser, setCurrentUser] = useState({})
+    const [errorMsg, setErrorMsg] = useState('')
 
     const handleRole = (e) => {
         setRole(e.target.value)
@@ -40,30 +41,30 @@ export const Register = () => {
     
     const handleRegister = async (e) => {
         e.preventDefault();
+        setLoading(true)
+        try {
+            const userData = {
+                email,
+                password,
+                role,
+                username
+            };
+    
+            userData.email = userData.email.toLowerCase();
+            await Register(userData)
+            setLoading(false)
+            navigate('/')
+            location.reload()
+            toast.success('Registered Successfully')
 
-        const userData = {
-            email,
-            password,
-            role,
-            username
-        };
+        } catch (error) {
+            setLoading(false)
+            setErrorMsg(error.response.data.message)
+            toast.error(error.response.data.message)
+        }
 
-        userData.email = userData.email.toLowerCase();
-
-        await dispatch(register(userData))
-        console.log('Registered successfully!')
     };
     
-
-    useEffect(() => {
-        if(isSuccess && isLoggedIn){
-        navigate("/")
-        }
-        dispatch(Reset_Auth())
-    }, [isSuccess, isLoggedIn, dispatch, navigate])
-
-
-
 
   return (
     <div className='relative flex justify-center items-center mx-auto overflow-auto'>
@@ -137,11 +138,10 @@ export const Register = () => {
                         </span>
                     </div>
                     {/* error message */}
-                    <p ref={errRef} className={isError ? "errmsg" : "offscreen"} aria-live="assertive">{errMessage}</p>
-                    {/* <p className='text-red mx-auto'>{isError && errMessage}</p> */}
+                    <p ref={errRef} className='text-red mx-auto'>{errorMsg && !loading && errorMsg}</p>
                     <div >
-                        <button disabled={isLoading} className='w-full p-3  from-lightBrown to-brown bg-gradient-to-r text-ivory hover:opacity-80 disabled:opacity-70  hover:font-bold transition-all duration-200 rounded-lg text-center gap-2'>
-                            { isLoading? 'Loading...please wait...' : 'CREATE ACCOUNT'}
+                        <button disabled={loading} className='w-full p-3  from-lightBrown to-brown bg-gradient-to-r text-ivory hover:opacity-80 disabled:opacity-70  hover:font-bold transition-all duration-200 rounded-lg text-center gap-2'>
+                            {loading? 'Loading...please wait...' : 'CREATE ACCOUNT'}
                         </button>
                     </div>
                 </form>

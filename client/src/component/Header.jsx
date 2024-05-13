@@ -1,44 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
-import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries, CiHome } from "react-icons/ci";
-import { MdCategory, MdOutlineConnectWithoutContact } from "react-icons/md";
+import { NavLink, Link, useNavigate} from "react-router-dom";
+import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries,} from "react-icons/ci";
 import { BiPurchaseTag } from "react-icons/bi";
 import { RiArrowDownSLine,  RiArrowUpSLine } from "react-icons/ri";
 import { LuHelpCircle, LuSunMoon } from "react-icons/lu";
-import { IoArrowUndoOutline, IoListCircleOutline } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { SocialMedia } from "./SocialMedia";
 import { BsCartCheck } from "react-icons/bs";
-// import { useDispatch, useSelector } from "react-redux";
 import { ShowCustomer, ShowOnLogin, ShowOnLogout, ShowAdmin} from "./hiddenLinks";
-// import { LogoutUser } from "../redux/features/auth/authActions";
-// import { Reset_Auth } from "../redux/features/auth/authSlice";
 import { TbChecklist } from "react-icons/tb";
 import { RxUpdate } from "react-icons/rx";
 import { AiFillDashboard } from "react-icons/ai";
-import MobileDropdown from "./MobileSideMenu";
 import MobileSideMenu from "./MobileSideMenu";
 import { FaShopify } from "react-icons/fa6";
 import { UserAuth } from "../contexts/AuthContext";
 import { CartContext } from "../contexts/CartContext";
+import { UserContext } from "../contexts/UserContext";
 
 
 export const Header = () => {
     const [menu, setMenu] = useState(false);
     const [mobile, setMobile] = useState(false);
-    const {Login, loading, errorMsg, currentUser,setCurrentUser} = UserAuth()
+    const {logOut} = UserAuth()
     const {itemAmount} = useContext(CartContext)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
-    const [cartegoryMenu, setCategoryMenu] = useState(false)
-    const location = useLocation();
+    const [cartegoryMenu, setCategoryMenu] = useState(false)    
     const {username, role, profilePicture} = currentUser
-    
-    
 
-
+    
     const cartegoryDropDown = () => {
         setCategoryMenu(!cartegoryMenu)
     };
@@ -77,9 +70,11 @@ export const Header = () => {
 
 
     const Logout = async () => {
-        sessionStorage.removeItem('user')
-        setCurrentUser({})
-        navigate('/')  
+        sessionStorage.removeItem('userId')
+        sessionStorage.removeItem('token')
+        setCurrentUser({})  
+        navigate('/') 
+        location.reload()
     }
   
 
@@ -154,7 +149,7 @@ export const Header = () => {
             </div>
             <div className="items-center flex space-x-4">
                 <div className="px-2 relative items-center space-x-4 hidden  md:flex">
-                    <div  onClick={() => setMenu(!menu)} onMouseOver={()=> setMenu(!menu)}  className="flex items-center cursor-pointer space-x-3 transition-all">
+                    <div  onClick={() => setMenu(!menu)} className="flex items-center cursor-pointer space-x-3 transition-all">
                         <p className={`${isActive ? 'rounded-full h-14 w-14 flex items-center justify-center ' : 'hidden'} transition-all duration-200`}>
                             <img
                             src={

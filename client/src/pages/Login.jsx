@@ -18,9 +18,12 @@ export const Login = () => {
     const [formData, setFormData] = useState(initialState);
     const [darkMode, setDarkMode] = useState(false)
     const {email, password} = formData;
-    const {Login, loading, errorMsg} = UserAuth() 
+    const {Login} = UserAuth() 
     const navigate = useNavigate();
     const [viewPwd, setViewPwd] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [currentUser, setCurrentUser] = useState({})
+    const [errorMsg, setErrorMsg] = useState('')
 
     // useEffect(()=>{
     //     const user = sessionStorage.getItem('user')
@@ -45,14 +48,25 @@ export const Login = () => {
     //SignIn
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true)
+        try {
+            const userData = {
+                email,
+                password
+            }
+    
+            userData.email = userData.email.toLowerCase();
+            await Login(userData)
+            setLoading(false)
+            navigate('/')
+            location.reload()
+            toast.success('Logged in Successfully')
 
-        const userData = {
-            email,
-            password
+        } catch (error) {
+            setLoading(false)
+            setErrorMsg(error.response.data.message)
+            toast.error(error.response.data.message)
         }
-
-        userData.email = userData.email.toLowerCase();
-        await Login(userData)
     };
    
 
