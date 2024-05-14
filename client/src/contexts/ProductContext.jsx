@@ -8,6 +8,7 @@ export const ProductProvider = ({children}) => {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState();
     const [items, setItems] = useState({});
+    const [totalProduct, setTotalProduct] = useState()
 
     let backendURL
     if (process.env.NODE_ENV === 'production') {
@@ -55,7 +56,6 @@ useEffect(() => {
                 config
             )
             setLoading(false)
-            sessionStorage.setItem('products', JSON.stringify(response.data ))
             setItems(response.data)
             console.log(response.data)
             return response.data;
@@ -70,28 +70,34 @@ useEffect(() => {
     getProducts()
 },[])
 
-//calculate number of products
-const getTotalProduct = async (productData) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await axios.get(
-        `${backendURL}getTotalProduct`,
-        productData,
-        config
-      );
-      return response.data;
-    } catch (error) {
-        setLoading(false)
-        setErrorMsg(error.response.data.message)
-        console.log(error.response.data.message)
-        toast.error(error.response.data.message)
-    }
-};
+  //calculate number of products
+  useEffect(() => {
+    const getTotalProduct = async () => {
+        try {
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+    
+          const response = await axios.get(
+            `${backendURL}getTotalProduct`,
+            config
+          );
+    
+          setLoading(false)
+          setTotalProduct(response.data)
+          // console.log(response.data)
+          return response.data;
+        } catch (error) {
+            setLoading(false)
+            setErrorMsg(error.response.data.message)
+            console.log(error.response.data.message)
+            // toast.error(error.response.data.message)
+        }
+    };
+    getTotalProduct()
+  },[])
 
 //edit product
 const updateProduct =  async (productData) => {
@@ -137,7 +143,7 @@ const deleteProduct = async (productData) => {
         console.log(error.response.data.message)
         toast.error(error.response.data.message)
     }
-  };
+};
 
 //   useEffect( () => {
 //     const products = sessionStorage.getItem('products')
@@ -147,7 +153,7 @@ const deleteProduct = async (productData) => {
 // },[])
 
     return(
-        <ProductContext.Provider value={{loading, errorMsg, items, deleteProduct, createProduct, updateProduct, getTotalProduct}}>
+        <ProductContext.Provider value={{loading, errorMsg, items, totalProduct, deleteProduct, createProduct, updateProduct}}>
             {children}
         </ProductContext.Provider>
     )

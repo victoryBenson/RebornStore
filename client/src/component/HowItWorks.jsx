@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { SearchNotFound } from './NotFound';
 import { TbClipboardList } from 'react-icons/tb';
 import workFlow from './database/workFlow';
@@ -6,8 +6,9 @@ import { Btn, Button } from '../shared/Button';
 import { FaShopify } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
+
 export const HowItWorks = () => {
- 
+
 
   const scrollToTop = () => {
     window.scrollTo(

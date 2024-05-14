@@ -19,9 +19,9 @@ const initialState = {
 
 export const EditProduct = () => {
     const [formData, setFormData] = useState(initialState);
-      const {name, brand, category, price, oldPrice, quantity, description, image} = formData
-      const { isLoading, isError, errMessage, isSuccess} = useSelector((state) => state.products); 
-      const dispatch = useDispatch()
+    //   const {name, brand, category, price, oldPrice, quantity, description, image} = formData
+    //   const { isLoading, isError, errMessage, isSuccess} = useSelector((state) => state.products); 
+    //   const dispatch = useDispatch()
 
 
     const handleChange = (e) => {
@@ -38,7 +38,7 @@ export const EditProduct = () => {
             category, price, oldPrice, quantity, description,image
         }
 
-        dispatch(createProduct(productData))
+        // dispatch(createProduct(productData))
     }
   return (
     <div className=" text-blue flex justify-center">
@@ -158,7 +158,7 @@ export const EditProduct = () => {
                         )
                     }
                 </div>
-                <div className='text-red'>{isError && errMessage}</div>
+                {/* <div className='text-red'>{isError && errMessage}</div> */}
                 <div className="flex justify-end py-2">
                     <button type="submit" className="w-full bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">Update Product</button>
                 </div>
