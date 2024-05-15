@@ -15,8 +15,8 @@ export const DashboardMenu = () => {
         window.scroll(0,0)
     }
   return (
-    <div className='relative transition-all sm:w-[20%] bg-lightBrown text-white sm:h-screen py-4'>
-        <div className='sm:gap-4 transition-all flex flex-row sm:flex-col items-center w-full'>
+    <div className=' sm:gap-4 transition-all bg-lightBrown text-white sm:h-screen py-4'>
+        <div className=' transition-all flex flex-row sm:flex-col items-center w-full'>
             <ShowAdmin>
                 <NavLink 
                     to={'home-dashboard'} 

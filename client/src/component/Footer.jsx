@@ -17,7 +17,7 @@ export const Footer = () => {
 
   return (
     <div  className='bg-brown text-white sm:h-72 h-96 md:flex items-center md:px-10 p-3 space-y-6 md:space-y-0'>
-        <div data-aos="fade-up" className='items-center justify-between md:w-1/2 sm:m-3 md:mb-0 order-last'>
+        <div data-aos="fade-u" className='items-center justify-between md:w-1/2 sm:m-3 md:mb-0 order-last'>
             <div className='rounded sm:p-4 p-2'>
                 <h1 className='font-bold sm:text-2xl sm:p-2'>Don't wanna miss our offers?</h1>
                 <h2 className='md:py-2 text-ivory/60'>Drop your email address below and start receiving the best offers from <strong>Reborn</strong></h2>

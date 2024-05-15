@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai';
 import { toast } from 'react-toastify';
+import { ProductContext } from '../contexts/ProductContext';
 
 
 const initialState = {
@@ -16,16 +17,16 @@ const initialState = {
     }
 
 export const CreateProduct = () => {
-      const [formData, setFormData] = useState(initialState);
-      const {name, brand, category, price, oldPrice, quantity, description, image} = formData 
-
+    const [formData, setFormData] = useState(initialState);
+    const {name, brand, category, price, oldPrice, quantity, description, image} = formData 
+    const {createProduct, loading, errorMsg} = useContext(ProductContext)
 
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData({ ...formData, [name]: value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
         const productData = {
@@ -33,23 +34,18 @@ export const CreateProduct = () => {
             brand,
             category, price, oldPrice, quantity, description,image
         }
-
-        // dispatch(createProduct(productData))
+        await createProduct(productData)
     }
 
-    // useEffect(() => {
-    //     if(isError){
-    //         toast.error("An error occurred")
-    //     }
-    // }, [isError])
+  
 
   return (
-    <div className=" text-blue flex justify-center">
-        <form onSubmit={handleSubmit} className=" w-full flex flex-col items-center">
-            <label htmlFor="" className="font-bold p-3 text-2xl">
+    <div className="flex justify-center bg-brown3">
+        <form onSubmit={handleSubmit} className=" w-full flex flex-col items-center mx-[5%] md:mx-[10%] lg:mx-[20%] px-10 bg-white my-10 rounded ">
+            <label htmlFor="" className="font-bold p-7 text-2xl " >
                 Create a new Product
             </label>
-            <div className="items-center space-y-2 p-3 w-full ">
+            <div className="items-center p-3 w-full space-y-4">
                 <div className="">
                     <label  htmlFor="name" className="absolut inputLabel bg-gree">Product name</label>
                     <input
@@ -58,7 +54,7 @@ export const CreateProduct = () => {
                         value={name}
                         id=""
                         placeholder="Enter name"
-                        className="inputField w-full p-2 outline-none border border-gray/10 rounded"
+                        className="inputField w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -69,15 +65,14 @@ export const CreateProduct = () => {
                     <select
                         name="category"
                         id=""
-                        className="p-2 border border-gray/10 rounded outline-none w-full"
+                        className="p-3 border border-gray/10 rounded outline-none w-full"
                         onChange={handleChange}
                     >
-                        <option value="fragrance">Fragrance</option>
-                        <option value="Skincare">SkinCare</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="Accessories">Accessories</option>
-                        <option value="Phones">Phones</option>
-                        <option value="Sports">Sports</option>
+                        <option value="All">All Product</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="unisex">Unisex</option>
+                        <option value="kids">Kids</option>
                     </select>
                 </div>
                 <div className="">
@@ -88,7 +83,7 @@ export const CreateProduct = () => {
                         value={brand}
                         id=""
                         placeholder="Enter product brand"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -100,7 +95,7 @@ export const CreateProduct = () => {
                         value={price}
                         id=""
                         placeholder="Enter product price"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -112,7 +107,7 @@ export const CreateProduct = () => {
                         value={oldPrice}
                         id=""
                         placeholder="Enter product price"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -124,7 +119,7 @@ export const CreateProduct = () => {
                         value={quantity}
                         id=""
                         placeholder="Enter product quantity"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -148,7 +143,7 @@ export const CreateProduct = () => {
                         value={image}
                         id=""
                         placeholder="Paste the image url"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                     {
@@ -161,8 +156,9 @@ export const CreateProduct = () => {
                     }
                 </div>
                 {/* <div className='text-red'>{errorMsg && errorMsg}</div> */}
-                <div className="flex justify-end py-2">
-                    <button type="submit" className="w-full bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">Create</button>
+                <div className="flex justify-end py-2 gap-3">
+                    <button type="submit" className="w-full bg-lightBrown text-ivory p-3 rounded shadow hover:shadow-lg hover:bg-opacity-90 hover:font-semibold">Create</button>
+                    <button type="" className="bg-red text-white p-3 rounded shadow hover:shadow-lg">Cancel</button>
                 </div>
             </div>
         </form>

@@ -13,9 +13,9 @@ const router = express.Router();
 
 router.post("/createProduct",rateLimitMiddleware, createProduct);
 router.get("/getProducts", getProducts);
-router.get("/getProduct/:id", singleProduct);
+router.get("/getProduct", singleProduct);
 router.get("/getTotalProduct", getTotalProduct);
-router.delete("/deleteProduct/:id", deleteProduct);
-router.patch("/updateProduct/:id", updateProduct);
+router.delete("/deleteProduct", deleteProduct);
+router.patch("/updateProduct", updateProduct);
 
 export default router;

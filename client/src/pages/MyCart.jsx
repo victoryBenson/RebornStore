@@ -10,8 +10,7 @@ import { CartSummary } from "../component/CartSummary";
 
 export const MyCart = () => {
     const {itemAmount, cart, } = useContext(CartContext)
-    // console.log(cart)
-       
+    
     const scrollToTop = () => {
         window.scrollTo(0,0)
     }

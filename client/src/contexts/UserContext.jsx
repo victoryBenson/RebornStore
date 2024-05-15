@@ -97,8 +97,7 @@ export const UserProvider = ({children}) => {
         getUsers()
     }, [])
 
-  
-   
+     
     //check active user
     useEffect( () => {
         const token = sessionStorage.getItem('token')

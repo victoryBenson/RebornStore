@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai';
 import { TbShoppingBagEdit } from "react-icons/tb";
-import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
 
 
 
@@ -19,9 +20,8 @@ const initialState = {
 
 export const EditProduct = () => {
     const [formData, setFormData] = useState(initialState);
-    //   const {name, brand, category, price, oldPrice, quantity, description, image} = formData
-    //   const { isLoading, isError, errMessage, isSuccess} = useSelector((state) => state.products); 
-    //   const dispatch = useDispatch()
+    const {name, brand, category, price, oldPrice, quantity, description, image} = formData
+    const location = useLocation()
 
 
     const handleChange = (e) => {
@@ -40,23 +40,26 @@ export const EditProduct = () => {
 
         // dispatch(createProduct(productData))
     }
+
+
   return (
-    <div className=" text-blue flex justify-center">
-        <form onSubmit={handleSubmit} className=" w-full flex flex-col items-center">
+    <div className="bg-brown3 flex flex-col justify-center w-full">
+        <div className='bg-white h-10'>{location.pathname}</div>
+        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white p-10 rounded my-10 mx-[20%]">
             <label htmlFor="" className="font-bold p-3 text-2xl flex items-center">
                 <TbShoppingBagEdit />
-                Edit Product
+                Edit Products
             </label>
-            <div className="items-center space-y-2 p-3 w-full ">
+            <div className="items-center p-3 w-full space-y-4">
                 <div className="">
                     <label  htmlFor="name" className="absolut inputLabel bg-gree">Product name</label>
                     <input
                         type="text"
                         name="name"
-                        value={formData.name}
+                        value={formData.name || JSON.stringify(location)}
                         id=""
                         placeholder="Enter name"
-                        className="inputField w-full p-2 outline-none border border-gray/10 rounded"
+                        className="inputField w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -67,7 +70,7 @@ export const EditProduct = () => {
                     <select
                         name="category"
                         id=""
-                        className="p-2 border border-gray/10 rounded outline-none w-full"
+                        className="p-3 border border-gray/10 rounded outline-none w-full"
                         onChange={handleChange}
                     >
                         <option value="fragrance">Fragrance</option>
@@ -86,7 +89,7 @@ export const EditProduct = () => {
                         value={brand}
                         id=""
                         placeholder="Enter product brand"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -98,7 +101,7 @@ export const EditProduct = () => {
                         value={price}
                         id=""
                         placeholder="Enter product price"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -110,7 +113,7 @@ export const EditProduct = () => {
                         value={oldPrice}
                         id=""
                         placeholder="Enter product price"
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -122,7 +125,7 @@ export const EditProduct = () => {
                         value={quantity}
                         id=""
                         placeholder="Enter product quantity"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                        className="w-full p-2 outline-none border border-gray/10 rounded"
+                        className="w-full p-3 outline-none border border-gray/10 rounded"
                         onChange={handleChange}
                     />
                 </div>
@@ -160,7 +163,7 @@ export const EditProduct = () => {
                 </div>
                 {/* <div className='text-red'>{isError && errMessage}</div> */}
                 <div className="flex justify-end py-2">
-                    <button type="submit" className="w-full bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">Update Product</button>
+                    <button type="submit" className="w-full bg-lightBrown text-ivory p-3 hover:opacity-80 transition-all duration-300 rounded shadow hover:shadow-lg">Update Product</button>
                 </div>
             </div>
         </form>

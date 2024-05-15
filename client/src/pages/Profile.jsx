@@ -68,7 +68,7 @@ export const UserProfile = () => {
     },[])
 
   return (
-    <section className='text-sm md:w-[80%] transition-all p-1 bg-brown3'>
+    <section className='text-sm transition-all p-1 bg-brown3'>
         <form onSubmit={handleSubmit} className='h-screen mx-2'>
             <div className=''>
                 <div className=' gap-2 items-center justify-center'>

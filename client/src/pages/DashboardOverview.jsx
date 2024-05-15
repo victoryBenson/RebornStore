@@ -28,7 +28,7 @@ export const HomeDashboard = () => {
     if(errorMsg) return <div className='flex justify-center'>Error:{errorMsg}</div>
     
   return (
-    <section className='max md:w-full mx-2 shadow bg-brown3 h-screen overflow-y-scroll'>
+    <section className='p-5 md:w-full shadow bg-brown3 h-screen overflow-y-scroll'>
         <div className='flex flex-wrap justify-evenly items-center py-5 space-y-4'>
             <div>
                 <NavLink to={`/dashboard/admin-products`} className='border border-lightBrown/10 shadow-lg w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl'>

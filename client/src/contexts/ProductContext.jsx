@@ -18,57 +18,55 @@ export const ProductProvider = ({children}) => {
     }
     console.log(backendURL)
 
-//create product
-const createProduct = async (productData) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
+  //create product
+  const createProduct = async (productData) => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const response = await axios.post(`${backendURL}createProduct`,productData,config);
+        toast.success("product created successfully")
+        return response.data;
+      } catch (error) {
+          setLoading(false)
+          setErrorMsg(error.response.data.message)
+          console.log(error.response.data.message)
+          // toast.error(error.response.data.message) 
+      }
+  };
+
+
+  //getProduct
+  useEffect(() => {
+      const getProducts = async() => {
+          setLoading(true)
+          try {
+              const config = {
+                  headers: {
+                  "Content-Type": "application/json",
+                  },
+              };
+              const response = await axios.get(
+                  `${backendURL}getProducts`,
+                  config
+              )
+              setLoading(false)
+              setItems(response.data)
+              console.log(response.data)
+              return response.data;
+
+          } catch (error) {
+              setLoading(false)
+              setErrorMsg(error.response.data.message)
+              console.log(error.response.data.message)
+              toast.error(error.response.data.message)
+          }
       };
-
-      const response = await axios.post(
-        `${backendURL}createProduct`,
-        productData,
-        config
-      );
-      return response.data;
-    } catch (error) {
-        setLoading(false)
-        setErrorMsg(error.response.data.message)
-        console.log(error.response.data.message)
-        toast.error(error.response.data.message) 
-    }
-};
-
-//getProduct
-useEffect(() => {
-    const getProducts = async() => {
-        setLoading(true)
-        try {
-            const config = {
-                headers: {
-                "Content-Type": "application/json",
-                },
-            };
-            const response = await axios.get(
-                `${backendURL}getProducts`,
-                config
-            )
-            setLoading(false)
-            setItems(response.data)
-            console.log(response.data)
-            return response.data;
-
-        } catch (error) {
-            setLoading(false)
-            setErrorMsg(error.response.data.message)
-            console.log(error.response.data.message)
-            toast.error(error.response.data.message)
-        }
-    };
-    getProducts()
-},[])
+      getProducts()
+  },[])
 
   //calculate number of products
   useEffect(() => {
@@ -99,58 +97,53 @@ useEffect(() => {
     getTotalProduct()
   },[])
 
-//edit product
-const updateProduct =  async (productData) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+  //edit product
+  const updateProduct =  async (productData) => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-      const response = await axios.patch(
-        `${backendURL}updateProduct`,
-        productData,
-        config
-      );
-      return response.data;
-    } catch (error) {
-        setLoading(false)
-        setErrorMsg(error.response.data.message)
-        console.log(error.response.data.message)
-        toast.error(error.response.data.message)
-    }
+        const response = await axios.patch(
+          `${backendURL}updateProduct`,
+          productData,
+          config
+        );
+        return response.data;
+      } catch (error) {
+          setLoading(false)
+          setErrorMsg(error.response.data.message)
+          console.log(error.response.data.message)
+          toast.error(error.response.data.message)
+      }
+    };
+
+  //delete product
+  const deleteProduct = async (productData) => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const response = await axios.patch(
+          `${backendURL}deleteProduct`,
+          productData,
+          config
+        );
+        return response.data;
+      } catch (error) {
+          setLoading(false)
+          setErrorMsg(error.response.data.message)
+          console.log(error.response.data.message)
+          toast.error(error.response.data.message)
+      }
   };
 
-//delete product
-const deleteProduct = async (productData) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
 
-      const response = await axios.patch(
-        `${backendURL}deleteProduct`,
-        productData,
-        config
-      );
-      return response.data;
-    } catch (error) {
-        setLoading(false)
-        setErrorMsg(error.response.data.message)
-        console.log(error.response.data.message)
-        toast.error(error.response.data.message)
-    }
-};
-
-//   useEffect( () => {
-//     const products = sessionStorage.getItem('products')
-//     if(products){
-//         setItems(JSON.parse(products))
-//     }
-// },[])
 
     return(
         <ProductContext.Provider value={{loading, errorMsg, items, totalProduct, deleteProduct, createProduct, updateProduct}}>

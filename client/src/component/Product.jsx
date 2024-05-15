@@ -37,7 +37,7 @@ export const Product = ({product}) => {
     }
     
   return (
-    <div className='bg-white shadow rounded-xl w-full md:w-60 lg:w-64 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
+    <div className='bg-white shadow rounded-xl w-full md:w-60 lg:w-60 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
         <div className='h-1/2 flex justify-center relative overflow-hidden rounded-t-xl'>
             <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/5 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                 <div className='bottom-4 flex justify-center absolute w-full'>
