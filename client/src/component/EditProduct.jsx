@@ -78,7 +78,6 @@ export const EditProduct = () => {
                 name: product?.name,
                 brand: product?.brand,
                 category: product?.category,
-                brand: product?.brand,
                 oldPrice: product?.oldPrice,
                 price: product?.price,
                 quantity: product?.quantity,
