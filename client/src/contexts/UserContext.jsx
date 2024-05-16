@@ -100,12 +100,12 @@ export const UserProvider = ({children}) => {
      
     //check active user
     useEffect( () => {
-        const token = sessionStorage.getItem('token')
-        const userId = sessionStorage.getItem('userId')
-        if(token && userId){
+        // const token = sessionStorage.getItem('token')
+        // const userId = sessionStorage.getItem('userId')
+        // if(token && userId){
             getUser()
             // getUsers()
-        }
+        // }
     }, []);
 
     

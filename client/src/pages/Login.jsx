@@ -22,7 +22,7 @@ export const Login = () => {
     const navigate = useNavigate();
     const [viewPwd, setViewPwd] = useState(true)
     const [loading, setLoading] = useState(false)
-    const [currentUser, setCurrentUser] = useState({})
+    // const [currentUser, setCurrentUser] = useState({})
     const [errorMsg, setErrorMsg] = useState('')
 
     // useEffect(()=>{
