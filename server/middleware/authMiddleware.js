@@ -15,9 +15,9 @@ export const protect = async(req, res, next) => {
             token = req.cookies.token;
         }
 
-        // if(!token){
-        //     return res.status(401).json({message:"Not authorized, Please login"});
-        // }
+        if(!token){
+            return res.status(401).json({message:"Not authorized, Please login"});
+        }
         
         //verify token
         const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)

@@ -32,9 +32,9 @@ export const UserProvider = ({children}) => {
                 `${backendURL}getUser`,
                 config
             )
-            setLoading(false)
             setCurrentUser(response.data)
             console.log(response.data)
+            setLoading(false)
             return response.data;
 
         } catch (error) {
@@ -45,7 +45,7 @@ export const UserProvider = ({children}) => {
     };
 
      //getUserTotal
-    useEffect(() => {
+    // useEffect(() => {
         const getUserTotal = async() => {
             setLoading(true)
             try {
@@ -68,11 +68,11 @@ export const UserProvider = ({children}) => {
                 console.log(error.response.data.message)
             }
         };
-        getUserTotal()
-    })
+        // getUserTotal()
+    // })
     
     // get users
-    useEffect(() => {
+    // useEffect(() => {
         const getUsers = async() => {
             setLoading(true)
             try {
@@ -94,18 +94,19 @@ export const UserProvider = ({children}) => {
                 console.log(error.message)
             }
         };
-        getUsers()
-    }, [])
+        // getUsers()
+    // }, [])
 
      
     //check active user
     useEffect( () => {
-        // const token = sessionStorage.getItem('token')
-        // const userId = sessionStorage.getItem('userId')
-        // if(token && userId){
+        const token = sessionStorage.getItem('token')
+        const userId = sessionStorage.getItem('userId')
+        if(token && userId){
             getUser()
-            // getUsers()
-        // }
+            getUsers()
+            getUserTotal()
+        }
     }, []);
 
     

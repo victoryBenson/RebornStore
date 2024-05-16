@@ -163,7 +163,7 @@ export const Header = () => {
                         <h1 className="capitalize">
                             Hi,
                             <span className="px-1 font-semibold capitalize">
-                                {username|| "welcome"}
+                                {username? username : "welcome"}
                             </span>
                         </h1>
                         {menu ? <RiArrowDownSLine /> : <RiArrowUpSLine />}
@@ -185,7 +185,7 @@ export const Header = () => {
                                 </p>
                                 <p className="flex flex-col px-2">
                                     <span className="font-bold capitalize">
-                                    {username || "welcome"}
+                                    {username? username : "welcome"}
                                     </span>
                                     <span className="font-light">Nigeria</span>
                                 </p>
