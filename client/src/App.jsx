@@ -75,7 +75,7 @@ function App() {
                         <Route path="orders" element={<Orders/>}/>
                         <Route path="home-dashboard" element={<HomeDashboard/>}/>
                         <Route path="admin-products" element={<AdminProducts/>}/>
-                        <Route path="editProduct" element={<EditProduct/>}/>
+                        <Route path="editProduct/:id" element={<EditProduct/>}/>
                         <Route path="createProduct" element={<CreateProduct/>}/>
                     </Route>
                 </Route>

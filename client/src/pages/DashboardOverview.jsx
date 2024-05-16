@@ -70,13 +70,13 @@ export const HomeDashboard = () => {
 
     return(
         <div className='min-h-fit w-full my-4 '>
-            <div className='h-full flex justify-between sm:justify-center space-x- rounded shadow sm:p-3'>
-                <div className='w-[20%] sm:w-[50%] h-[16vh]'>
+            <div className='h-full flex items-center justify-between sm:justify-center rounded border border-gray-light/40 px-10'>
+                <div className='h-10'>
                     <div className='flex justify-center items-center h-full'>
                         <img src={profilePicture} alt="image" className='w-full h-full object-contain top' />
                     </div>
                 </div>
-                <div className='w-full h-[16vh] p-2 flex items-center'>
+                <div className='w-full p-2 flex items-center text-sm'>
                     <div>
                         <p className='text-center flex items-center space-x-2 '>
                             <span className='font-bold'>Name:</span>

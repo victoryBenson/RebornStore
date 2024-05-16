@@ -1,46 +1,50 @@
 import { useState } from "react";
 import { truncateString } from "../utils";
 import Modal from "react-responsive-modal";
-import { NavLink } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 
 export const Items = ({item}) => {
-    const {image, name, quantity, category, brand, description, price, oldPrice} = item
+    const {image, name, quantity, category, brand, description, _id} = item
     const [open, setOpen] = useState(false);
-    const [updateBtn, setUpdateBtn] = useState(false)
-    const [formData, setFormData] = useState({
-        name: "",
-        brand: "",
-        category: "",
-        price: "",
-        oldPrice: "",
-        quantity: "",
-        description: "",
-        image: ""
-        
-    });
-
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
-    const toggleEdit = () => setUpdateBtn(!updateBtn)
+    const [loading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState()
+    const {id} = useParams()
 
-
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        setFormData({ ...formData, [name]: value})
+    //scroll to top
+    const scrollToTop = () =>{
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
     }
-   
 
-    const handleUpdate = (e) => {
+      //deleteProduct 
+    const handleDelete = async(e) => {
         e.preventDefault()
+        setLoading(true)
 
-        const productData = {
-            name,
-            brand,
-            category, price, oldPrice, quantity, description,image
+        try {
+            const config = {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              };
+      
+              await axios.delete(`${backendURL}deleteProduct/${id}`, config);
+              toast.success("Product deleted successfully")
+              setLoading(false)
+              location.reload()
+              return response.data;
+        } catch (error) {
+            setErrorMsg(error.message)
+            console.log(error.message)
+            toast.error(error.message) 
+            setLoading(false)
         }
-
-        // dispatch(updateProduct(productData))
     }
 
     return(
@@ -75,8 +79,8 @@ export const Items = ({item}) => {
                             <span className="font-bold">Brand:</span>
                             <p className="capitalize">{brand}</p>
                         </p>
-                        <p className=' space-x-2 sm:space-x-4'>
-                            <button onClick={onOpenModal} className='shadow border border-gray/10 rounded-lg p-2 px-4 bg-ivory'> Preview</button>
+                        <div className=' space-x-2 sm:space-x-4'>
+                            <button onClick={onOpenModal} className=' border border-gray/20 rounded-lg p-2 px-4 '> Preview</button>
                             <Modal open={open} 
                                 center 
                                 onClose={onCloseModal}
@@ -102,9 +106,9 @@ export const Items = ({item}) => {
                                     </div>
                                 </div>
                             </Modal>
-                            <NavLink to={`/dashboard/editProduct`} >Edit Button</NavLink>
-                            <button className='bg-red shadow-lg rounded-lg p-2 px-4 text-ivory'>Delete</button>
-                        </p>
+                            <Link to={`/dashboard/editProduct/${_id}`} onClick={scrollToTop} className='border border-gray/20 rounded-lg p-2 px-4'>Edit</Link>
+                            <button className='border border-gray/20 rounded-lg p-2 px-4' onClick={handleDelete}>Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>

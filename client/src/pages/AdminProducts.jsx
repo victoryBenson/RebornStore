@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { BsPlusLg } from "react-icons/bs";
 import Modal from "react-responsive-modal";
@@ -23,10 +23,13 @@ const initialState = {
 
 export const AdminProducts = () => {
      const [open, setOpen] = useState(false);
-     const onOpenModal = () => setOpen(true);
-     const onCloseModal = () => setOpen(false);
-    const {items, loading, errorMsg} = useContext(ProductContext)
+    const {items,getProducts, loading, errorMsg} = useContext(ProductContext)
 
+
+    
+    useEffect(() => {
+        getProducts()
+    },[])
 
     if (loading)
         return (

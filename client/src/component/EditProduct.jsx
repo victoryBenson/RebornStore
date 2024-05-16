@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai';
 import { TbShoppingBagEdit } from "react-icons/tb";
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { ProductContext } from '../contexts/ProductContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 
+let backendURL
+if (process.env.NODE_ENV === 'production') {
+    backendURL = "https://reborn-api.onrender.com/api/v1/products/";
+} else{
+    backendURL = "http://localhost:3000/api/v1/products/";
+}
+console.log(backendURL)
 
 const initialState = {
     name: "",
@@ -22,30 +32,114 @@ export const EditProduct = () => {
     const [formData, setFormData] = useState(initialState);
     const {name, brand, category, price, oldPrice, quantity, description, image} = formData
     const location = useLocation()
+    const {updateProduct} = useContext(ProductContext);
+    const [loading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState()
+    const [product, setProduct] = useState()
+    const {id} = useParams()
+    const navigate = useNavigate()
 
+    
+
+      //singleProduct
+    useEffect(() => {
+        if(product !== null){
+            const getProduct = async() => {
+              setLoading(true)
+              try {
+                  const config = {
+                      headers: {
+                      "Content-Type": "application/json",
+                      },
+                  };
+                const response = await axios.get(
+                      `${backendURL}getProduct/${id}`,
+                      config
+                    )
+                    setLoading(false)
+                    setProduct(response.data)
+                    console.log(product)
+                    return  await response.data;
+      
+              } catch (error) {
+                  setLoading(false)
+                  setErrorMsg(error.message)
+                  console.log(error.message)
+              }
+            };
+            getProduct()
+        }
+    },[])
+
+    //update input field
+    useEffect(() => {
+        if(product){
+            setFormData({
+                name: product?.name,
+                brand: product?.brand,
+                category: product?.category,
+                brand: product?.brand,
+                oldPrice: product?.oldPrice,
+                price: product?.price,
+                quantity: product?.quantity,
+                description: product?.description,
+                image: product?.image,
+            })
+        }
+    }, [ product])
 
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData({ ...formData, [name]: value})
     }
 
-    const handleSubmit = (e) => {
+      //update Product 
+    const handleSubmit = async(e) => {
         e.preventDefault()
+        setLoading(true)
 
-        const productData = {
-            name,
-            brand,
-            category, price, oldPrice, quantity, description,image
+        try {
+            const productData = {
+                name,
+                brand,
+                category, price, oldPrice, quantity, description,image
+            }
+            // await updateProduct(productData)
+            const config = {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              };
+      
+              const response = await axios.put(`${backendURL}updateProduct/${id}`, productData, config);
+              toast.success("Product created successfully")
+              setLoading(false)
+              navigate('/dashboard/admin-products')
+              scrollToTop()
+            //   location.reload()
+              return response.data;
+        } catch (error) {
+            setErrorMsg(error.message)
+            console.log(error.message)
+            toast.error(error.message) 
+            setLoading(false)
         }
-
-        // dispatch(createProduct(productData))
     }
+
+
+    const scrollToTop = () =>{
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+        
 
 
   return (
     <div className="bg-brown3 flex flex-col justify-center w-full">
         <div className='bg-white h-10'>{location.pathname}</div>
-        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white p-10 rounded my-10 mx-[20%]">
+        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white p-10 rounded my-10 mx-[5%] lg:mx-[20%]">
             <label htmlFor="" className="font-bold p-3 text-2xl flex items-center">
                 <TbShoppingBagEdit />
                 Edit Products
@@ -56,7 +150,7 @@ export const EditProduct = () => {
                     <input
                         type="text"
                         name="name"
-                        value={formData.name || JSON.stringify(location)}
+                        value={name}
                         id=""
                         placeholder="Enter name"
                         className="inputField w-full p-3 outline-none border border-gray/10 rounded"
@@ -73,12 +167,11 @@ export const EditProduct = () => {
                         className="p-3 border border-gray/10 rounded outline-none w-full"
                         onChange={handleChange}
                     >
-                        <option value="fragrance">Fragrance</option>
-                        <option value="Skincare">SkinCare</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="Accessories">Accessories</option>
-                        <option value="Phones">Phones</option>
-                        <option value="Sports">Sports</option>
+                        <option value="All">-select-</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="unisex">Unisex</option>
+                        <option value="kids">Kids</option>
                     </select>
                 </div>
                 <div className="">
@@ -161,9 +254,10 @@ export const EditProduct = () => {
                         )
                     }
                 </div>
-                {/* <div className='text-red'>{isError && errMessage}</div> */}
-                <div className="flex justify-end py-2">
-                    <button type="submit" className="w-full bg-lightBrown text-ivory p-3 hover:opacity-80 transition-all duration-300 rounded shadow hover:shadow-lg">Update Product</button>
+                <div className='text-red text-sm'>{errorMsg && errorMsg}</div>
+                <div className="flex justify-end py-2 gap-4">
+                    <button type="submit" className="w-full bg-lightBrown hover:font-semibold text-ivory p-3 hover:opacity-80 transition-all duration-300 rounded shadow hover:shadow-lg">{loading ? "Please wait..." : "Update Product"}</button>
+                    <Link to='/dashboard/admin-products' onClick={scrollToTop} className='border border-gray/20 rounded-lg p-2 px-4 flex w-[20%] items-center justify-center hover:opacity-90 transition-all'>Cancel</Link>
                 </div>
             </div>
         </form>

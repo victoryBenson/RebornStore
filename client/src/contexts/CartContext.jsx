@@ -34,10 +34,10 @@ export const CartProvider = ({children}) => {
 
         } else {
             setCart([...cart, newItem])
+            // sessionStorage.setItem("cart", JSON.stringify(cart))
             toast.success(`Product is added to Cart`)
         }
 
-        sessionStorage.setItem("myCart", JSON.stringify(cart))
     };
 
      // remove Item from Cart
