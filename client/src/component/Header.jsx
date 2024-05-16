@@ -25,7 +25,7 @@ export const Header = () => {
     const [mobile, setMobile] = useState(false);
     const {logOut} = UserAuth()
     const {itemAmount} = useContext(CartContext)
-    const {currentUser, setCurrentUser, getUser} = useContext(UserContext)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
     const {username, role, profilePicture} = currentUser
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
@@ -34,15 +34,13 @@ export const Header = () => {
 
     
  //check active user
-    useEffect( () => {
-        const token = sessionStorage.getItem('token')
-        const userId = sessionStorage.getItem('userId')
-        if(token && userId){
-            getUser()
-            // getUsers()
-            // getUserTotal()
-        }
-    }, []);
+    // useEffect( () => {
+    //     const token = sessionStorage.getItem('token')
+    //     const userId = sessionStorage.getItem('userId')
+    //     if(token && userId){
+    //         getUser()
+    //     }
+    // }, []);
 
     
     const cartegoryDropDown = () => {

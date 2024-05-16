@@ -18,31 +18,32 @@ export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState({})
     const [users, setUsers] = useState(null)
     const [userTotal, setUserTotal] = useState();
-
+    
     //getuser
-    const getUser = async() => {
-        setLoading(true)
-        try {
-            const config = {
-                headers: {
-                "Content-Type": "application/json",
-                },
-            };
-            const response = await axios.get(
-                `${backendURL}getUser`,
-                config
-            )
-            setCurrentUser(response.data)
-            console.log(response.data)
-            setLoading(false)
-            return response.data;
+    
+    // const getUser = async() => {
+    //     setLoading(true)
+    //     try {
+    //         const config = {
+    //             headers: {
+    //             "Content-Type": "application/json",
+    //             },
+    //         };
+    //         const response = await axios.get(
+    //             `${backendURL}getUser`,
+    //             config
+    //         )
+    //         setCurrentUser(response.data)
+    //         console.log(response.data)
+    //         setLoading(false)
+    //         return await response.data;
 
-        } catch (error) {
-            setLoading(false)
-            setErrorMsg(error.response.data.message)
-            console.log(error.response.data.message)
-        }
-    };
+    //     } catch (error) {
+    //         setLoading(false)
+    //         setErrorMsg(error.response.data.message)
+    //         console.log(error.response.data.message)
+    //     }
+    // };
 
      //getUserTotal
     // useEffect(() => {
@@ -99,15 +100,36 @@ export const UserProvider = ({children}) => {
 
      
     //check active user
-    // useEffect( () => {
-    //     const token = sessionStorage.getItem('token')
-    //     const userId = sessionStorage.getItem('userId')
-    //     if(token && userId){
-    //         getUser()
-    //         getUsers()
-    //         getUserTotal()
-    //     }
-    // }, []);
+    useEffect( () => {
+        const token = sessionStorage.getItem('token')
+        const userId = sessionStorage.getItem('userId')
+        if(token && userId){
+            const getUser = async() => {
+                setLoading(true)
+                try {
+                    const config = {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                    };
+                    const response = await axios.get(
+                        `${backendURL}getUser`,
+                        config
+                    )
+                    setCurrentUser(response.data)
+                    console.log(response.data)
+                    setLoading(false)
+                    return await response.data;
+        
+                } catch (error) {
+                    setLoading(false)
+                    setErrorMsg(error.response.data.message)
+                    console.log(error.response.data.message)
+                }
+            };
+            getUser()
+        }
+    }, []);
 
     
     const updateUser = async (userData) => {
@@ -124,5 +146,5 @@ export const UserProvider = ({children}) => {
 
 
 
-    return <UserContext.Provider value={{updateUser, userTotal, users,setUsers, currentUser, setCurrentUser, getUser,getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{updateUser, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
 }

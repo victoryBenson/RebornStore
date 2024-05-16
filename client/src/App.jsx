@@ -28,6 +28,9 @@ import Shop from "./component/Shop";
 import { RequireAuth } from "./component/RequireAuth";
 import { EditProduct } from "./component/EditProduct";
 import { CreateProduct } from "./component/CreateProduct";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./contexts/UserContext";
+import { ProductContext } from "./contexts/ProductContext";
 
 
 
@@ -35,14 +38,16 @@ function App() {
     axios.defaults.withCredentials = true; 
     // const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(getLoginStatus())
-  //   dispatch(getProducts())
-  //   dispatch(getTotals())
-  //   // dispatch(UpdateProfile())
+    // const {currentUser, getUser} = useContext(UserContext)
+    const {getProducts} = useContext(ProductContext)
+    // console.log(currentUser)
+    
 
-  // }, [cart, dispatch])
-
+    useEffect(() => {
+        // getUser()
+        getProducts()
+    },[])
+   
 
   return (
     <div className="relative">

@@ -58,9 +58,7 @@ export const ProductProvider = ({children}) => {
         toast.error(error.response.data.message)
     }
   };
-   useEffect(() => {
-      getProducts()
-  },[])
+
 
 
 
