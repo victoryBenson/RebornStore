@@ -99,15 +99,15 @@ export const UserProvider = ({children}) => {
 
      
     //check active user
-    useEffect( () => {
-        const token = sessionStorage.getItem('token')
-        const userId = sessionStorage.getItem('userId')
-        if(token && userId){
-            getUser()
-            getUsers()
-            getUserTotal()
-        }
-    }, []);
+    // useEffect( () => {
+    //     const token = sessionStorage.getItem('token')
+    //     const userId = sessionStorage.getItem('userId')
+    //     if(token && userId){
+    //         getUser()
+    //         getUsers()
+    //         getUserTotal()
+    //     }
+    // }, []);
 
     
     const updateUser = async (userData) => {
