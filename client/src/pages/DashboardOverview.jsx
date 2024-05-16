@@ -13,7 +13,7 @@ import { UserContext } from '../contexts/UserContext';
 
 
 export const HomeDashboard = () => {
-    const {users, setUsers, userTotal} = useContext(UserContext)
+    const {users, setUsers, userTotal, getUser, getUserTotal, getUsers} = useContext(UserContext)
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(false)
     const [cartegoryMenu, setCategoryMenu] = useState(false)    
@@ -21,6 +21,18 @@ export const HomeDashboard = () => {
     const [loading, setLoading] = useState(false)
     const {items, totalProduct} = useContext(ProductContext)
       
+
+
+       //check active user
+    useEffect( () => {
+        const token = sessionStorage.getItem('token')
+        const userId = sessionStorage.getItem('userId')
+        if(token && userId){
+            getUser()
+            getUsers()
+            getUserTotal()
+        }
+    }, []);
 
 
     
