@@ -28,7 +28,7 @@ export const HomeDashboard = () => {
     if(errorMsg) return <div className='flex justify-center'>Error:{errorMsg}</div>
     
   return (
-    <section className='max md:w-full mx-2 shadow bg-brown3 h-screen overflow-y-scroll'>
+    <section className='p-5 md:w-full shadow bg-brown3 h-screen overflow-y-scroll'>
         <div className='flex flex-wrap justify-evenly items-center py-5 space-y-4'>
             <div>
                 <NavLink to={`/dashboard/admin-products`} className='border border-lightBrown/10 shadow-lg w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl'>
@@ -70,13 +70,13 @@ export const HomeDashboard = () => {
 
     return(
         <div className='min-h-fit w-full my-4 '>
-            <div className='h-full flex justify-between sm:justify-center space-x- rounded shadow sm:p-3'>
-                <div className='w-[20%] sm:w-[50%] h-[16vh]'>
+            <div className='h-full flex items-center justify-between sm:justify-center rounded border border-gray-light/40 px-10'>
+                <div className='h-10'>
                     <div className='flex justify-center items-center h-full'>
                         <img src={profilePicture} alt="image" className='w-full h-full object-contain top' />
                     </div>
                 </div>
-                <div className='w-full h-[16vh] p-2 flex items-center'>
+                <div className='w-full p-2 flex items-center text-sm'>
                     <div>
                         <p className='text-center flex items-center space-x-2 '>
                             <span className='font-bold'>Name:</span>

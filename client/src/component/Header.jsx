@@ -162,8 +162,8 @@ export const Header = () => {
                         </p>
                         <h1 className="capitalize">
                             Hi,
-                            <span className="px-1">
-                                {currentUser ? <span className="font-semibold capitalize">{username}</span> : "User"}
+                            <span className="px-1 font-semibold capitalize">
+                                {username|| "welcome"}
                             </span>
                         </h1>
                         {menu ? <RiArrowDownSLine /> : <RiArrowUpSLine />}
@@ -185,7 +185,7 @@ export const Header = () => {
                                 </p>
                                 <p className="flex flex-col px-2">
                                     <span className="font-bold capitalize">
-                                    {currentUser ? username : "User"}
+                                    {username || "welcome"}
                                     </span>
                                     <span className="font-light">Nigeria</span>
                                 </p>

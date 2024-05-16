@@ -4,9 +4,11 @@ import { Outlet } from 'react-router-dom'
 
 export const Dashboard = () => {
   return (
-    <div className='flex relative h-scree flex-col sm:flex-row'>
+    <div className='relative grid grid-cols-5'>
       <DashboardMenu/>
-      <Outlet/>
+      <div className='col-span-4'>
+        <Outlet/>
+      </div>
     </div>
   )
 }

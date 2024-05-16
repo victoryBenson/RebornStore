@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BsBagCheck } from "react-icons/bs";
 import { TiArrowMaximise } from "react-icons/ti";
@@ -12,6 +12,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RiHeart2Line } from "react-icons/ri";
 import { CartContext } from '../contexts/CartContext.jsx';
 import { toast } from 'react-toastify';
+import { ProductContext } from '../contexts/ProductContext.jsx';
 
 
 export const Product = ({product}) => {
@@ -36,8 +37,9 @@ export const Product = ({product}) => {
         window.scrollTo(0,0)
     }
     
+
   return (
-    <div className='bg-white shadow rounded-xl w-full md:w-60 lg:w-64 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
+    <div className='bg-white shadow rounded-xl w-full md:w-72 lg:w-60 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
         <div className='h-1/2 flex justify-center relative overflow-hidden rounded-t-xl'>
             <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/5 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                 <div className='bottom-4 flex justify-center absolute w-full'>
@@ -159,7 +161,7 @@ export const Product = ({product}) => {
             <span className='absolute top-2 right-2 p-2 z-10  text-yellow rounded-full cursor-pointer'>
                 <RiHeart2Line size={20}/>
             </span>
-            <img src={image[0]} alt="image" className='group-hover:scale-110 object-cover rounded-lg w-full cursor-pointer overflow-hidden duration-100 transition-all ' />
+            <img src={image[0]} alt="image" className='group-hover:scale-110 object-contain rounded-lg w-full cursor-pointer overflow-hidden duration-100 transition-all ' />
         </div>
         <div className='p-2 space-x-2 space-y-2'>
             <p className='font-bold px-2 text-brown capitalize'>{truncateString(name, 20)}</p>

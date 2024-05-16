@@ -60,7 +60,7 @@ app.use("/api/v1/auth", authRoute);
 //   console.log("signedCookies:", singedCookies);
 // });
 
-app.get("/", (req,res) => res.send('Welcome to Reborn'))
+app.get("/", (req,res) => res.send('Welcome to Rebornv2'))
 
 
 // Custom ErrorHandler middleware

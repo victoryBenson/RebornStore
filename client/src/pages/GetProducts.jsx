@@ -83,8 +83,8 @@ export const GetProducts = () => {
 
     return (
         <section>
-            <div className="md:flex relative bg-brown3">
-                <div className="hidden md:block bg-lightBrown text-white">
+            <div className="relative grid grid-cols-5">
+                <div className="hidden bg-lightBrown text-white md:flex justify-center">
                     <SideFilter 
                         search={search}
                         sortByName={sortByName}
@@ -92,7 +92,7 @@ export const GetProducts = () => {
                     />
                 </div>
                 
-                <div id="products" className=" md:w-full px-2 mt-4">
+                <div id="products" className="col-span-5 md:col-span-4 px-2 bg-brown3">
                     <Greeting/>
                     <div className="flex items-center sticky top-16 z-50 p-2 gap-2">
                         <div className="">
@@ -127,7 +127,7 @@ export const GetProducts = () => {
                                     <p className="flex items-center p-3 "> <TbShoppingBagSearch />search result for - {searchPhrase}</p>
                                 ): null}
                             </div>
-                            <div className=" grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 items-center mx-2">
+                            <div className=" grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 items-center mx-2">
                                 {
                                     products.length !== 0 && !loading ? products.map((product) => {
                                             return <Product key={product._id} product={product} />

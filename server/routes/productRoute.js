@@ -16,6 +16,6 @@ router.get("/getProducts", getProducts);
 router.get("/getProduct/:id", singleProduct);
 router.get("/getTotalProduct", getTotalProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
-router.patch("/updateProduct/:id", updateProduct);
+router.put("/updateProduct/:id", updateProduct);
 
 export default router;

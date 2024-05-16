@@ -31,14 +31,14 @@ export const getUser = async (req, res, next) => {
 
   //getUsersCount
 export const getUsersCount = async (req, res, next) => {
-  try {
-    const users = await User.find({}).count();
+    try {
+      const users = await User.find({}).count();
 
-    res.status(200).json(users);
-    
-  } catch (err) {
-    next(err)
-  }
+      res.status(200).json(users);
+      
+    } catch (err) {
+      next(err)
+    }
 };
 
 

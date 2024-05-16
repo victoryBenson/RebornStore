@@ -65,16 +65,18 @@ export const deleteProduct = async (req, res, next) => {
   try {
     
     const { id } = req.params;
-    const product = await Product.findByIdAndDelete(id);
+    const product = await Product.findByIdAndDelete(id, req.body);
 
     if (!product) {
       res.status(404).json({ message: `Product not found` });
     }
   
-    res.status(204).json({ message: "Product deleted" });
+    res
+    .status(204)
+    .json({ message: "Product deleted" })
+    .send({message: "Product deleted"})
 
   } catch (error) {
-    
     next(error)
   }
 }
@@ -84,10 +86,7 @@ export const updateProduct = async (req, res, next) => {
   try {
     
     const { id } = req.params;
-    const product = await Product.findByIdAndUpdate(id,  {
-      new: true,
-      runValidators: true,
-    });
+    const product = await Product.findByIdAndUpdate(id,req.body);
   
     if (!product) {
       res.status(404).json({ message: `Product not found` }); 

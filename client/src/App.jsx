@@ -27,6 +27,7 @@ import { PromoDisplay } from "./component/PromoDisplay";
 import Shop from "./component/Shop";
 import { RequireAuth } from "./component/RequireAuth";
 import { EditProduct } from "./component/EditProduct";
+import { CreateProduct } from "./component/CreateProduct";
 
 
 
@@ -74,9 +75,10 @@ function App() {
                         <Route path="orders" element={<Orders/>}/>
                         <Route path="home-dashboard" element={<HomeDashboard/>}/>
                         <Route path="admin-products" element={<AdminProducts/>}/>
+                        <Route path="editProduct/:id" element={<EditProduct/>}/>
+                        <Route path="createProduct" element={<CreateProduct/>}/>
                     </Route>
                 </Route>
-                <Route path="/editProduct" element={<EditProduct/>}/>
                 <Route path="shop" element={<Shop/>}/>
             </Routes>
             <ConditionRoute>

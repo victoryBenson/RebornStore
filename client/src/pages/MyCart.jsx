@@ -1,7 +1,7 @@
 import "aos/dist/aos.css"
 import { BsCartCheck} from "react-icons/bs";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { CartItems } from "../component/CartItems";
 import { CartSummary } from "../component/CartSummary";
@@ -9,9 +9,18 @@ import { CartSummary } from "../component/CartSummary";
 
 
 export const MyCart = () => {
-    const {itemAmount, cart, } = useContext(CartContext)
-    // console.log(cart)
-       
+    const {itemAmount, cart} = useContext(CartContext)
+    // const [cart, setCart] = useState({})
+
+
+    // useEffect(() => {
+    //     const myCart = sessionStorage.getItem('cart')
+    //     if(cart){
+    //         setCart(JSON.parse(myCart))
+    //     }
+    // },[])
+
+    
     const scrollToTop = () => {
         window.scrollTo(0,0)
     }

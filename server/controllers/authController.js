@@ -14,46 +14,46 @@ export const cookieConfig = {
 
 //register
 export const Register = async (req, res, next) => {
-  const { username, email, password, role} = req.body;
-  console.log("This is working! again")
-  try {
-    
-    if (!username || !email || !password || !role) {
-      return res.status(400).json({ message: "All field are required" });
-    }
+    const { username, email, password, role} = req.body;
 
-    const duplicate = await User.findOne({ email }).lean().exec();
-  
-    if (duplicate) {
-      return res.status(409).json({ message: "User already exists" });
-    }
-
-      //create user data
-    const userData = {
-      username,
-      password,
-      email,
-      role
-    };
-  
-    const user  = await User.create(userData);
-    console.log(`The created user is  ${user}`)
-
-    //generate token
-    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
-
-    if (user) {
-        user.password = undefined
-        res
-            .status(201)
-            .cookie("token", token, {path: "/",httpOnly: true})
-            .header("authorization", `Bearer ${token}`)
-            .json({user, token})
+    try {
+        
+        if (!username || !email || !password || !role) {
+        return res.status(400).json({ message: "All field are required" });
         }
+
+        const duplicate = await User.findOne({ email }).lean().exec();
     
-  } catch (err) {
-    next(err)
-  }
+        if (duplicate) {
+        return res.status(409).json({ message: "User already exists" });
+        }
+
+        //create user data
+        const userData = {
+        username,
+        password,
+        email,
+        role
+        };
+    
+        const user  = await User.create(userData);
+        // console.log(`The created user is  ${user}`);
+
+        //generate token
+        const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '24h'})
+
+        if (user) {
+            user.password = undefined
+            res
+                .status(201)
+                .cookie("token", token, {path: "/",httpOnly: true})
+                .header("authorization", `Bearer ${token}`)
+                .json({user, token})
+            }
+        
+    } catch (err) {
+        next(err)
+    }
 };
 
 
