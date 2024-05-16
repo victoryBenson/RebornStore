@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 let backendURL
 if (process.env.NODE_ENV === 'production') {
-    backendURL = "https://reborn-api.onrender.com/api/v1/users/";
+    backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
 } else{
     backendURL = "http://localhost:3000/api/v1/users/";
 }

@@ -5,6 +5,14 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 
+let backendURL
+if (process.env.NODE_ENV === 'production') {
+    backendURL = "https://rebornv2api.onrender.com/api/v1/auth/";
+} else{
+    backendURL = "http://localhost:3000/api/v1/auth/";
+}
+console.log(backendURL)
+
 export const Items = ({item}) => {
     const {image, name, quantity, category, brand, description, _id} = item
     const [open, setOpen] = useState(false);

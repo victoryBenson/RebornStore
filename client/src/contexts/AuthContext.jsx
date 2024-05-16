@@ -7,7 +7,7 @@ const AuthContext = createContext();
 
 let backendURL
 if (process.env.NODE_ENV === 'production') {
-    backendURL = "https://reborn-api.onrender.com/api/v1/auth/";
+    backendURL = "https://rebornv2api.onrender.com/api/v1/auth/";
 } else{
     backendURL = "http://localhost:3000/api/v1/auth/";
 }

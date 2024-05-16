@@ -14,7 +14,7 @@ export const ProductProvider = ({children}) => {
 
     let backendURL
     if (process.env.NODE_ENV === 'production') {
-        backendURL = "https://reborn-api.onrender.com/api/v1/products/";
+        backendURL = "https://rebornv2api.onrender.com/api/v1/products/";
     } else{
         backendURL = "http://localhost:3000/api/v1/products/";
     }

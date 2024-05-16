@@ -4,10 +4,6 @@ import { toast } from 'react-toastify';
 
 export const CartContext = createContext()
 
-// const initialState = {
-//   myCart:sessionStorage.getItem('cart') ? sessionStorage.getItem('cart') : []
-// }
-
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [itemAmount, setItemAmount] = useState(0)
