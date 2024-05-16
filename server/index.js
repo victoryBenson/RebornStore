@@ -19,7 +19,7 @@ const MONGO_URL = process.env.MONGO_URL;
 const FRONTEND = process.env.FRONTEND;
 
 
-const allowedOrigin = ['https://reborn-9uk3.onrender.com', 'http://localhost:5173', 'http://localhost:3000']
+const allowedOrigin = ['https://rebornstore.onrender.com', 'http://localhost:5173', 'http://localhost:3000']
 const corsOptions = {
   origin: (origin, callback) => {
     if(allowedOrigin.indexOf(origin) !== -1 || !origin){
