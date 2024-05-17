@@ -54,7 +54,7 @@ export const Register = () => {
             await Register(userData)
             setLoading(false)
             navigate('/')
-            location.reload()
+            // location.reload()
             toast.success('Registered Successfully')
 
         } catch (error) {
