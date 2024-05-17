@@ -47,7 +47,7 @@ export const Register = async (req, res, next) => {
             const expiryDate = new Date(Date.now() + 24*(3600000)) //expire in 24hrs
             res
                 .status(201)
-                .cookie("token", token, {SameSite:"None",httpOnly: false, secure:true, expires: expiryDate})
+                .cookie("token", token, {SameSite:"None",httpOnly: false, secure:true, domain:"onrender.com", expires: expiryDate})
                 .header("authorization", `Bearer ${token}`)
                 .json({user, token})
             }
@@ -85,7 +85,7 @@ export const Login = async (req, res, next) => {
       const expiryDate = new Date(Date.now() + 24*(3600000)) //expire in 24hrs
   
       res
-        .cookie("token", token, {SameSite:"None", httpOnly: false,secure:true, domain:"onrender.com", expires:expiryDate})
+        .cookie("token", token, {SameSite:"None", httpOnly: false, secure:true, domain:"onrender.com", expires:expiryDate})
         .header("authorization", `Bearer ${token}`)
         .status(201)
         .json({user, token})
