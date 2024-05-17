@@ -59,7 +59,7 @@ export const Login = () => {
             await Login(userData)
             setLoading(false)
             navigate('/')
-            // location.reload()
+            location.reload()
             toast.success('Logged in Successfully')
 
         } catch (error) {
