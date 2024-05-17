@@ -61,10 +61,10 @@ export const UserProfile = () => {
         }
     }
 
-    useEffect(() =>{
-        const token = sessionStorage.getItem('token')
-        !token && navigate('/login') 
-    },[])
+    // useEffect(() =>{
+    //     const token = sessionStorage.getItem('token')
+    //     !token && navigate('/login') 
+    // },[])
 
   return (
     <section className='text-sm transition-all p-1 bg-brown3'>

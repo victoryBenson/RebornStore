@@ -13,6 +13,7 @@ export const protect = async(req, res, next) => {
         }else if (req.cookies.token){
             // get token from cookie
             token = req.cookies.token;
+            console.log(token)
         }
 
         if(!token){
