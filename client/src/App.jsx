@@ -36,11 +36,9 @@ import { ProductContext } from "./contexts/ProductContext";
 
 function App() {
     axios.defaults.withCredentials = true; 
-    // const dispatch = useDispatch()
-
-    // const {currentUser, getUser} = useContext(UserContext)
+    
     const {getProducts} = useContext(ProductContext)
-    // console.log(currentUser)
+
     
 
     useEffect(() => {
