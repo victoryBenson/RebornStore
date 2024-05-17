@@ -1,19 +1,3 @@
-// export const errorHandler = (err) => {
-//     console.log(err.message, err.code);
-
-//     let error = { email: ", password:" };
-
-//     //validation error
-//     if (err.message.includes("userModels validation failed")) {
-//       console.log(
-//         Object.values(err.errors).forEach(({ properties }) => {
-//           error[properties.path] = properties.message;
-//         })
-//       );
-//     }
-//     return error;
-//   };
-
 // export const errorHandler = (statusCode, message) =>{
 //   const error = new Error()
 //   error.statusCode = statusCode;

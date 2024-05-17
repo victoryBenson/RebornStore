@@ -44,9 +44,10 @@ export const Register = async (req, res, next) => {
 
         if (user) {
             user.password = undefined
+            const expiryDate = new Date(Date.now() + 24*(3600000)) //expire in 24hrs
             res
                 .status(201)
-                .cookie("token", token, {path: "/",httpOnly: true})
+                .cookie("token", token, {path: "/",httpOnly: true, expires: expiryDate})
                 .header("authorization", `Bearer ${token}`)
                 .json({user, token})
             }
@@ -76,14 +77,15 @@ export const Login = async (req, res, next) => {
     }
    
     //generate token
-    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '24h'})
+    const token = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET)
   
     if (user && verifyPwd) {
        //hide password
       user.password = undefined
+      const expiryDate = new Date(Date.now() + 24*(3600000)) //expire in 24hrs
   
       res
-        .cookie("token", token, {path: "/", httpOnly: true})
+        .cookie("token", token, {path: "/", httpOnly: true, expires:expiryDate})
         .header("authorization", `Bearer ${token}`)
         .status(201)
         .json({user, token})
