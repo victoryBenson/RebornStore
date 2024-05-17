@@ -10,10 +10,10 @@ export const protect = async(req, res, next) => {
         if(authHeader?.startsWith('Bearer')){
             // get token from the header
             token = authHeader.split(" ")[1]
+            console.log(token)
         }else if (req.cookies.token){
             // get token from cookie
             token = req.cookies.token;
-            console.log(token)
         }
 
         if(!token){
