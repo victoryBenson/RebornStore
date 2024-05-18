@@ -38,6 +38,9 @@ export const AdminProducts = () => {
         })
     }
 
+    useEffect(() => {
+        getProducts()
+    },[])
 
     if (loading)
         return (
@@ -50,16 +53,14 @@ export const AdminProducts = () => {
 
   return (
     <section className=" md:p-5 p-2 md:w-full shadow">
-        <div className="flex flex-wrap justify-evenly items-center md:py-5 space-y-4">
-            <div className="cursor-pointer bg-lightBrown hover:shadow-lg transition-all w-60 p-3 rounded flex flex-col justify-center items-center font-semibold md:text-xl text-ivory">
-                <Link to={`/dashboard/createProduct`} className="flex items-center">
-                    <BsPlusLg />
-                    Create new Product
-                </Link>
-            </div>
+        <div className="flex items-center justify-center">
+            <Link to={`/dashboard/createProduct`} className="bg-lightBrown cursor-pointer  hover:shadow-lg transition-all w-60 p-3 rounded flex justify-center items-center font-semibold md:text-xl text-ivory">
+                <BsPlusLg />
+                Create new Product
+            </Link>
         </div>
         <div>
-        <div className='block md:flex  items-center justify-between py-5 sticky top-0 bg-brown3 md:px-2'>
+        <div className='block md:flex  items-center justify-between py-5 sticky top-10 bg-brown3 md:px-2'>
                 <h1 className='md:p-2 font-semibold md:text-lg'>Avaliable Stocks</h1>
                 <div className='flex md:w-[70%]'>
                     <input 
@@ -67,7 +68,7 @@ export const AdminProducts = () => {
                         value={searchResult}
                         onChange={(e) => setSearchResult(e.target.value)} 
                         placeholder='search name brand category here...' 
-                        className='p-3 bg-gray-light/20 outline-brown/10 w-full flex'
+                        className='p-3  border-brown/5 rounded border outline-none w-full flex'
                         autoFocus 
                     />
                 </div>

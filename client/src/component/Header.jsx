@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HomeLogo, Logo } from "./Logo";
-import { NavLink, Link, useNavigate} from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation} from "react-router-dom";
 import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries,} from "react-icons/ci";
 import { BiPurchaseTag } from "react-icons/bi";
 import { RiArrowDownSLine,  RiArrowUpSLine } from "react-icons/ri";
@@ -26,12 +26,15 @@ export const Header = () => {
     const [mobile, setMobile] = useState(false);
     const {logOut} = UserAuth()
     const {itemAmount} = useContext(CartContext)
-    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const {currentUser, Logout} = useContext(UserContext)
     const {username, role, profilePicture} = currentUser
     const navigate = useNavigate();
     const {isActive, setIsActive} = useContext(SidebarContext)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
-        
+    const location = useLocation()
+    let path = '/dashboard' 
+    
+    let check = location.pathname.includes(path)
     
    
     const cartegoryDropDown = () => {
@@ -67,13 +70,9 @@ export const Header = () => {
   };
 
 
-    const Logout = async () => {
-        sessionStorage.removeItem('userId')
-        sessionStorage.removeItem('token')
-        setCurrentUser({})  
-        navigate('/') 
-        location.reload()
-    }
+    const logoutUser = () => {  
+        Logout()
+    };
   
 
   return (
@@ -89,7 +88,7 @@ export const Header = () => {
                     clickMobile={clickMobile }
                     scrollToTop={scrollToTop} 
                     currentUser={currentUser} 
-                    Logout={Logout}
+                    logoutUser={logoutUser}
                     />
                 )}
             </div>
@@ -113,36 +112,17 @@ export const Header = () => {
                         Shop
                     </NavLink>
                 </div>
-                <ShowCustomer>
-                    <div className=" p-2 flex text-sm md:text-base">
-                        <NavLink
-                        to="/dashboard/profile"
-                        className={({ isActive }) =>
-                            isActive
-                            ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"
-                            : "flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                        }
-                        >
-                        <BiPurchaseTag className="mx-1" />
-                        Dashboard
-                        </NavLink>
-                    </div>
-                </ShowCustomer>
-                <ShowAdmin>
-                    <div className=" p-2 flex text-sm md:text-base">
-                        <NavLink
-                        to={`/dashboard/home-dashboard`}
-                        className={({ isActive }) =>
-                            isActive
-                            ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"
-                            : "flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                        }
-                        >
-                        <AiFillDashboard className="mx-1" />
-                        Dashboard
-                        </NavLink>
-                    </div>
-                </ShowAdmin>
+                <div className=" p-2 flex text-sm md:text-base">
+                    <NavLink
+                    to="/dashboard/profile"
+                    className={`${ check && "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"}
+                        flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4
+                    `}
+                    >
+                    <AiFillDashboard className="mx-1" />
+                    Dashboard
+                    </NavLink>
+                </div>
             </div>
             {/*  */}
             <div className="items-center flex">
@@ -253,7 +233,7 @@ export const Header = () => {
                             </ShowOnLogout>
                             <ShowOnLogin>
                                 <button
-                                onClick={Logout}
+                                onClick={logoutUser}
                                 className="flex items-center p-2 text-red font-bold cursor-pointer hover:underline underline-offset-4"
                                 >
                                 <CiLogout className="mt-1 mx-1" />

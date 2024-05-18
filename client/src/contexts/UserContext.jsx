@@ -112,9 +112,16 @@ export const UserProvider = ({children}) => {
         
     };
 
+    const Logout = async () => {
+        sessionStorage.removeItem('userId')
+        sessionStorage.removeItem('token')
+        setCurrentUser({})  
+        window.location.href = '/' 
+    };
 
 
 
 
-    return <UserContext.Provider value={{ updateUser, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
+
+    return <UserContext.Provider value={{ updateUser,Logout, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
 }
