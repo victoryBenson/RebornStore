@@ -10,6 +10,7 @@ export const ProductProvider = ({children}) => {
     const [errorMsg, setErrorMsg] = useState();
     const [items, setItems] = useState([]);
     const [totalProduct, setTotalProduct] = useState();
+    const [searchResult, setSearchResult] = useState([])
      
 
     let backendURL
@@ -129,7 +130,7 @@ export const ProductProvider = ({children}) => {
 
 
     return(
-        <ProductContext.Provider value={{loading, errorMsg, items, totalProduct,getProducts, deleteProduct, createProduct, updateProduct}}>
+        <ProductContext.Provider value={{ searchResult, setSearchResult,loading, errorMsg, items, totalProduct,getProducts, deleteProduct, createProduct, updateProduct}}>
             {children}
         </ProductContext.Provider>
     )
