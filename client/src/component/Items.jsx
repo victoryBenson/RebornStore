@@ -68,27 +68,27 @@ export const Items = ({item}) => {
                     </div>
                 </div>
                 <div className="h-full w-full flex items-center justify-center">
-                    <div className="w-full space-y-2">
+                    <div className="w-full md:space-y-2">
                         <p className="text-center gap-1 flex items-center">
-                            <span className="font-bold">Name:</span>
-                            <p className="capitalize">{truncateString(name, 20)}</p>
+                            <span className="font-semibold text-sm md:text-base">Name:</span>
+                            <p className="capitalize text-sm">{truncateString(name, 20)}</p>
                         </p>
                         <p className="text-center flex items-center gap-4">
                             <p className="flex items-center gap-1">
-                                <span className="font-bold">Quantity:</span>
-                                <p>{quantity.toLocaleString()}</p>
+                                <span className="font-semibold text-sm md:text-base">Quantity:</span>
+                                <p className="text-sm">{quantity.toLocaleString()}</p>
                             </p>
                             <p className="text-center gap-1 flex items-center">
-                                <span className="font-bold">Category:</span>
-                                <p className="capitalize">{category}</p>
+                                <span className="font-semibold text-sm md:text-base">Category:</span>
+                                <p className="capitalize text-sm">{category}</p>
                             </p>
                         </p>
                         <p className="text-center gap-1 flex items-center">
-                            <span className="font-bold">Brand:</span>
-                            <p className="capitalize">{brand}</p>
+                            <span className="font-semibold text-sm md:text-base">Brand:</span>
+                            <p className="capitalize text-sm">{brand}</p>
                         </p>
-                        <div className=' space-x-2 sm:space-x-4'>
-                            <button onClick={onOpenModal} className=' border border-gray/20 rounded-lg p-2 px-4 '> Preview</button>
+                        <div className=' space-x-2 sm:space-x-4 cursor-pointer'>
+                            <button onClick={onOpenModal} className=' border border-gray/10 rounded md:p-2 md:px-4 text-sm p-1 cursor-pointer'> Preview</button>
                             <Modal open={open} 
                                 center 
                                 onClose={onCloseModal}
@@ -114,8 +114,8 @@ export const Items = ({item}) => {
                                     </div>
                                 </div>
                             </Modal>
-                            <Link to={`/dashboard/editProduct/${_id}`} onClick={scrollToTop} className='border border-gray/20 rounded-lg p-2 px-4'>Edit</Link>
-                            <button className='border border-gray/20 rounded-lg p-2 px-4' onClick={handleDelete}>Delete</button>
+                            <Link to={`/dashboard/editProduct/${_id}`} onClick={scrollToTop} className='border border-gray/10 rounded p-1 md:p-2 md:px-4 text-sm cursor-pointer'>Edit</Link>
+                            <button className='border border-gray/10 rounded p-1 md:p-2 md:px-4 text-sm cursor-pointer' onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </div>

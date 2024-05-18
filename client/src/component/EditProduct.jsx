@@ -111,11 +111,10 @@ export const EditProduct = () => {
               };
       
               const response = await axios.put(`${backendURL}updateProduct/${id}`, productData, config);
-              toast.success("Product created successfully")
               setLoading(false)
               navigate('/dashboard/admin-products')
               scrollToTop()
-            //   location.reload()
+              toast.success('Product Edited Successfully')
               return response.data;
         } catch (error) {
             setErrorMsg(error.message)
@@ -137,9 +136,8 @@ export const EditProduct = () => {
 
   return (
     <div className="bg-brown3 flex flex-col justify-center w-full">
-        <div className='bg-white h-10'>{location.pathname}</div>
-        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white p-10 rounded my-10 mx-[5%] lg:mx-[20%]">
-            <label htmlFor="" className="font-bold p-3 text-2xl flex items-center">
+        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white md:p-10 rounded md:my-10 mx-[5%] lg:mx-[20%]">
+            <label htmlFor="" className="font-semibold p-3 text-base md:text-2xl flex items-center">
                 <TbShoppingBagEdit />
                 Edit Products
             </label>

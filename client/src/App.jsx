@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes} from "react-router-dom";
 import { Header } from "./component/Header";
 import { LandingPage } from "./pages/LandingPage";
 import {Footer} from "./component/Footer"
@@ -9,7 +9,6 @@ import { NotFound } from "./component/NotFound";
 // import { CheckoutSuccess } from "./pages/CheckoutSuccess";
 import { Layout } from "./component/Layout";
 import { ConditionRoute } from "./component/ConditionRoute";
-// import { RequireAuth } from "./component/RequireAuth";
 // import { PayButton } from "./component/PayButton";
 // import { AccountPage } from "./pages/AccountPage";
 import { Dashboard } from "./pages/Dashboard";
@@ -20,7 +19,6 @@ import { HomeDashboard } from "./pages/DashboardOverview";
 import { AdminProducts } from "./pages/AdminProducts";
 import { Orders } from "./pages/Order";
 // import { PayButton } from "./component/PayButton";
-// import { useEffect } from "react";
 import axios from "axios";
 import { PromoDisplay } from "./component/PromoDisplay";
 // import ShopLayout from "./component/Shop/ShopLayout";
@@ -29,18 +27,15 @@ import { RequireAuth } from "./component/RequireAuth";
 import { EditProduct } from "./component/EditProduct";
 import { CreateProduct } from "./component/CreateProduct";
 import { useContext, useEffect } from "react";
-import { UserContext } from "./contexts/UserContext";
 import { ProductContext } from "./contexts/ProductContext";
 
 
 
 function App() {
     axios.defaults.withCredentials = true; 
-    
     const {getProducts} = useContext(ProductContext)
 
     
-
     useEffect(() => {
         getProducts()
     },[])
@@ -56,20 +51,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element ={<LandingPage/>}/>
-
-                    {/* protected route */}
-                    {/* <Route element={<RequireAuth/>}> */}
-                        {/* <Route path="payBtn" element ={<PayButton/>}/> */}
-                        {/* <Route path="userDetails" element = {<AccountPage/>}/> */}
-                    {/* </Route> */}
                 </Route>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
-                {/* <Route path="userDetails" element = {<AccountPage/>}/> */}
-                <Route path="mycart" element={<MyCart/>}/>
                 {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
                 {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
+                <Route path="mycart" element={<MyCart/>}/>
                 <Route path="*" element={<NotFound/>}/> 
+                <Route path="shop" element={<Shop/>}/>
                 <Route path="dashboard" element={<Dashboard/>}>
                     {/* protected route */}
                     <Route element={<RequireAuth/>}>
@@ -81,7 +70,7 @@ function App() {
                         <Route path="createProduct" element={<CreateProduct/>}/>
                     </Route>
                 </Route>
-                <Route path="shop" element={<Shop/>}/>
+                {/* <redirect from="/" to="/login" /> */}
             </Routes>
             <ConditionRoute>
                 <Footer/>
@@ -92,4 +81,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

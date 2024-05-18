@@ -45,6 +45,15 @@ export const Login = () => {
     }
 
 
+    const scrollToTop = () => {
+        window.scrollTo(
+            {
+                top: 0,
+                behavior: 'smooth'
+            }
+        )
+      };
+
     //SignIn
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -121,13 +130,14 @@ export const Login = () => {
                         {/* <OAuth/> */}
                     </form>
                 </div>
-                <div className='flex items-center gap-2 mx-auto p-5 text-center relative text-sm'>
+                <div className='flex items-center gap-2 mx-auto md:p-2 text-center relative text-sm'>
                     <p>new here? Create account</p>
                     <Link to={`/register`}>
                         <p className='hover:underline font-bold hover:font-extrabold'>register</p>
                     </Link>
                     <p className='cursor-pointer flex right-10 absolute bg-ivory/20 rounded p-2 ' onClick={handleToggle}>{darkMode ? <CiDark /> : <CiLight />}</p>
                 </div>
+                <Link to={'/'} className='text-sm underline' onClick={scrollToTop}>go back?</Link>
             </div>
         </div>
     </div>

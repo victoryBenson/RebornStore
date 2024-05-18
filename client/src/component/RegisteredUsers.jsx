@@ -42,7 +42,7 @@ const RegisteredUsers = () => {
                         value={searchUser}
                         onChange={(e) => setSearchUser(e.target.value)} 
                         placeholder='search by name, email, role ...' 
-                        className='p-3 bg-gray-light/20 outline-brown/10 w-full flex' 
+                        className='p-3  border-brown/5 rounded border outline-none w-full flex' 
                         autoFocus
                     />
                 </div>
@@ -80,7 +80,7 @@ export const TableRow = ({item}) => {
     const { profilePicture, username, email, role} = item
 
     return( 
-        <div className=' rounded border border-gray-light/40 md:px-10 '>
+        <div className=' rounded border border-gray-light/20 md:px-10 '>
             <div className=' p-1 items-center text-sm flex justify-around w-full '>
                 <p className='flex justify-center items-center h-10'>
                     <img src={profilePicture} alt="image" className='w-full h-full object-contain top' />

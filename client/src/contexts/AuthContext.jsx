@@ -59,7 +59,8 @@ const AuthContextProvider = ({children}) => {
         return response.data;
     };
 
-  
+
+
     useEffect( () => {
         const token = sessionStorage.getItem('token')
         if(token){

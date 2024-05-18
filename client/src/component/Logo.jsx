@@ -1,11 +1,12 @@
 import React from 'react'
 import { IoLogoIonic } from "react-icons/io";
+import logoIcon from '../assets/image/logoIcon.png'
+
 
 export const Logo = () => {
   return (
-    <p className='flex items-center md:text-3xl text-2xl font-bold '>
-        <IoLogoIonic className='-mt-4'/>
-        <span className='drop-shadow font-zeyada font-[800] text-4xl'>Reborn</span>
+    <p className='flex items-center md:text-3xl text- font-bold '>
+      <img src={logoIcon} alt="icon" className='h-24 w-24 object-contain ' />
     </p>
   )
 }
@@ -13,8 +14,7 @@ export const Logo = () => {
 export const HomeLogo = () => {
   return (
     <p className='flex items-center md:text-3xl text- font-bold '>
-        <IoLogoIonic className='-mt-4'/>
-        <span className='drop-shadow font-zeyada md:font-[800] md:text-4xl'>Reborn</span>
+      <img src={logoIcon} alt="icon" className='h-24 w-24 object-contain ' />
     </p>
   )
 }
