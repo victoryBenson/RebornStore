@@ -10,6 +10,15 @@ export const Logo = () => {
   )
 }
 
+export const HomeLogo = () => {
+  return (
+    <p className='flex items-center md:text-3xl text- font-bold '>
+        <IoLogoIonic className='-mt-4'/>
+        <span className='drop-shadow font-zeyada md:font-[800] md:text-4xl'>Reborn</span>
+    </p>
+  )
+}
+
 export const HeroLogo = () => (
     <p className='flex items-center md:text-5xl text-5xl font-bold drop-shadow'>
         <IoLogoIonic className='mt-1'/>
