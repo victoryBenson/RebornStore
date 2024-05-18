@@ -64,7 +64,7 @@ export const CreateProduct = () => {
 
   return (
     <div className="flex justify-center bg-brown3">
-        <form ref={formRef} onSubmit={handleSubmit} className=" w-full flex flex-col items-center mx-[5%] md:mx-[10%] lg:mx-[20%] px- md:px-10 bg-white  md:my-10 rounded ">
+        <form ref={formRef} onSubmit={handleSubmit} className=" w-full flex flex-col items-center mx-[2%] md:mx-[10%] lg:mx-[20%] md:px-10 bg-white  md:my-10 rounded ">
             <label htmlFor="" className="font-bold p-2 md:p-7 text-base md:text-2xl " >
                 Create a new Product
             </label>
@@ -189,8 +189,8 @@ export const CreateProduct = () => {
                 </div>
         
                 <div className="flex justify-end md:py-2 gap-3">
-                    <button disabled={loading} type="submit" className="w-full bg-lightBrown text-ivory md:p-3 rounded shadow hover:shadow-lg hover:bg-opacity-90 hover:font-semibold">{loading ? 'Please Wait...' : "Create"}</button>
-                    <div className='w-[40%] md:w-[30%]'>
+                    <button disabled={loading} type="submit" className="w-full bg-lightBrown text-ivory md:p-3 p-2 rounded shadow hover:shadow-lg hover:bg-opacity-90 hover:font-semibold">{loading ? 'Please Wait...' : "Create"}</button>
+                    <div className='w-[45%] md:w-[30%]'>
                         <DeleteBtn text="Clear form"/>
                     </div>
                 </div>

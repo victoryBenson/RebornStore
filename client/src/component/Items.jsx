@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 } else{
     backendURL = "http://localhost:3000/api/v1/auth/";
 }
-console.log(backendURL)
+// console.log(backendURL)
 
 export const Items = ({item}) => {
     const {image, name, quantity, category, brand, description, _id} = item
@@ -57,7 +57,7 @@ export const Items = ({item}) => {
 
     return(
         <div  className=" my-4 group transition-all  ">
-            <div className="flex space-x-2 items-center justify-around h-[28vh]  bg-white md:px-5 p-2 md:mx-5 rounded shadow" >
+            <div className="flex space-x-2 items-center justify-around h  bg-white md:px-5 p-2 md:mx-5 rounded shadow" >
                 <div className="w-20 :w-40 sm:w-60 h-full flex justify-center items-center">
                     <div className=" flex justify-center h-full ">
                         <img
