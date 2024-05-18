@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Logo } from "./Logo";
+import { HomeLogo, Logo } from "./Logo";
 import { NavLink, Link, useNavigate} from "react-router-dom";
 import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries,} from "react-icons/ci";
 import { BiPurchaseTag } from "react-icons/bi";
@@ -78,18 +78,11 @@ export const Header = () => {
 
   return (
     <header className={`${isActive && 'fixed inset-0 top-0  transition-all duration-200 bg-white'} ${location.pathname == '/' && 'fixed'} z-[999] h-20  inset-0 flex items-center justify-center w-[100%] m-0 p-0`}>
-        <div  className={`h-full flex justify-between items-center md:px-10 px-2 w-full`}>
-            <div className="flex items-center h-full">
-                <NavLink to={`/`} onClick={scrollToTop}>
-                    <Logo />
-                </NavLink>
-            </div>
+        <div  className={`h-full flex justify-between items-center md:px-10 px-2 w-full mx-2`}>
             {/* mobile */}
-            <div className="flex flex-cols md:hidden px-3 order-last">
+            <div onClick={clickMobile} className="flex flex-cols md:hidden cursor-pointer">
                 <CiMenuFries
-                size={20}
-                onClick={clickMobile}
-                className="cursor-pointer "
+                className=" "
                 />
                 {mobile && (         
                     <MobileSideMenu
@@ -100,8 +93,14 @@ export const Header = () => {
                     />
                 )}
             </div>
-            <div onClick={scrollToTop} className="md:flex hidden items-center">
-                <div className="relative">
+            <div className="flex items-center h-full">
+                <NavLink to={`/`} onClick={scrollToTop}>
+                    <HomeLogo />
+                </NavLink>
+            </div>
+            {/* navLinks */}
+            <div onClick={scrollToTop} className="flex  items-center">
+                <div className="relative text-sm md:text-base">
                     <NavLink
                         to="shop"
                         className={({ isActive }) =>
@@ -115,7 +114,7 @@ export const Header = () => {
                     </NavLink>
                 </div>
                 <ShowCustomer>
-                    <div className=" p-2 flex">
+                    <div className=" p-2 flex text-sm md:text-base">
                         <NavLink
                         to="/dashboard/profile"
                         className={({ isActive }) =>
@@ -130,7 +129,7 @@ export const Header = () => {
                     </div>
                 </ShowCustomer>
                 <ShowAdmin>
-                    <div className=" p-2 flex">
+                    <div className=" p-2 flex text-sm md:text-base">
                         <NavLink
                         to={`/dashboard/home-dashboard`}
                         className={({ isActive }) =>
@@ -145,7 +144,9 @@ export const Header = () => {
                     </div>
                 </ShowAdmin>
             </div>
-            <div className="items-center flex space-x-4">
+            {/*  */}
+            <div className="items-center flex">
+                {/* profile */}
                 <div className="px-2 relative items-center space-x-4 hidden  md:flex">
                     <div  onClick={() => setMenu(!menu)} className="flex items-center cursor-pointer space-x-3 transition-all">
                         <p className={`${isActive ? 'rounded-full h-14 w-14 flex items-center justify-center ' : 'hidden'} transition-all duration-200`}>
@@ -264,10 +265,11 @@ export const Header = () => {
                         )}
                     </div>
                 </div>
+                {/* cart */}
                 <div className="">
                     <NavLink to="/mycart" className="px-1 text-xl  cursor-pointer">
                         <p  className="relative">
-                            <BsCartCheck size={30}/>
+                            <BsCartCheck />
                             <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
                                 {itemAmount}
                             </span>

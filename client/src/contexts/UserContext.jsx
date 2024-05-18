@@ -18,7 +18,6 @@ export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState({})
     const [users, setUsers] = useState([])
     const [userTotal, setUserTotal] = useState();
-    const [searchResult, setSearchResult] = useState('')
     
  
      //getUserTotal
@@ -117,5 +116,5 @@ export const UserProvider = ({children}) => {
 
 
 
-    return <UserContext.Provider value={{ searchResult, setSearchResult, updateUser, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{ updateUser, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
 }
