@@ -5,9 +5,9 @@ import { CiShoppingTag, CiUser, CiViewList } from 'react-icons/ci';
 import { MdOutlineDashboardCustomize, MdOutlineVerifiedUser } from 'react-icons/md';
 import { GrFormViewHide } from "react-icons/gr";
 import { ShowAdmin } from './hiddenLinks';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { RxDashboard } from "react-icons/rx";
 
-export const DashboardMenu = () => {
+export const DashboardSidebar = () => {
     const [toggle, setToggle] = useState(false)
 
     const handleToggle = () => {
@@ -15,8 +15,8 @@ export const DashboardMenu = () => {
         window.scroll(0,0)
     }
   return (
-    <div className=' sm:gap-4 transition-all bg-lightBrown text-white sm:h-screen py-4'>
-        <div className=' transition-all flex flex-row sm:flex-col items-center w-full'>
+    <div className='col-span-5 md:col-span-1 sm:gap-4 transition-all bg-lightBrown text-white sm:h-screen md:py-4 '>
+        <div className=' transition-all flex flex-row md:flex-col items-center w-full'>
             <ShowAdmin>
                 <NavLink 
                     to={'home-dashboard'} 
@@ -24,8 +24,8 @@ export const DashboardMenu = () => {
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem'}
                         }} 
-                    className='p-2 flex items-center text-xl hover:bg-gray/10 hover:rounded '>
-                        <GrFormViewHide className='mx-1' />
+                    className='p-2 flex items-center text-lg lg:text-xl hover:bg-gray/10 hover:rounded '>
+                        <RxDashboard className='mx-1' />
                         <span className='hidden md:flex'>Overview</span>
                 </NavLink>
                 <NavLink 
@@ -34,7 +34,7 @@ export const DashboardMenu = () => {
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem'}
                         }} 
-                    className='p-2 flex items-center text-xl hover:bg-gray/10 hover:rounded '>
+                    className='p-2 flex items-center text-lg lg:text-xl hover:bg-gray/10 hover:rounded '>
                         <CiViewList className='mx-1'/>
                         <span className='hidden md:flex'>Products</span>
                 </NavLink>
@@ -45,7 +45,7 @@ export const DashboardMenu = () => {
                     ({isActive}) => {
                     return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem'}
                     }} 
-                className='p-2 flex flex-col sm:flex-row items-center text-xs sm:text-xl hover:bg-gray/10 hover:rounded '>
+                className='p-2 flex flex-col sm:flex-row items-center text-xs lg:text-xl hover:bg-gray/10 hover:rounded '>
                     <CiUser/>
                     Profile
             </NavLink>
@@ -55,7 +55,7 @@ export const DashboardMenu = () => {
                     ({isActive}) => {
                     return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem'}
                     }} 
-                    className='p-2 flex flex-col sm:flex-row items-center text-sm sm:text-xl hover:bg-gray/10 hover:rounded '>
+                    className='p-2 flex flex-col sm:flex-row items-center text-lg md:text-xl hover:bg-gray/10 hover:rounded '>
                     <CiShoppingTag/>
                     Order
             </NavLink>

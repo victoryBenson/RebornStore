@@ -1,111 +1,69 @@
 import React, { useContext, useEffect, useState} from 'react'
-import { Loader } from '../component/Loader'
-import { FaUsersViewfinder } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
-import { MdOutlineSell } from "react-icons/md";
 import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
-import { NavLink, useNavigate} from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext';
 import { ProductContext } from '../contexts/ProductContext';
 import { UserContext } from '../contexts/UserContext';
+import CountUp from 'react-countup';
+import ScrollTrigger from 'react-scroll-trigger';
+import { FaUsers } from 'react-icons/fa';
+import { IoPricetagOutline } from "react-icons/io5";
+import RegisteredUsers from '../component/RegisteredUsers';
 
 
 
 export const HomeDashboard = () => {
-    const {users, setUsers, userTotal, getUserTotal, getUsers} = useContext(UserContext)
-    const navigate = useNavigate();
-    const [isActive, setIsActive] = useState(false)
-    const [cartegoryMenu, setCategoryMenu] = useState(false)    
-    const [errorMsg, setErrorMsg] = useState('')
-    const [loading, setLoading] = useState(false)
-    const {items, totalProduct} = useContext(ProductContext)
-      
+    const {userTotal, getUserTotal, getUsers} = useContext(UserContext)
+    const {totalProduct} = useContext(ProductContext)
+    const [counter, setCounter] = useState(false)     
 
 
-       //check active user
+    //check active user
     useEffect( () => {
         const token = sessionStorage.getItem('token')
         const userId = sessionStorage.getItem('userId')
         if(token && userId){
-            // getUser()
             getUsers()
             getUserTotal()
         }
     }, []);
 
-
-    
-    if(loading) return <div className='flex justify-center h-screen w-full'><Loader/></div>
-    if(errorMsg) return <div className='flex justify-center'>Error:{errorMsg}</div>
-    
+  
   return (
-    <section className='p-5 md:w-full shadow bg-brown3 h-screen overflow-y-scroll'>
-        <div className='flex flex-wrap justify-evenly items-center py-5 space-y-4'>
-            <div>
-                <NavLink to={`/dashboard/admin-products`} className='border border-lightBrown/10 shadow-lg w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl'>
-                    <p>({totalProduct})</p>
-                    <p className='flex items-center'><BsCartCheck/> Available Products</p>
-                </NavLink>
-            </div>
-            <div className=' bg-blue text-ivory shadow-lg w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl'>
-                <p>{userTotal? `(${userTotal})` : <span className='text-sm'>Loading...</span>}</p>
-                <p className='flex items-center'><FaUsersViewfinder /> Registered Users</p>
-            </div>
-            <div className=' bg-ivory shadow-lg w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl'>
-                <span>(199)</span>
-                <p className='flex items-center'><MdOutlineSell/> Orders</p>
-            </div>
+    <section className='p-5 md:w-full shadow '>
+        {/* dashboard overview */}
+        <div className='md:p-2 font-semibold md:text-xl my-3 font-rubik'>Dashboard Overview</div>
+        <div className='py-15 hidden md:block'>
+            <ScrollTrigger onEnter={ ()=> setCounter(true)} onExit={()=> setCounter(false)}>
+                { counter && (
+                    <div className='flex items-center justify-between md:justify-around p-5 md:px-10 rounded bg-gray/5'>
+                        <div className='flex flex-col items-center justify-center cursor-pointer text-center counter font-bold '>
+                            <div className='relative'>
+                                <CountUp start={0} end={totalProduct} duration={2} className='text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-3 -right-2' />
+                                <BsCartCheck size={30}/>
+                            </div>
+                            <p className='text-sm lg:text-lg count flex items-center'> Avaliable Stock</p>
+                        </div>
+                        <div className='flex flex-col items-center justify-center cursor-pointer text-center counter font-bold'>
+                            <div className='relative'>
+                                <CountUp start={0} end={userTotal} duration={2} className='text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-3 -right-2' />
+                                <FaUsers size={30}/>
+                            </div>
+                            <p className='text-sm lg:text-lg flex items-center'>Registered Users</p>
+                        </div>
+                        <div className='flex flex-col items-center justify-center cursor-pointer text-center counter font-bold'>
+                            <div className='relative'>
+                                <CountUp start={0} end={50} suffix='+' duration={2} className='text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2 -right-7' />
+                                <IoPricetagOutline size={30}/>
+                            </div>
+                            <p className='text-sm lg:text-lg flex items-center'>Orders</p>
+                        </div>
+                    </div>
+                )}
+            </ScrollTrigger>
         </div>
-        <div>
-            <h1 className='p-2 font-bold text-2xl'>Registered Users</h1>
-            {
-             users ? (
-                <div>
-                {users.map(item => (
-                    <Users key={item.id} item={item}/>
-                ))}
-                </div>
-            ) : (
-                <p>Loading...</p>
-            )
-            }
-        </div>
+
+        {/* Registered Users */}
+        <RegisteredUsers/>
     </section>
   )
-}
-
-
-
- export const Users = ({item}) => {
-    const { profilePicture, username, email, role} = item
-
-    return(
-        <div className='min-h-fit w-full my-4 '>
-            <div className='h-full flex items-center justify-between sm:justify-center rounded border border-gray-light/40 px-10'>
-                <div className='h-10'>
-                    <div className='flex justify-center items-center h-full'>
-                        <img src={profilePicture} alt="image" className='w-full h-full object-contain top' />
-                    </div>
-                </div>
-                <div className='w-full p-2 flex items-center text-sm'>
-                    <div>
-                        <p className='text-center flex items-center space-x-2 '>
-                            <span className='font-bold'>Name:</span>
-                            <span>{username}</span>
-                        </p>
-                        <p className='text-center flex items-center space-x-2 '>
-                            <span className='font-bold'>Email:</span>
-                            <span>{email}</span>
-                        </p>
-                        <p className='text-center flex items-center space-x-2 '>
-                            <span className='font-bold'>Role:</span>
-                            <span>{role}</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    )
-
 }
