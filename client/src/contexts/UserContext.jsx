@@ -16,7 +16,7 @@ export const UserProvider = ({children}) => {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState();
     const [currentUser, setCurrentUser] = useState({})
-    const [users, setUsers] = useState(null)
+    const [users, setUsers] = useState([])
     const [userTotal, setUserTotal] = useState();
     const [searchResult, setSearchResult] = useState('')
     

@@ -29,9 +29,9 @@ export const HomeDashboard = () => {
 
   
   return (
-    <section className='p-5 md:w-full shadow '>
+    <section className='md:p-5 p-2 md:w-full shadow '>
         {/* dashboard overview */}
-        <div className='md:p-2 font-semibold md:text-xl my-3 font-rubik'>Dashboard Overview</div>
+        <div className='md:p-2 font-semibold md:text-xl md:my-3 font-rubik'>Dashboard Overview</div>
         <div className='py-15 hidden md:block'>
             <ScrollTrigger onEnter={ ()=> setCounter(true)} onExit={()=> setCounter(false)}>
                 { counter && (

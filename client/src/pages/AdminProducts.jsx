@@ -6,6 +6,9 @@ import { CreateProduct } from "../component/CreateProduct";
 import { ProductContext } from "../contexts/ProductContext";
 import { Items } from "../component/Items";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+import { SearchNotFound } from "../component/NotFound";
+import { TbShoppingBagSearch } from "react-icons/tb";
 
 
 
@@ -24,7 +27,17 @@ const initialState = {
 export const AdminProducts = () => {
      const [open, setOpen] = useState(false);
     const {items,getProducts, loading, errorMsg} = useContext(ProductContext)
+    const {searchResult, setSearchResult} = useContext(UserContext)
+   
 
+    let searchOutput
+    if(items !== null){
+        searchOutput = items.filter((item) => {
+            if(searchResult == "" || `${item.name} ${item.category} ${item.brand}`.toLowerCase().includes(searchResult.toLowerCase())){
+                return item
+            }
+        })
+    }
 
     
     useEffect(() => {
@@ -41,9 +54,9 @@ export const AdminProducts = () => {
   if (errorMsg) return <div className="flex justify-center ">Error:{errorMsg}</div>;
 
   return (
-    <section className=" md:w-full bg-brown3">
-        <div className="flex flex-wrap justify-evenly items-center py-5 space-y-4">
-            <div className="cursor-pointer bg-lightBrown hover:shadow-lg transition-all w-60 p-3 rounded flex flex-col justify-center items-center font-bold text-xl text-ivory">
+    <section className=" md:p-5 p-2 md:w-full shadow">
+        <div className="flex flex-wrap justify-evenly items-center md:py-5 space-y-4">
+            <div className="cursor-pointer bg-lightBrown hover:shadow-lg transition-all w-60 p-3 rounded flex flex-col justify-center items-center font-semibold md:text-xl text-ivory">
                 <Link to={`/dashboard/createProduct`} className="flex items-center">
                     <BsPlusLg />
                     Create new Product
@@ -51,13 +64,28 @@ export const AdminProducts = () => {
             </div>
         </div>
         <div>
-            <h1 className="p-2 font-bold text-2xl">Products</h1>
+        <div className='block md:flex  items-center justify-between py-5 sticky top-0 bg-brown3 md:px-2'>
+                <h1 className='md:p-2 font-semibold md:text-lg'>Avaliable Stocks</h1>
+                <div className='flex md:w-[70%]'>
+                    <input 
+                        type="search"
+                        value={searchResult}
+                        onChange={(e) => setSearchResult(e.target.value)} 
+                        placeholder='search name brand category here...' 
+                        className='p-3 bg-gray-light/20 outline-brown/10 w-full flex'
+                        autoFocus 
+                    />
+                </div>
+            </div>
             <div className="">
+                {/* search result label */}
+            <div >{searchResult.length && searchOutput.length > 1 ? <span className='px-3 flex items-center'><TbShoppingBagSearch /> search result for "{searchResult}"...</span> : null}</div>
+            {/* search result mapping */}
             {
-                items? (
-                    <div>
+                searchOutput.length ? (
+                    <div className="overflow-y-scroll max-h-60">
                         {
-                            items.map((item) => {
+                            searchOutput.map((item) => {
                                 return (
                                     <Items key={item._id} item={item}/>
                                 );
@@ -66,7 +94,7 @@ export const AdminProducts = () => {
                     </div>
                 )
                 :
-                <span>Loading...</span>
+                <SearchNotFound/>
             }
             </div>
         </div>

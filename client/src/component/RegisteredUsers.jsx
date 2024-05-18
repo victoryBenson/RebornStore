@@ -1,24 +1,27 @@
-import React, { useContext, useEffect} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import 'react-responsive-modal/styles.css';
 import { UserContext } from '../contexts/UserContext';
 import { truncateString } from '../utils';
+import { SearchNotFound } from './NotFound';
+import { TbShoppingBagSearch } from 'react-icons/tb';
 
 
 
 export const tableHead = ["Image", "Username", "Email", "Role"];
 
 const RegisteredUsers = () => {
-    const {users, getUserTotal, getUsers, searchResult, setSearchResult} = useContext(UserContext)
+    const {users, getUserTotal, getUsers} = useContext(UserContext)
+    const [searchUser, setSearchUser] = useState('')
 
-    if(!users){
-        <div>Loading...Please wait!</div>
+    let searchOutput
+    if(users !== null){
+        searchOutput = users.filter((user) => {
+            if(searchUser == "" || `${user.username} ${user.email} ${user.role} `.toLowerCase().includes(searchUser.toLowerCase())){
+                return user
+            }
+        })
     }
-
-    const searchOutput = users.((user) => {
-        if(searchResult == "" || user.name.toLowerCase().includes(searchResult.toLowerCase())){
-            return user
-        }
-    })
+    // console.log(searchOutput)
 
     useEffect( () => {
         const token = sessionStorage.getItem('token')
@@ -30,37 +33,40 @@ const RegisteredUsers = () => {
     }, []);
 
   return (
-    <div className='relative '>
-            <div className='flex items-center justify-between py-5 sticky top-0 bg-brown3 px-2'>
-                <h1 className='md:p-2 font-semibold md:text-xl '>Registered Users</h1>
-                <div className='flex w-[70%]'>
+    <div className='relative'>
+            <div className='block md:flex  items-center justify-between py-5 sticky top-0 bg-brown3 md:px-2'>
+                <h1 className='md:p-2 font-semibold md:text-lg'>Registered Users</h1>
+                <div className='flex md:w-[70%]'>
                     <input 
                         type="search"
-                        value={searchResult}
-                        onChange={(e) => setSearchResult(e.target.value)} 
-                        placeholder='type your search here...' 
+                        value={searchUser}
+                        onChange={(e) => setSearchUser(e.target.value)} 
+                        placeholder='search by name, email, role ...' 
                         className='p-3 bg-gray-light/20 outline-brown/10 w-full flex' 
+                        autoFocus
                     />
                 </div>
             </div>
-            {
-             searchOutput ? (
+            {/* search result label */}
+            <div >{searchUser.length && searchOutput.length > 1 ? <span className='px-3 flex items-center'><TbShoppingBagSearch /> search result for "{searchUser}"...</span> : null}</div>
+            {/* mapping search result */}
+            { (searchOutput.length)? (
                 <div className=''>
                     <div className=' p-1 py-5 items-center font-bold flex justify-around w-full text-sm'>
                         {tableHead.map((head, idx) => (
                             <p key={idx} className=''>{head}</p>
                         ))}
                     </div>
-                    <div className='overflow-y-scroll h-48'>
+                    <div className='overflow-y-scroll max-h-48'>
                         {
-                            users?.map(item => (
+                            searchOutput.map(item => (
                                 <TableRow key={item.id} item={item}/>
                             ))
                         }
                     </div>
                 </div>
             ) : (
-                <p>No user found</p>
+                <SearchNotFound/> 
             )
             }
         </div>

@@ -18,6 +18,7 @@ import { FaShopify } from "react-icons/fa6";
 import { UserAuth } from "../contexts/AuthContext";
 import { CartContext } from "../contexts/CartContext";
 import { UserContext } from "../contexts/UserContext";
+import { SidebarContext } from "../contexts/SidebarContext";
 
 
 export const Header = () => {
@@ -28,21 +29,11 @@ export const Header = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const {username, role, profilePicture} = currentUser
     const navigate = useNavigate();
-    const [isActive, setIsActive] = useState(false)
+    const {isActive, setIsActive} = useContext(SidebarContext)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
         
-
     
- //check active user
-    // useEffect( () => {
-    //     const token = sessionStorage.getItem('token')
-    //     const userId = sessionStorage.getItem('userId')
-    //     if(token && userId){
-    //         getUser()
-    //     }
-    // }, []);
-
-    
+   
     const cartegoryDropDown = () => {
         setCategoryMenu(!cartegoryMenu)
     };
@@ -64,11 +55,7 @@ export const Header = () => {
     body.style.overflow = mobile ? "hidden" : "auto";
   }, [mobile]);
 
-  useEffect(()=> {
-    window.addEventListener('scroll', () => {
-    window.scrollY > 60 ? setIsActive(true) : setIsActive(false)
-    })
-  })
+
 
   const scrollToTop = () => {
     window.scrollTo(
