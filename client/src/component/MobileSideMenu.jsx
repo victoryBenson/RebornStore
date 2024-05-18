@@ -103,7 +103,7 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                                 to={`login`}
                                 className="flex items-center p-2 cursor-pointer hover:underline underline-offset-4"
                                 >
-                                <CiLogin className="mt-1 mx-1" />
+                                <CiLogin className="mx-1" />
                                 Login
                             </Link>
                         </ShowOnLogout>
@@ -112,7 +112,7 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                             onClick={Logout}
                             className="flex items-center bg-brown rounded text-white font-bold p-2 cursor-pointer hover:underline underline-offset-4"
                             >
-                            <CiLogout className="mt-1 mx-1" />
+                            <CiLogout className="mx-1" />
                             Logout
                             </p>
                         </ShowOnLogin>

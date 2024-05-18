@@ -26,8 +26,7 @@ const initialState = {
 
 export const AdminProducts = () => {
      const [open, setOpen] = useState(false);
-    const {items,getProducts, loading, errorMsg} = useContext(ProductContext)
-    const {searchResult, setSearchResult} = useContext(UserContext)
+    const {items,getProducts, loading, errorMsg,searchResult, setSearchResult} = useContext(ProductContext)
    
 
     let searchOutput
