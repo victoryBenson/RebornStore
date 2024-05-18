@@ -20,7 +20,6 @@ export const SearchNotFound = () => {
     <div className='text-xl p-4 col-span-3 items-center flex flex-col justify-center'>
         <span className='text-3xl font-bold flex items-center'>
           <TfiFaceSad className='mx-1'/>
-          404
         </span>
         No match Found!
     </div>

@@ -8,7 +8,7 @@ export const ProductContext = createContext()
 export const ProductProvider = ({children}) => {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState();
-    const [items, setItems] = useState({});
+    const [items, setItems] = useState([]);
     const [totalProduct, setTotalProduct] = useState();
      
 
@@ -48,7 +48,7 @@ export const ProductProvider = ({children}) => {
         )
         setLoading(false)
         setItems(response.data)
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
 
     } catch (error) {

@@ -11,10 +11,11 @@ if (process.env.NODE_ENV === 'production') {
 } else{
     backendURL = "http://localhost:3000/api/v1/auth/";
 }
-console.log(backendURL)
+// console.log(backendURL)
 
 const AuthContextProvider = ({children}) => {
     const [token, setToken ] = useState()
+   
     
     //LoginUser
     const Login = async(userData) => {
@@ -58,6 +59,7 @@ const AuthContextProvider = ({children}) => {
         return response.data;
     };
 
+  
     useEffect( () => {
         const token = sessionStorage.getItem('token')
         if(token){

@@ -48,7 +48,7 @@ function App() {
    
 
   return (
-    <div className="relative">
+    <div className="max-h-screen">
         <BrowserRouter>
             <ConditionRoute>
                 <PromoDisplay/>

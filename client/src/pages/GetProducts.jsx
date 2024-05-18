@@ -94,7 +94,7 @@ export const GetProducts = () => {
                 
                 <div id="products" className="col-span-5 md:col-span-4 px-2 bg-brown3">
                     <Greeting/>
-                    <div className="flex items-center sticky top-16 z-50 p-2 gap-2">
+                    <div className="bg-white flex items-center sticky top-16 z-50 p-2 gap-2">
                         <div className="">
                             <div onClick={handleMobileFilter} className="flex items-center md:hidden"><CiFilter /><span className="">Filter</span></div>
                             {
@@ -116,7 +116,6 @@ export const GetProducts = () => {
                                 placeholder="Search for Products, Category, Brands etc..."
                                 value={searchPhrase}
                                 onChange={search}
-                                autoFocus
                             />
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import { HowItWorks } from "../component/HowItWorks";
 
 export const LandingPage = () => {
   return (
-    <div>
+    <div className="">
       <Hero/>
       <HowItWorks/>
       <Testimonial />
