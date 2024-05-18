@@ -38,10 +38,6 @@ export const AdminProducts = () => {
         })
     }
 
-    
-    useEffect(() => {
-        getProducts()
-    },[])
 
     if (loading)
         return (
