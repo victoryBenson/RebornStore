@@ -80,7 +80,7 @@ export const TableRow = ({item}) => {
     const { profilePicture, username, email, role} = item
 
     return( 
-        <div className=' rounded border border-gray-light/40 px-10'>
+        <div className=' rounded border border-gray-light/40 md:px-10'>
             <div className=' p-1 items-center text-sm flex justify-around w-full '>
                 <p className='flex justify-center items-center h-10'>
                     <img src={profilePicture} alt="image" className='w-full h-full object-contain top' />
