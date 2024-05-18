@@ -69,7 +69,7 @@ export const AdminProducts = () => {
                         onChange={(e) => setSearchResult(e.target.value)} 
                         placeholder='search name brand category here...' 
                         className='p-3  border-brown/5 rounded border outline-none w-full flex'
-                        autoFocus 
+                        // autoFocus 
                     />
                 </div>
             </div>

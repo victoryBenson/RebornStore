@@ -43,7 +43,7 @@ const RegisteredUsers = () => {
                         onChange={(e) => setSearchUser(e.target.value)} 
                         placeholder='search by name, email, role ...' 
                         className='p-3  border-brown/5 rounded border outline-none w-full flex' 
-                        autoFocus
+                        // autoFocus
                     />
                 </div>
             </div>

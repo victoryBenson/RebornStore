@@ -22,7 +22,7 @@ export const UserProfile = () => {
     }
     const [formData, setFormData] = useState(initialState);
     const {username, email, address, phone, password, confirmPassword, profilePicture} = formData;
-    
+    const [imageFile, setImageFile] = useState(null);
     
     useEffect(() => {
         if(currentUser){
@@ -56,35 +56,48 @@ export const UserProfile = () => {
         } catch (error) {
             setLoading(false)
             setErrorMsg(error.message)
-            console.log(error.message)
+            // console.log(error.message)
             toast.error(error.message)
         }
     }
 
-    // useEffect(() =>{
-    //     const token = sessionStorage.getItem('token')
-    //     !token && navigate('/login') 
-    // },[])
+    const handleImageChange = (e) =>{
+        const file = e.target.files[0]
+        setImageFile(file)
+    }
+    const handleImageUpload = (e) => {
+        e.preventDefault();
+        console.log(imageFile)
+    }
 
   return (
     <section className='text-sm transition-all p-1 bg-brown3'>
         <form onSubmit={handleSubmit} className='h-screen mx-2'>
             <div className=''>
                 <div className=' gap-2 items-center justify-center'>
-                    <div className='flex flex-col items-center justify-center '>
-                        <div className=" rounded-full h-20 w-20 flex items-center justify-center text-center">
-                            <img src={currentUser?.profilePicture}
+                    <div className='flex flex-col items-center justify-center my-4'>
+                        <div className=" rounded-full  mx-auto flex flex-col items-center justify-center text-center">
+                            <img 
+                            // src={currentUser?.profilePicture}
+                            src={imageFile}
+                            className='h-14 w-14 border'
                             alt="image"
                             />
-                            <label htmlFor='label'>
-                                <input type="file" name="upload" id="" className='' />
-                            </label>
 
+                            <label htmlFor='imageUpload'>
+                            </label>
+                            <input 
+                                type="file"
+                                onChange={handleImageChange}
+                                accept='image/*'
+                                id='imageUpload'
+                            />
+                            <button  onClick={handleImageUpload}>Upload</button>
                         </div>
                     </div>
                     <div className='p-2 space-y-4 text-sm'>
-                        <div className='flex gap-4'>
-                            <div className="w-full relative">
+                        <div className='flex flex-col md:flex-row  gap-4 '>
+                            <div className="w-full relative ">
                                 <label htmlFor="name" className=''>Username</label>
                                 <input
                                     type="text"
@@ -93,7 +106,6 @@ export const UserProfile = () => {
                                     placeholder="username"
                                     className="w-full p-3 outline-none border border-gray/10 rounded"
                                     onChange={handleChange}
-                                    // defaultValue={currentUser?.username}
                                 />
                             </div>
                             <div className="w-full">
@@ -105,11 +117,10 @@ export const UserProfile = () => {
                                 placeholder="user@gmail.com"
                                 className="w-full p-3 outline-none border border-gray/10 rounded"
                                 onChange={handleChange}
-                                // defaultValue={currentUser?.email}
                                 />
                             </div>
                         </div>
-                        <div className='flex gap-4'>
+                        <div className='flex flex-col md:flex-row  gap-4 '>
                             <div className="w-full">
                                 <label htmlFor="name">Address</label>
                                 <input
@@ -134,7 +145,7 @@ export const UserProfile = () => {
                                 />
                             </div>
                         </div>
-                        <div className='flex gap-4 '>
+                        <div className='flex flex-col md:flex-row  gap-4 '>
                             <div className="w-full relative">
                                 <label htmlFor="name" className=''>Current Password</label>
                                 <input

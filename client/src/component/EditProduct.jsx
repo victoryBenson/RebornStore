@@ -136,7 +136,7 @@ export const EditProduct = () => {
 
   return (
     <div className="bg-brown3 flex flex-col justify-center w-full">
-        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white md:p-10 rounded md:my-10 mx-[5%] lg:mx-[20%]">
+        <form onSubmit={handleSubmit} className=" flex flex-col items-center bg-white md:p-10 rounded md:my-10 mx-[2%] lg:mx-[20%]">
             <label htmlFor="" className="font-semibold p-3 text-base md:text-2xl flex items-center">
                 <TbShoppingBagEdit />
                 Edit Products
@@ -252,9 +252,9 @@ export const EditProduct = () => {
                     }
                 </div>
                 <div className='text-red text-sm'>{errorMsg && errorMsg}</div>
-                <div className="flex justify-end py-2 gap-4">
+                <div className="flex justify-end py-2 gap-2">
                     <button type="submit" className="w-full bg-lightBrown hover:font-semibold text-ivory p-3 hover:opacity-80 transition-all duration-300 rounded shadow hover:shadow-lg">{loading ? "Please wait..." : "Update Product"}</button>
-                    <Link to='/dashboard/admin-products' onClick={scrollToTop} className='border border-gray/20 rounded-lg p-2 px-4 flex w-[20%] items-center justify-center hover:opacity-90 transition-all'>Cancel</Link>
+                    <Link to='/dashboard/admin-products' onClick={scrollToTop} className='border border-gray/20 rounded-lg p-2 px-4 flex w-[30%] items-center justify-center hover:opacity-90 transition-all'>Cancel</Link>
                 </div>
             </div>
         </form>
