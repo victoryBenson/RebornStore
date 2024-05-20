@@ -29,10 +29,12 @@ export const Header = () => {
     const {currentUser, Logout} = useContext(UserContext)
     const {username, role, profilePicture} = currentUser
     const navigate = useNavigate();
-    const {isActive, setIsActive} = useContext(SidebarContext)
+    const {isActive } = useContext(SidebarContext)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
     const location = useLocation()
+    const {handleCart} = useContext(SidebarContext)
     let path = '/dashboard' 
+
     
     let check = location.pathname.includes(path)
     
@@ -81,6 +83,7 @@ export const Header = () => {
             {/* mobile */}
             <div onClick={clickMobile} className="flex flex-cols md:hidden cursor-pointer">
                 <CiMenuFries
+                size={20}
                 className=" "
                 />
                 {mobile && (         
@@ -98,10 +101,10 @@ export const Header = () => {
                 </NavLink>
             </div>
             {/* navLinks */}
-            <div onClick={scrollToTop} className="flex  items-center">
+            <div onClick={scrollToTop} className="hidden md:flex  items-center">
                 <div className="relative text-sm md:text-base">
                     <NavLink
-                        to="shop"
+                        to="/layout/shop"
                         className={({ isActive }) =>
                             isActive
                             ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"
@@ -112,20 +115,21 @@ export const Header = () => {
                         Shop
                     </NavLink>
                 </div>
-                <div className=" p-2 flex text-sm md:text-base">
-                    <NavLink
-                    to="/dashboard/profile"
-                    className={`${ check && "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"}
-                        flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4
-                    `}
-                    >
-                    <AiFillDashboard className="mx-1" />
-                    Dashboard
-                    </NavLink>
-                </div>
+                {/* <ShowAdmin>     */}
+                    <div className=" p-2 flex text-sm md:text-base">
+                        <NavLink
+                        to="/dashboard/home-dashboard"
+                        className={`${ check && "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"}
+                            flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4
+                        `}
+                        >
+                        <AiFillDashboard className="mx-1" />
+                        Dashboard
+                        </NavLink>
+                    </div>
+                {/* </ShowAdmin> */}
             </div>
-            {/*  */}
-            <div className="items-center flex">
+            <div className="items-center flex ">
                 {/* profile */}
                 <div className="px-2 relative items-center space-x-4 hidden  md:flex">
                     <div  onClick={() => setMenu(!menu)} className="flex items-center cursor-pointer space-x-3 transition-all">
@@ -246,15 +250,13 @@ export const Header = () => {
                     </div>
                 </div>
                 {/* cart */}
-                <div className="">
-                    <NavLink to="/mycart" className="px-1 text-xl  cursor-pointer">
-                        <p  className="relative">
-                            <BsCartCheck />
-                            <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
-                                {itemAmount}
-                            </span>
-                        </p>
-                    </NavLink>
+                <div onClick={handleCart}  className="px-1 text-xl  cursor-pointer">
+                    <p  className="relative">
+                        <BsCartCheck size={30} />
+                        <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
+                            {itemAmount}
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

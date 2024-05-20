@@ -35,14 +35,14 @@ const RegisteredUsers = () => {
   return (
     <div className='relative'>
             <div className='block md:flex  items-center justify-between py-5 sticky top-0 bg-brown3 md:px-2'>
-                <h1 className='md:p-2 font-semibold md:text-lg'>Registered Users</h1>
-                <div className='flex md:w-[70%]'>
+                <h1 className='md: p-2 font-semibold md:text-lg'>Registered Users</h1>
+                <div className='flex md:w-[70%] bg-white'>
                     <input 
                         type="search"
                         value={searchUser}
                         onChange={(e) => setSearchUser(e.target.value)} 
                         placeholder='search by name, email, role ...' 
-                        className='p-3  border-brown/5 rounded border outline-none w-full flex' 
+                        className='p-3 border-brown/5 rounded border outline-none w-full flex z-[999] bg-white' 
                         // autoFocus
                     />
                 </div>
@@ -51,13 +51,13 @@ const RegisteredUsers = () => {
             <div >{searchUser.length && searchOutput.length > 1 ? <span className='px-3 flex items-center'><TbShoppingBagSearch /> search result for "{searchUser}"...</span> : null}</div>
             {/* mapping search result */}
             { (searchOutput.length)? (
-                <div className=''>
-                    <div className=' p-1 py-5 items-center font-bold flex justify-around w-full text-sm'>
+                <div className='relative'>
+                    <div className=' p-1 md:py-5 items-center font-bold flex justify-around w-full text-sm'>
                         {tableHead.map((head, idx) => (
                             <p key={idx} className=''>{head}</p>
                         ))}
                     </div>
-                    <div className='overflow-y-scroll max-h-48'>
+                    <div className='overflow-y-scroll min-h-screen'>
                         {
                             searchOutput.map(item => (
                                 <TableRow key={item.id} item={item}/>

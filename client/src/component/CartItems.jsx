@@ -9,7 +9,7 @@ export const CartItems = ({item}) => {
     const {_id, image,name, price,amount } = item
     const {increaseCart, decreaseCart, removeCart} = useContext(CartContext)
   return (
-    <div  className='h-32 my-4 space-x-2 flex text-sm rounded border border-lightBrown/10 bg-white'>
+    <div  className='h-24 my-4 mx-2 space-x-2 flex text-sm rounded border border-lightBrown/10 bg-white'>
         <div className=' flex w-1/2 rounded-lg h-full'>
             <img src={image[0] || image} alt="image" className='h-full w-full object-contain rounded-xl p-2' />
         </div>
@@ -21,9 +21,9 @@ export const CartItems = ({item}) => {
                     <PiCurrencyNgn className=''/>
                     {`${parseFloat(price * amount).toLocaleString()}`}
                 </p>
-                <p onClick={()=> removeCart(_id)} className='hover:opacity-70 cursor-pointer border border-gray/20 flex items-center justify-center p-2 rounded'>
+                <p onClick={()=> removeCart(_id)} className='hover:opacity-70 cursor-pointer border border-gray/20 flex items-center justify-center p-1 rounded '>
                     <BsTrash3/> 
-                    <span className='sm:flex hidden capitalize '>remove</span>
+                    <span className='sm:flex hidden capitalize text-sm'>remove</span>
                 </p>
             </div>
             <p className='py-1 rounded-lg flex justify-start items-center text-sm m-2 sm:w-32 w-28 '>

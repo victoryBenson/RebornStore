@@ -47,14 +47,14 @@ export const Hero = () => {
   
   return (
     <section id='hero' className='overflow-hidden slideshow relative'>
-        <div className=" lg:h-[100vh] h-[90vh] flex w-full slideshowSlider"  style={{ transform: `translate3d(${-index * 100}%, 0, 0)`,transition: "ease-in 600ms"}}>
+        <div className=" lg:h-[100vh] h-[70vh] flex w-full slideshowSlider"  style={{ transform: `translate3d(${-index * 100}%, 0, 0)`,transition: "ease-in 600ms"}}>
             {heroData.map((data, index)=>{
                 return(
-                    <div key={index} className="slide h-full w-full bg-ivory flex-shrink-0 flex items-center justify-center bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${data.image})`}}>
-                        <div className=" flex flex-col justify-center items-center p-2" data-aos="fade-down">
-                            <div className="space-y-3 flex flex-col justify-center items-center">
-                                <p data-aos="fade-up" className='font-rubik font-bold text-5xl'>{data.title}<strong className='text-ivory sm:text-brown font-bold font-zeyada text-7xl'>{data.title2}</strong></p>
-                                <p className='font-zeyada text-3xl'>{data.description}</p>
+                    <div key={index} className="slide h-full w-full bg-ivory flex-shrink-0 flex items-center justify-start bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${data.image})`}}>
+                        <div className=" flex flex-col justify-start items-start p-2 md:pl-5" data-aos="fade-down">
+                            <div className="space-y-2 flex flex-col justify-center items-center">
+                                <p data-aos="fade-up" className='font-inter font-extrabold drop-shadow-md text-3xl md:text-6xl text-brown3'>{data.title}<strong className='text-ivory sm:text-brown font-bold font-zeyada text-4xl md:text-7xl'>{data.title2}</strong></p>
+                                <p className='md:font-zeyada font-poppins text-base md:text-4xl'>{data.description}</p>
                                 <Link to="shop" onClick={scrollToTop}>
                                   <Button/>
                                 </Link>

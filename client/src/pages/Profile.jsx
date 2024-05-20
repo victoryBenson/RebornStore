@@ -171,7 +171,7 @@ export const UserProfile = () => {
                             </div>
                         </div>
                         <div className="mx-2 self-end space-x-2">
-                            <button disabled={loading} className="bg-lightBrown text-ivory p-2 rounded shadow hover:shadow-lg">
+                            <button disabled={loading} className="bg-lightBrown text-ivory p-3 rounded shadow hover:shadow-lg">
                                 { loading? 'Saving Changes...Please wait!' : 'Save Changes'}
                             </button>
                         </div>

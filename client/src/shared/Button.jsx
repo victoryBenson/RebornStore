@@ -5,7 +5,7 @@ import Typewriter from "typewriter-effect";
 export const Button = () => {
   return (
     <div className=''>
-        <button className='font-bold flex items-center justify-center font-poppins text-xl bg-brown hover:bg-opacity-80 transition-all text-ivory p-3 rounded w-60 '>
+        <button className='font-bold flex items-center justify-center font-poppins text-xl bg-brown3 hover:bg-opacity-80 transition-all text-ivor p-3 rounded w-60 '>
             <Typewriter
                 options={{
                 strings: [ "Discover","Explore!","Shop!"],
