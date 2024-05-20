@@ -26,8 +26,8 @@ export const DashboardSidebar = () => {
 
 
   return (
-    <div className={`col-span-5 md:col-span-1 sm:gap-4 transition-all duration-100 md:bg-lightBrown md:text-white py-2 md:py-4`}>
-        <div className=' transition-al flex flex-row md:flex-col items-center md:items-start  md:space-y-4 m-2'>
+    <div className={`md:relative col-span-5 md:col-span-1 sm:gap-4 transition-all duration-100 md:bg-lightBrown md:text-white py-2 md:py-4`}>
+        <div className='md:sticky md:top-24 transition-al flex flex-row md:flex-col items-center md:items-start  md:space-y-4 m-2'>
             <ShowAdmin>
                 <NavLink 
                     to={'home-dashboard'} 

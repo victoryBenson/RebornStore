@@ -32,6 +32,7 @@ const BottomNavBar = () => {
     const navigate = useNavigate();
     const {handleCart} = useContext(SidebarContext)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
+    const {isActive } = useContext(SidebarContext)
     const location = useLocation()
     let path = '/dashboard' 
     
@@ -76,7 +77,7 @@ const BottomNavBar = () => {
     };
   
   return (
-    <div className="relative font-poppins ">
+    <div className={`${isActive ? 'block relative font-poppins ' : 'hidden'}`}>
       <div className='fixed w-full flex items-center justify-between px-4 bottom-0 h-20 bg-white md:hidden z-[99] shadow'>
         {/* navLinks */}
         <NavLink
