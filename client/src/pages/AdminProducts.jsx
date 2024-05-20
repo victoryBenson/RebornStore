@@ -79,7 +79,7 @@ export const AdminProducts = () => {
             {/* search result mapping */}
             {
                 searchOutput.length ? (
-                    <div className="overflow-y-scroll max-h-60">
+                    <div className="min-h-screen">
                         {
                             searchOutput.map((item) => {
                                 return (

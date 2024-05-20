@@ -1,24 +1,20 @@
 import "aos/dist/aos.css"
 import { BsCartCheck} from "react-icons/bs";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { CartContext } from "../contexts/CartContext";
 import { CartItems } from "../component/CartItems";
 import { CartSummary } from "../component/CartSummary";
+import { SidebarContext } from "../contexts/SidebarContext";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 
 
 export const MyCart = () => {
     const {itemAmount, cart} = useContext(CartContext)
-    // const [cart, setCart] = useState({})
+    const {showCart, handleCart} = useContext(SidebarContext)
 
-
-    // useEffect(() => {
-    //     const myCart = sessionStorage.getItem('cart')
-    //     if(cart){
-    //         setCart(JSON.parse(myCart))
-    //     }
-    // },[])
 
     
     const scrollToTop = () => {
@@ -26,35 +22,44 @@ export const MyCart = () => {
     }
 
   return (
-    <div onClick={scrollToTop} className='md:flex justify-between block md:mx-10 mx-4  md:space-x-4 lg:space-x-12 relative'>
-        <div className='w-full'>
-            <div className='bg-white rounded sticky top-14 py-4 flex items-center mt-1'>
-                <p className='p-2 flex items-center font-bold text-lg'>
-                    <BsCartCheck/>
-                    <span className='pl-1'>
-                        Shopping Bag
-                        ({itemAmount})
-                    </span>
-                </p>
+    <>
+        <div className={`${showCart ? "z-[999] bg-gray/20 backdrop-blur-[1px] fixed top-0 left-0 right-0 h-screen w-full transition-all text-sm" : "hidden"}`} >
+            <div data-aos="fade-right"  className={`z-[999] hamburger-menu lg:w-1/3 w-2/3 md:w-1/2 bg-white fixed shadow-lg right-0 md:-right-0 top-0  h-screen duration-500 transition-all`}>
+                <div className='w-full '>
+                    <div className='bg-white rounded py-4 flex items-center mt-1 justify-between m-4  right-0'>
+                        <FaArrowRightLong onClick={handleCart} size={20} />
+                        <p className=' flex items-center font-bold text-lg'>
+                            <BsCartCheck onClick={handleCart}/>
+                            <span className='pl-1'>
+                                my bag
+                                ({itemAmount})
+                            </span>
+                        </p>
+                    </div>
+                    { !itemAmount? (
+                        <div className='flex flex-col max-h-[100vh] justify-center items-center font-bold mt-5'>
+                            <p className='md:text-lg p-2'>Your cart is currently empty</p>
+                            <MdOutlineRemoveShoppingCart size={40}/>
+                            <Link to={`layout/shop`} className=' flex items-center hover:opacity-80 text-sm underline text-gray text-light'>
+                                continue shopping
+                            </Link>
+                        </div>
+                    ): 
+                        <div className='class overflow-y-auto max-h-64'>
+                            {cart.map((item) => {
+                                return (
+                                    <CartItems key={item._id} item={item}/>
+                                )
+                            })}
+                        </div>
+                    }
+                </div>
+                <div>
+                    <CartSummary/>
+                </div>
             </div>
-            { !itemAmount? (
-                <div className='flex flex-col h-[100vh] justify-center items-center font-bold mt-5'>
-                    <p className='text-xl p-2'>Your cart is currently empty</p>
-                    <MdOutlineRemoveShoppingCart size={40}/>
-                </div>
-            ): 
-                <div className='class'>
-                    {cart.map((item) => {
-                        return (
-                            <CartItems key={item._id} item={item}/>
-                        )
-                    })}
-                </div>
-            }
         </div>
-        <div>
-            <CartSummary/>
-        </div>
-    </div>
+    </>
   )
 }
+

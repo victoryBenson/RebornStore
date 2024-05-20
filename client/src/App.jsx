@@ -21,13 +21,16 @@ import { Orders } from "./pages/Order";
 // import { PayButton } from "./component/PayButton";
 import axios from "axios";
 import { PromoDisplay } from "./component/PromoDisplay";
-// import ShopLayout from "./component/Shop/ShopLayout";
-import Shop from "./component/Shop";
 import { RequireAuth } from "./component/RequireAuth";
 import { EditProduct } from "./component/EditProduct";
 import { CreateProduct } from "./component/CreateProduct";
 import { useContext, useEffect } from "react";
 import { ProductContext } from "./contexts/ProductContext";
+import BottomNavBar from "./component/BottomNavbar";
+import ShopLayout from "./component/Shop/ShopLayout";
+import { GetProducts } from "./pages/GetProducts";
+
+
 
 
 
@@ -48,6 +51,7 @@ function App() {
                 <PromoDisplay/>
                 <Header/>
             </ConditionRoute>
+            <MyCart/>
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element ={<LandingPage/>}/>
@@ -56,23 +60,26 @@ function App() {
                 <Route path="register" element={<Register/>}/>
                 {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
                 {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
-                <Route path="mycart" element={<MyCart/>}/>
+                {/* <Route path="mycart" element={<MyCart/>}/> */}
                 <Route path="*" element={<NotFound/>}/> 
-                <Route path="shop" element={<Shop/>}/>
+                <Route path="layout" element={<ShopLayout/>}>
+                    <Route path="profile" element={<UserProfile/>}/>
+                    <Route path="shop" element={<GetProducts/>}/>
+                    <Route path="orders" element={<Orders/>}/>
+                </Route>
                 <Route path="dashboard" element={<Dashboard/>}>
                     {/* protected route */}
                     <Route element={<RequireAuth/>}>
                         <Route path="profile" element={<UserProfile/>}/>
-                        <Route path="orders" element={<Orders/>}/>
                         <Route path="home-dashboard" element={<HomeDashboard/>}/>
                         <Route path="admin-products" element={<AdminProducts/>}/>
                         <Route path="editProduct/:id" element={<EditProduct/>}/>
                         <Route path="createProduct" element={<CreateProduct/>}/>
                     </Route>
                 </Route>
-                {/* <redirect from="/" to="/login" /> */}
             </Routes>
             <ConditionRoute>
+                <BottomNavBar/>
                 <Footer/>
             </ConditionRoute>
         </BrowserRouter>

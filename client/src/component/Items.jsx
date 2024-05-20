@@ -57,13 +57,13 @@ export const Items = ({item}) => {
 
     return(
         <div  className=" my-4 group transition-all  ">
-            <div className="flex space-x-2 items-center justify-around h  bg-white md:px-5 p-2 md:mx-5 rounded shadow" >
+            <div className="flex space-x-2 items-center justify-around bg-white h-40 p-2 md:px-5  md:mx-5 rounded shadow" >
                 <div className="w-20 :w-40 sm:w-60 h-full flex justify-center items-center">
                     <div className=" flex justify-center h-full ">
                         <img
                             src={image[0]}
                             alt="image"
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-contain rounded-lg"
                         />
                     </div>
                 </div>
