@@ -17,7 +17,7 @@ export const ScrollToTop = () => {
   }
 
   return (
-    <div onClick={scrollToTop} className={`${isActive ? 'text-white transition-all duration-300 bg-lightBrown rounded-full p-2 fixed right-2 shadow bottom-10 z-[999] w-10 h-10 flex items-center justify-center' : 'hidden'}`}>
+    <div onClick={scrollToTop} className={`${isActive ? 'text-white transition-all duration-300 bg-lightBrown rounded-full p-2 fixed right-2 shadow bottom-24 md:bottom-10 z-[999] w-10 h-10 flex items-center justify-center' : 'hidden'}`}>
       <FaArrowUp />
     </div>
   )
