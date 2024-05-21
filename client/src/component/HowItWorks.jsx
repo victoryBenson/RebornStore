@@ -34,7 +34,7 @@ export const HowItWorks = () => {
             })
           }
         </div>
-        <Link to="shop" onClick={scrollToTop}>
+        <Link to="layout/shop" onClick={scrollToTop}>
           <Btn text="shop now" />
         </Link>
     </div>
