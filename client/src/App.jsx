@@ -63,7 +63,7 @@ function App() {
                 {/* <Route path="mycart" element={<MyCart/>}/> */}
                 <Route path="*" element={<NotFound/>}/> 
                 <Route path="layout" element={<ShopLayout/>}>
-                    <Route path="profile" element={<UserProfile/>}/>
+                    <Route path="profile" element={<RequireAuth><UserProfile/></RequireAuth>}/>
                     <Route path="shop" element={<GetProducts/>}/>
                     <Route path="orders" element={<Orders/>}/>
                 </Route>

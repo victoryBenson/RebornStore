@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { BsCartCheck } from 'react-icons/bs'
 import { CartContext } from '../../contexts/CartContext'
 import { SidebarContext } from '../../contexts/SidebarContext'
+import { IoStorefrontOutline } from "react-icons/io5";
 
 const Aside = () => {
   const {handleCart} = useContext(SidebarContext)
@@ -22,17 +23,17 @@ const Aside = () => {
                 }} 
                 className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full text-brown md:text-white'
                   >
-                  <CiViewList size={20} className='mx-1'/>
+                  <IoStorefrontOutline size={20} className='mx-1'/>
                   <span className='hidden md:flex'>Products</span>
           </NavLink>
-          <div onClick={handleCart}  
+          {/* <div onClick={handleCart}  
               className='p-2 flex  sm:flex-row text-base lg:text-xl hover:bg-gray/10 rounded w-full items-center justify-center cursor-pointer text-brown md:text-white'>
               <span className='relative'>
                 <BsCartCheck size={20} className='mx-1'/>
                 <span  className='absolute -top-3 -right-2 items-center flex justify-center text-sm bg-brown text-ivory rounded-full p-[1px] px-1' >{itemAmount}</span>
               </span>
               <span className='hidden md:flex'>Cart</span>
-          </div>
+          </div> */}
           <NavLink 
               to={'orders'} 
               style={

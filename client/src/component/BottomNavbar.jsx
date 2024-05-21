@@ -21,6 +21,7 @@ import { UserContext } from "../contexts/UserContext";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { FaUserCheck } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
+import { IoStorefrontOutline } from "react-icons/io5";
 
 const BottomNavBar = () => {
   const [menu, setMenu] = useState(false);
@@ -83,24 +84,21 @@ const BottomNavBar = () => {
         <NavLink
               onClick={scrollToTop}
               to="/"
-              className={({ isActive }) =>
-                isActive
-                ? " cursor-pointer  font-extrabold"
-                : " cursor-pointer text-gray"
-              }
-              >
+              className={({ isActive }) => isActive ? " cursor-pointer border-b font-extrabold flex flex-col items-center"  : "flex flex-col items-center cursor-pointer text-sm "}>
               <GoHome size={20}/>
+              Home
           </NavLink>
           <NavLink
               onClick={scrollToTop}
               to="/layout/shop"
               className={({ isActive }) =>
                 isActive
-                ? " cursor-pointer  font-extrabold"
-                : " cursor-pointer text-gray"
+                ? " cursor-pointer border-b font-extrabold flex flex-col items-center"
+                : " cursor-pointer text-sm flex flex-col items-center"
               }
               >
-              <FaShopify size={20} className="mx-1"/>
+              <IoStorefrontOutline size={20} className="mx-1"/>
+              Store
           </NavLink>
           <ShowAdmin>
             <NavLink
@@ -108,31 +106,34 @@ const BottomNavBar = () => {
             to="/dashboard/home-dashboard"
             className={({ isActive }) =>
               isActive
-              ? " cursor-pointer  font-extrabold"
-              : " cursor-pointer text-gray"
+              ? " cursor-pointer border-b font-extrabold flex flex-col items-center"
+              : " cursor-pointer text-sm flex flex-col items-center"
             }
             >
             <RxDashboard size={20}  className="mx-1" />
+            Dashboard
             </NavLink>
           </ShowAdmin>
           <NavLink 
               to={'/layout/orders'} 
               className={({ isActive }) =>
                 isActive
-                ? " cursor-pointer  font-extrabold relative"
-                : " cursor-pointer text-gray relative"
+                ? " cursor-pointer border-b font-extrabold relative flex flex-col items-center"
+                : " cursor-pointer relative text-sm flex flex-col items-center"
               }
               >
                   <CiShoppingTag size={30} className='mx-1'/>
                   <span className='text-xs md:text-sm absolute md:hidden bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-5'>9</span>
+                  Orders
           </NavLink>
-          <div onClick={handleCart}  className="px-1 text-xl  cursor-pointer text-gray">
+          <div onClick={handleCart}  className="px-1 text-sm cursor-pointer flex flex-col items-center">
               <p  className="relative">
                   <BsCartCheck size={20} />
                   <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
                       {itemAmount}
                   </span>
               </p>
+              Cart
           </div>
       </div>
     </div>
