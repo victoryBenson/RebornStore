@@ -42,14 +42,18 @@ export const AdminProducts = () => {
         getProducts()
     },[])
 
-    if (loading)
-        return (
+    if (loading){
         <div className="flex justify-center items-center h-screen w-full">
             <Loader />
         </div>
-    );
+    }
+
   
-  if (errorMsg) return <div className="flex justify-center ">Error:{errorMsg}</div>;
+  if (errorMsg) {
+
+} 
+<div className="flex justify-center ">Error:{errorMsg}</div>;
+    
 
   return (
     <section className=" md:p-5 p-2 md:w-full shadow">
