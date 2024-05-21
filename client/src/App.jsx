@@ -60,7 +60,6 @@ function App() {
                 <Route path="register" element={<Register/>}/>
                 {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
                 {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
-                {/* <Route path="mycart" element={<MyCart/>}/> */}
                 <Route path="*" element={<NotFound/>}/> 
                 <Route path="layout" element={<ShopLayout/>}>
                     <Route path="profile" element={<RequireAuth><UserProfile/></RequireAuth>}/>

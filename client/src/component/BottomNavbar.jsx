@@ -115,7 +115,8 @@ const BottomNavBar = () => {
             </NavLink>
           </ShowAdmin>
           <NavLink 
-              to={'/layout/orders'} 
+              to={'/layout/orders'}
+              onClick={scrollToTop} 
               className={({ isActive }) =>
                 isActive
                 ? " cursor-pointer border-b font-extrabold relative flex flex-col items-center"

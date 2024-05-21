@@ -64,14 +64,16 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                             }   
                             </div>
                             <Link
-                            to={`/dashboard/profile`}
+                            to={`/layout/profile`}
+                            onClick={scrollToTop}
                             className="flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
                             >
                             <CiUser className="mx-1" />
                             My account
                             </Link>
                             <Link
-                            to="/dashboard/orders"
+                            to="/layout/orders"
+                            onClick={scrollToTop}
                             className=" flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
                             >
                             <BiPurchaseTag className="mx-1" />
@@ -80,6 +82,7 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                             <ShowAdmin>
                                 <Link
                                 to={`/dashboard/home-dashboard`}
+                                onClick={scrollToTop}
                                 className="flex items-center p-2 cursor-pointer hover:underline underline-offset-4"
                                 >
                                 <CiEdit className="mx-1" />

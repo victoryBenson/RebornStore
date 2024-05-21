@@ -24,7 +24,7 @@ export const MyCart = () => {
   return (
     <>
         <div className={`${showCart ? "z-[999] bg-gray/20 backdrop-blur-[1px] fixed top-0 left-0 right-0 h-screen w-full transition-all text-sm" : "hidden"}`} >
-            <div data-aos="fade-right"  className={`z-[999] hamburger-menu lg:w-1/3 w-2/3 md:w-1/2 bg-white fixed shadow-lg right-0 md:-right-0 top-0  h-screen duration-500 transition-all`}>
+            <div data-aos="fade-right"  className={`z-[999] hamburger-menu lg:w-1/3 w-3/4 md:w-1/2 bg-white fixed shadow-lg right-0 md:-right-0 top-0  h-screen duration-500 transition-all`}>
                 <div className='w-full '>
                     <div className='bg-white rounded py-4 flex items-center mt-1 justify-between m-4  right-0'>
                         <FaArrowRightLong onClick={handleCart} size={20} />

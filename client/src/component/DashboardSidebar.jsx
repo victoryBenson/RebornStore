@@ -6,7 +6,7 @@ import { RxDashboard } from "react-icons/rx";
 import { UserContext } from '../contexts/UserContext';
 import { ProductContext } from '../contexts/ProductContext';
 import { FaUserCheck } from 'react-icons/fa';
-import { IoCreateOutline } from "react-icons/io5";
+import { IoCreateOutline, IoStorefrontOutline } from "react-icons/io5";
 
 export const DashboardSidebar = () => {
     const {userTotal, getUserTotal, getUsers} = useContext(UserContext)
@@ -47,7 +47,7 @@ export const DashboardSidebar = () => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                         }} 
                     className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
-                        <CiViewList className='mx-1'/>
+                        <IoStorefrontOutline className='mx-1'/>
                         <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-6'>{totalProduct}</span>
                         <span className='hidden md:flex'>Products</span>
                 </NavLink>

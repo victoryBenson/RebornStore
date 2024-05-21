@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HomeLogo, Logo } from "./Logo";
 import { NavLink, Link, useNavigate, useLocation} from "react-router-dom";
-import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries,} from "react-icons/ci";
+import { CiUser, CiLogout, CiLogin, CiEdit, CiMenuFries, CiMenuBurger,} from "react-icons/ci";
 import { BiPurchaseTag } from "react-icons/bi";
 import { RiArrowDownSLine,  RiArrowUpSLine } from "react-icons/ri";
 import { LuHelpCircle, LuSunMoon } from "react-icons/lu";
@@ -82,7 +82,7 @@ export const Header = () => {
         <div  className={`h-full flex justify-between items-center md:px-10 px-2 w-full mx-2`}>
             {/* mobile */}
             <div onClick={clickMobile} className="flex flex-cols md:hidden cursor-pointer">
-                <CiMenuFries
+                <CiMenuBurger
                 size={20}
                 className=" "
                 />
@@ -115,7 +115,7 @@ export const Header = () => {
                         Shop
                     </NavLink>
                 </div>
-                {/* <ShowAdmin>     */}
+                <ShowAdmin>    
                     <div className=" p-2 flex text-sm md:text-base">
                         <NavLink
                         to="/dashboard/home-dashboard"
@@ -127,7 +127,7 @@ export const Header = () => {
                         Dashboard
                         </NavLink>
                     </div>
-                {/* </ShowAdmin> */}
+                </ShowAdmin>
             </div>
             <div className="items-center flex ">
                 {/* profile */}
