@@ -55,7 +55,7 @@ export const Hero = () => {
                             <div className="space-y-2 flex flex-col justify-center items-center">
                                 <p data-aos="fade-up" className='font-inter font-extrabold drop-shadow-md text-3xl md:text-6xl text-brown3'>{data.title}<strong className='text-ivory sm:text-brown font-bold font-zeyada text-4xl md:text-7xl'>{data.title2}</strong></p>
                                 <p className='md:font-zeyada font-poppins text-base md:text-4xl'>{data.description}</p>
-                                <Link to="shop" onClick={scrollToTop}>
+                                <Link to="/layout/shop" onClick={scrollToTop}>
                                   <Button/>
                                 </Link>
                             </div>

@@ -29,6 +29,7 @@ import { ProductContext } from "./contexts/ProductContext";
 import BottomNavBar from "./component/BottomNavbar";
 import ShopLayout from "./component/Shop/ShopLayout";
 import { GetProducts } from "./pages/GetProducts";
+import { ScrollToTop } from "./shared/ScrollToTop";
 
 
 
@@ -52,6 +53,7 @@ function App() {
                 <Header/>
             </ConditionRoute>
             <MyCart/>
+            <ScrollToTop/>
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element ={<LandingPage/>}/>
