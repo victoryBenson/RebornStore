@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button } from '../shared/Button';
-import { heroData } from './database/Herodata';
+import { heroData } from '../database/Herodata';
 import AOS from 'aos'
 import "aos/dist/aos.css"
 import {Link} from 'react-router-dom'

@@ -1,42 +1,50 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { SearchNotFound } from './NotFound';
-import { TbClipboardList } from 'react-icons/tb';
-import workFlow from './database/workFlow';
-import { Btn, Button } from '../shared/Button';
-import { FaShopify } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Btn,} from '../shared/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import services from '../database/services'
+import AOS from 'aos'
+import "aos/dist/aos.css"
+import { useEffect } from 'react';
+
 
 
 export const HowItWorks = () => {
+const navigate = useNavigate()
 
+const scrollToTop = () => {
+  window.scrollTo(
+      {
+          top: 0,
+          behavior: 'smooth'
+      }
+  )
+}
 
-  const scrollToTop = () => {
-    window.scrollTo(
-        {
-            top: 0,
-            behavior: 'smooth'
-        }
-    )
-  }
+//animation on scroll
+useEffect(() => {
+  AOS.init({
+    duration: 500
+  })    
+},[])
 
   return (
-    <div className='flex flex-col items-center justify-center py-10 w-full space-y-10'>
-        <p className='p-4 font-semibold text-3xl'>How It Works</p>
-        <div className='grid grid-cols-1 md:grid-cols-3  gap-4 overflow-x-auto no-scrollbar justify-items-center items-center'>
+    <div data-aos="fade-up" className=' flex flex-col items-center justify-center py-5 md:py-10 w-full space-y-5 md:space-y-10'>
+        <p className='font-semibold text-xl md:text-3xl font-poppins'>Why choose us?</p>
+        <div className='flex whitespace-nowrap overflow-x-auto w-[100%] md:w-[80%] justify-items-center items-center'>
           {
-            workFlow.map((data) => {
+            services.map((data, index) => {
               return (
-                <div key={data.image} className='flex flex-col items-center w-60 h-40'>
-                  <span className='h-[80%]'><img src={data.image} alt="icon" className='h-full w-full object-contain' /></span>
-                  <p className='capitalize text-brown p-2 font-semibold'>{data.text}</p>
+                <div key={index} className='bg-gray/10 rounded mx-2 flex flex-col p-2 items-center w-64 h-40 justify-center'>
+                  <p className='text-5xl'><data.icon /></p>
+                  <p className='capitalize p-2 font-semibold text-xl'>{data.title}</p>
+                  <p className='text-'>{data.details}</p>
                 </div>
               )
             })
           }
         </div>
-        <Link to="layout/shop" onClick={scrollToTop}>
-          <Btn text="shop now" />
-        </Link>
+        <div data-aos="flip-right" onClick={() => {navigate("layout/shop");scrollToTop() }}>
+          <Btn text="Shop now" />
+        </div>
     </div>
   )
 }

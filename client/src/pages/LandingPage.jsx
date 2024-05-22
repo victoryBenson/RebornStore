@@ -3,6 +3,7 @@ import { Testimonial } from "../component/Testimonial";
 import { Hero } from "../component/Hero";
 import { HowItWorks } from "../component/HowItWorks";
 import NewCollections from "../component/NewCollections";
+import { FrequentlyAQ } from "../component/FrequentlyAQ";
 
 
 export const LandingPage = () => {
@@ -11,6 +12,7 @@ export const LandingPage = () => {
       <Hero/>
       <NewCollections/>
       <HowItWorks/>
+      <FrequentlyAQ/>
       <Testimonial />
     </div>
   );
