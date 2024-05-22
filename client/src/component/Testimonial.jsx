@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { testimonials } from './database/testimonialData'
+import { testimonials } from '../database/testimonialData'
 import AOS from 'aos'
 import "aos/dist/aos.css"
 
@@ -36,12 +36,12 @@ export const Testimonial = () => {
     },[])
 
     return (
-    <div data-aos="fade-up" className=' flex flex-col justify-center h-full items-center my-10 '>
+    <div data-aos="fade-up" className=' flex flex-col justify-center h-full items-center md:my-5'>
         <div className='text-center py-4'>
-            <h1 className='font-bold sm:text-3xl text-xl font-poppins'>Good news from far away 🥇</h1>
-            <p className='text-lg p-3 font-oswald'>Let's see what people think of Reborn</p>
+            <h1 className='font-bold md:text-3xl text-xl font-poppins'>Good news from far away 🥇</h1>
+            <p className='text-lg'>Let's see what people think of Reborn</p>
         </div>
-        <div className='overflow-hidden no-scrollbar slideshow w-[86%] sm:w-[80%] '>
+        <div className='overflow-hidden no-scrollbar slideshow w-[86%] sm:w-[80%] my-5'>
             <div className='flex w-full items-center slideshowSlider' style={{ transform: `translate3d(${-index * 100}%, 0, 0)` ,transition: "ease-in 500ms"}}>
                 {
                     testimonials.map((data, index)=> {
