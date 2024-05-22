@@ -29,14 +29,14 @@ useEffect(() => {
   return (
     <div data-aos="fade-up" className=' flex flex-col items-center justify-center py-5 md:py-10 w-full space-y-5 md:space-y-10'>
         <p className='font-semibold text-xl md:text-3xl font-poppins'>Why choose us?</p>
-        <div className='flex whitespace-nowrap overflow-x-auto w-[100%] md:w-[80%] justify-items-center items-center'>
+        <div className='flex flex-wrap items-center justify-center gap-4 h-full'>
           {
             services.map((data, index) => {
               return (
-                <div key={index} className='bg-gray/10 rounded mx-2 flex flex-col p-2 items-center w-64 h-40 justify-center'>
-                  <p className='text-5xl'><data.icon /></p>
-                  <p className='capitalize p-2 font-semibold text-xl'>{data.title}</p>
-                  <p className='text-'>{data.details}</p>
+                <div key={index} className='bg-gray/5 w-5/6 md:w-72  min-h-40 md:h-48 flex-col flex items-center justify-center rounded'>
+                  <p className='text-2xl md:text-5xl text-gray'><data.icon /></p>
+                  <p className='capitalize p-2 font-semibold text-lg md:text-xl'>{data.title}</p>
+                  <p className='text-base'>{data.details}</p>
                 </div>
               )
             })
