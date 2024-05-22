@@ -45,7 +45,7 @@ const NewCollections = () => {
     }
 
   return (
-    <div data-aos="fade-up" className=' md:mt-10 flex flex-col items-center justify-center py-3 md:py-5 sm:p-10'>
+    <div data-aos="fade-up" className='hidden md:mt-10 flex flex-col items-center justify-center py-3 md:py-5 sm:p-10'>
         <div data-aos="fade-down" className='text-center font-poppins font-semibold text-xl md:text-3xl py-5'>Shop from new Collections</div>
         <div className=' md:my-6 gap-4 flex  flex-wrap justify-center items-center'>
             {
