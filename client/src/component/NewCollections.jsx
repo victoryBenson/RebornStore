@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos'
 import "aos/dist/aos.css"
+import {SidebarContext} from '../contexts/SidebarContext.jsx'
 
 
 const NewCollections = () => {
@@ -46,7 +47,7 @@ const NewCollections = () => {
   return (
     <div data-aos="fade-up" className=' md:mt-10 flex flex-col items-center justify-center py-3 md:py-5 sm:p-10'>
         <div data-aos="fade-down" className='text-center font-poppins font-semibold text-xl md:text-3xl py-5'>Shop from new Collections</div>
-        <div className='m-5 md:my-10 space-x-5  flex whitespace-nowrap overflow-x-auto w-[100%] md:w-[80%] justify-items-center items-center'>
+        <div className=' md:my-6 gap-4 flex  flex-wrap justify-center items-center'>
             {
                 items !== null ? (
                     items.filter( (item, index) => index < 4).map((product) => {
@@ -77,6 +78,7 @@ export const ProductCollection = ({product}) => {
     const [Image, setImage] = useState(image[0])
     const {addToCart, increaseCart, decreaseCart, itemAmount} = useContext(CartContext)
     const navigate = useNavigate()
+    const {handleCart} = useContext(SidebarContext)
 
 
     const onOpenModal = () => setOpen(true);
@@ -94,16 +96,16 @@ export const ProductCollection = ({product}) => {
     }
 
     return (
-        <div data-aos="flip-lef" className='bg-white shadow rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer'>
+        <div data-aos="flip-left" className=' bg-white border border-gray-light/30 rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer'>
             <div className='h-1/2 flex justify-center relative  rounded-t-xl overflow-hidden'>
-                <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/5 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
+                <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/10 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                     <div className='bottom-4 flex justify-center absolute w-full'>
                         <div className='flex flex-wrap items-center justify-center gap-2'>
-                            <button onClick={()=> {onOpenModal(product); scrollToTop}} className='flex mx-2 items-center bg-white rounded-full p-2 shadow text-sm'>
+                            <button onClick={()=> {onOpenModal(product); scrollToTop}} className='flex items-center bg-white rounded-full p-2 shadow text-xs md:text-sm'>
                                 <TiArrowMaximise/>
                                 Quick view
                             </button>
-                            <button onClick={()=> handleAddToCart(product)} className='flex mx-2 items-center bg-brown p-2 px-3 rounded-full text-white shadow text-sm'>
+                            <button onClick={()=> {handleAddToCart(product); handleCart()}} className='flex items-center bg-brown p-2 px- rounded-full text-white shadow text-xs md:text-sm'>
                                 <BsBagCheck/> 
                                 Add to bag
                             </button>
@@ -218,7 +220,7 @@ export const ProductCollection = ({product}) => {
                 </span>
                 <img src={image[0]} alt="image" className='group-hover:scale-110 object-contain rounded-lg w-full cursor-pointer overflow-hidden duration-100 transition-all ' />
             </div>
-            <div onClick={() => {navigate('/layout/shop') ; scrollToTop()}} className='p-2 space-x-2 space-y-2'>
+            <div onClick={() => {navigate('/layout/shop') ; scrollToTop()}} className='p-2 space-y-2'>
                 <p className='font-bold px-2 text-brown capitalize'>{truncateString(name, 20)}</p>
                 <p className='text-lightBrown capitalize'>Brand: {brand}</p>
                 <p className='text-lightBrown capitalize'>Category: {category}</p>
