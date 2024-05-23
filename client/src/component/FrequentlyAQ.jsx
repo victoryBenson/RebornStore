@@ -27,17 +27,17 @@ export const FrequentlyAQ = () => {
                     Frequently Asked Questions
                 </p>
             </div>
-            <div data-aos="flip-up" className="md:w-[80%]">
+            <div data-aos="flip-up" className="md:w-[80%] p-2">
                 {FaqData.map((data, index) => {
                     return (
-                        <div key={index} className="p-4">
+                        <div key={index} className="p-2 md:p-4">
                             <div className="flex justify-between items-center cursor-pointer" onClick={() => handleToggle(index)} >
-                                <p className="text-lg md:text-xl pr-2 font-semibold">{data.title}</p>
+                                <p className="text-base md:text-xl pr-2 font-semibold">{data.title}</p>
                                 <span className="transition-all duration-200">
                                     {isOpen === index ? <IoIosArrowDown /> : <IoIosArrowUp />}
                                 </span>
                             </div>
-                            <div className="p-2 text-gray-500 ease-in-out transition-all duration-300">
+                            <div className="p-2 text-gray ease-in-out transition-all duration-300">
                                 {isOpen === index && <div className="text-base">{data.details}</div>}
                             </div>
                         </div>

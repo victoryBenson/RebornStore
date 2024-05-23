@@ -27,16 +27,18 @@ useEffect(() => {
 },[])
 
   return (
-    <div data-aos="fade-up" className=' flex flex-col items-center justify-center py-5 md:py-10 w-full space-y-5 md:space-y-10'>
-        <p className='font-semibold text-xl md:text-3xl font-poppins'>Why choose us?</p>
-        <div className='flex flex-wrap items-center justify-center gap-4 h-full'>
+    <div data-aos="fade-" className=' flex flex-col items-center justify-center text-center py-5 sm:p-10'>
+        <p className='font-semibold text-xl md:text-3xl font-poppins py-5 md:py-10'>Why choose us?</p>
+        <div className='w-full h-full overflow-x-scroll whitespace-nowrap scrollbar-hide scroll-smooth py-5 transition-all mx-2'>
           {
             services.map((data, index) => {
               return (
-                <div key={index} className='bg-gray/5 w-5/6 md:w-72  min-h-40 md:h-56 flex-col flex items-center justify-center rounded'>
-                  <p className='text-2xl md:text-5xl text-gray'><data.icon /></p>
-                  <p className='capitalize p-2 font-semibold text-lg md:text-xl'>{data.title}</p>
-                  <p className='text-base'>{data.details}</p>
+                <div key={index} className='bg-gray/10 w-72 h-40 mx-3 inline-block cursor-pointer p-2 text-center overflow-hidden'>
+                  <div className='flex flex-col justify-center items-center h-full'>
+                    <p className='text-2xl md:text-5xl text-gray'><data.icon /></p>
+                    <p className='capitalize p-2 font-semibold text-lg md:text-xl'>{data.title}</p>
+                    <p className='text-base'>{data.details}</p>
+                  </div>
                 </div>
               )
             })
