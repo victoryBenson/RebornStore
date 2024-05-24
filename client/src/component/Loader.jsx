@@ -4,8 +4,10 @@ import { Circles } from 'react-loader-spinner'
 
 export const Loader = () => {
   return (
-    <div className=' justify-center flex flex-col items-center h-40 w-40'>
-       <iframe src="https://lottie.host/embed/3ad4c310-5836-442d-a7f6-7d451cbb213c/gpEcTLagSW.json"></iframe>
+    <div className=' justify-center flex flex-col items-center w-full'>
+      <p className='h-40 w-40'>
+        <iframe src="https://lottie.host/embed/3ad4c310-5836-442d-a7f6-7d451cbb213c/gpEcTLagSW.json"></iframe>
+      </p>
     </div>
   )
 }

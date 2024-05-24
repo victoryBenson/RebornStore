@@ -22,7 +22,7 @@ export const Button = () => {
 export const Btn =(props) =>{
   return(
     <div className=''>
-      <button className=' font-bold flex items-center justify-center text-xl border border-gray/20 hover:bg-opacity-70 transition-all p-3 rounded w-60 gap-2'>
+      <button className=' font-bold flex items-center justify-center text-xl border border-gray/20 hover:bg-brown hover:text-white duration-300 transition-all p-3 rounded w-60 gap-2'>
           <FaShopify/>
           {props.text}
       </button>

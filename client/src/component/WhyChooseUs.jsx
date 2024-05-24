@@ -5,10 +5,11 @@ import AOS from 'aos'
 import "aos/dist/aos.css"
 import { useEffect } from 'react';
 
+ 
 
+export const WhyChooseUs = () => {
 
-export const HowItWorks = () => {
-const navigate = useNavigate()
+    const navigate = useNavigate()
 
 const scrollToTop = () => {
   window.scrollTo(
@@ -27,10 +28,9 @@ useEffect(() => {
 },[])
 
   return (
-    <section data-aos="fade-up">
-      <div className=' flex flex-col items-center justify-center h-full text-center py-5 sm:p-10'>
-          <p className='font-semibold text-xl md:text-3xl font-poppins py-5 md:py-10'>Why choose us?</p>
-          <div className='grid gird-cols1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center py-4 w-[90%] md:w-[100%]'>
+    <div data-aos="fade-up" className='flex flex-col justify-center items-center '>
+        <p className='font-semibold text-xl md:text-3xl font-poppins py-5 md:py-10'>Why choose us?</p>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center py-4 w-[90%] '>
             {
               services.map((data, index) => {
                 return (
@@ -42,11 +42,11 @@ useEffect(() => {
                 )
               })
             }
-          </div>
-          <div data-aos="flip-right" onClick={() => {navigate("layout/shop");scrollToTop() }} className='py-4'>
+        </div>
+        <div data-aos="flip-right" onClick={() => {navigate("layout/shop");scrollToTop() }} className='py-4'>
             <Btn text="Shop now" />
-          </div>
-      </div>
-    </section>
+        </div>
+    </div>
   )
 }
+

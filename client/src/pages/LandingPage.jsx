@@ -1,9 +1,9 @@
 import React from "react";
 import { Testimonial } from "../component/Testimonial";
 import { Hero } from "../component/Hero";
-import { HowItWorks } from "../component/HowItWorks";
 import NewCollections from "../component/NewCollections";
 import { FrequentlyAQ } from "../component/FrequentlyAQ";
+import { WhyChooseUs } from "../component/WhyChooseUs";
 
 
 export const LandingPage = () => {
@@ -11,7 +11,7 @@ export const LandingPage = () => {
     <div className="">
       <Hero/>
       <NewCollections/>
-      <HowItWorks/>
+      <WhyChooseUs/>
       <FrequentlyAQ/>
       <Testimonial />
     </div>

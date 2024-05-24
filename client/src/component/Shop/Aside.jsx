@@ -16,7 +16,7 @@ const Aside = () => {
 
   return (
     <div className='relative'>
-      <div className="  md:bg-lightBrown text-white flex flex-row md:flex-col gap-4 p-3 transition-all md:w-40 lg:w-80 sticky top-20 md:min-h-screen">
+      <div className="  md:bg-lightBrown text-white flex flex-row md:flex-col gap-4 p-3 transition-all md:w-40 lg:w-72 sticky top-20 md:min-h-screen">
           <NavLink 
               to={'/'} 
               style={

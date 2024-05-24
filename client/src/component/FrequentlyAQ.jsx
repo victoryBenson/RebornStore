@@ -21,13 +21,13 @@ export const FrequentlyAQ = () => {
 
   return (
     <section data-aos="fade-up">
-        <div className="flex flex-col items-center justify-center py-10 px-1">
+        <div className="flex flex-col items-center justify-center py-10">
             <div className="p-5">
                 <p className="text-xl sm:text-3xl text-center font-semibold pb-3 font-poppins">
                     Frequently Asked Questions
                 </p>
             </div>
-            <div data-aos="flip-up" className="md:w-[80%] p-2">
+            <div data-aos="flip-up" className="md: w-[90%] p-2">
                 {FaqData.map((data, index) => {
                     return (
                         <div key={index} className="p-2 md:p-4">
