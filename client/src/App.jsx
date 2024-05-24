@@ -46,11 +46,11 @@ function App() {
    
 
   return (
-    <div className="max-h-screen">
+    <div className="max-h-screen mx-auto">
         <BrowserRouter>
             <ConditionRoute>
                 <PromoDisplay/>
-                <Header/>
+                <Header/>   
             </ConditionRoute>
             <MyCart/>
             <ScrollToTop/>

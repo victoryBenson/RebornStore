@@ -78,7 +78,7 @@ export const Header = () => {
   
 
   return (
-    <header className={`${isActive && 'fixed inset-0 top-0  transition-all duration-200 bg-white'} ${location.pathname == '/' && 'fixed'} z-[999] h-20  inset-0 flex items-center justify-center w-[100%] m-0 p-0`}>
+    <header className={`${isActive && 'fixed inset-0 top-0  transition-all duration-200 bg-white'} ${location.pathname == '/' && 'fixed inset-0'} z-[999] h-20  inset-0 flex items-center justify-center w-[100%] m-0 p-0`}>
         <div  className={`h-full flex justify-between items-center md:px-10 px-2 w-full mx-2`}>
             {/* mobile */}
             <div onClick={clickMobile} className="flex flex-cols md:hidden cursor-pointer">

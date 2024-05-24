@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import AOS from 'aos'
 import "aos/dist/aos.css"
 import {SidebarContext} from '../contexts/SidebarContext.jsx'
+import { IoArrowBackCircleOutline, IoArrowForwardCircleOutline } from "react-icons/io5";
 
 
 const NewCollections = () => {
@@ -34,10 +35,25 @@ const NewCollections = () => {
         AOS.init({
         duration: 500
         })    
-    },[])
+    },[]);
+
+        // set sliderLeft
+    const slideLeft = () =>{
+        let slider = document.getElementById('slider');
+        slider.scrollLeft = slider.scrollLeft - 200
+        console.log("scrollLeft")
+    }
+
+        // set sliderRight
+    const slideRight = () =>{
+        let slider = document.getElementById('slider');
+        slider.scrollLeft = slider.scrollLeft + 200
+        console.log("scrollRight")
+    }
+    
 
     if (loading) {
-        return <div>{<Loader/>}</div>;
+        return <div className='flex justify-center'>{<Loader/>}</div>;
     }
 
     if (errorMsg) {
@@ -45,9 +61,9 @@ const NewCollections = () => {
     }
 
   return (
-    <div data-aos="fade-up" className='hidden md:mt-10 flex flex-col items-center justify-center py-3 md:py-5 sm:p-10'>
+    <div data-aos="fade-up" className=' flex flex-col items-center justify-center py- md: py-5 sm:p-10 '>
         <div data-aos="fade-down" className='text-center font-poppins font-semibold text-xl md:text-3xl py-5'>Shop from new Collections</div>
-        <div className=' md:my-6 gap-4 flex  flex-wrap justify-center items-center'>
+        <div id='slider' className=' md:my-6 gap-4 w-full lg:flex justify-center items-center overflow-x-auto whitespace-nowrap no-scrollbar scroll-smooth transition-all'>
             {
                 items !== null ? (
                     items.filter( (item, index) => index < 4).map((product) => {
@@ -60,6 +76,14 @@ const NewCollections = () => {
                 :
                 <Loader/>
             }
+        </div>
+        <div className='h-1 w-full relative mt-2'>
+            <div className='flex justify-center items-center bg-brown3 absolute top-0 inset-0 z-10 rounded-2xl'>
+                <div className='flex bg-white'>
+                    <IoArrowBackCircleOutline onClick={slideLeft} id='slider' size={30} className='mx-2 cursor-pointer' />
+                    <IoArrowForwardCircleOutline onClick={slideRight} id='slider' size={30} className='mx-2 cursor-pointer'  />
+                </div>
+            </div>
         </div>
     </div>
   )
@@ -93,10 +117,11 @@ export const ProductCollection = ({product}) => {
             top: 0,
             behavior: 'smooth'
         })
-    }
+    };
+
 
     return (
-        <div data-aos="flip-left" className=' bg-white border border-gray-light/30 rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer'>
+        <div data-aos="flip-left" className=' bg-white border border-gray-light/20 rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer mx-4'>
             <div className='h-1/2 flex justify-center relative  rounded-t-xl overflow-hidden'>
                 <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/10 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                     <div className='bottom-4 flex justify-center absolute w-full'>
