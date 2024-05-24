@@ -36,7 +36,7 @@ export const Testimonial = () => {
     },[])
 
     return (
-    <div data-aos="fade-up" className=' flex flex-col justify-center h-full items-center md:my-5'>
+    <div data-aos="fade-up" className=' flex flex-col justify-center h-full items-center my-10 md:my-20'>
         <div className='text-center py-4'>
             <h1 className='font-bold md:text-3xl text-xl font-poppins'>Good news from far away 🥇</h1>
             <p className='text-lg'>Let's see what people think of Reborn</p>

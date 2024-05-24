@@ -8,8 +8,8 @@ export const Footer = () => {
 
 
   return (
-    <div className='bg-brown'>
-        <div  className=' text-white md:flex items-center md:px-10 p-3'>
+    <div className='bg-brown h-[55vh] md:h-auto flex justify-center'>
+        <div  className=' text-white md:flex items-center justify-between md:px-10 p-3'>
             <div className='items-center justify-between md:w-1/2 sm:m-3 md:mb-0 order-last'>
                 <div className='rounded sm:p-4 p-2'>
                     <h1 className='font-bold md:text-lg sm:p-2'>Don't wanna miss our offers?</h1>
@@ -25,7 +25,7 @@ export const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='md:w-1/2 flex justify-center '>
+            <div className='md:w-1/2 flex justify-center'>
                 <div className='items-center justify-center space-y-4 md:space-y-0'>
                     <h1 className='font-bold text-lg flex text-center items-center'><PiLinkThin />Join Us</h1>
                     <div className='flex flex-wrap'>
