@@ -53,7 +53,7 @@ const NewCollections = () => {
     
 
     if (loading) {
-        return <div className='flex justify-center'>{<Loader/>}</div>;
+        return <div className=''>{<Loader/>}</div>;
     }
 
     if (errorMsg) {
