@@ -61,8 +61,8 @@ const NewCollections = () => {
     }
 
   return (
-    <div data-aos="fade-up" className=' flex flex-col items-center justify-center py- md: py-5 sm:p-10 '>
-        <div data-aos="fade-down" className='text-center font-poppins font-semibold text-xl md:text-3xl py-5'>Shop from new Collections</div>
+    <div data-aos="fade-up" className=' flex flex-col items-center justify-center my-10 md:my-20 '>
+        <div data-aos="fade-down" className='text-center font-poppins font-semibold text-xl md:text-3xl py-5'>Shop from our new collections</div>
         <div id='slider' className=' md:my-6 gap-4 w-full lg:flex justify-center items-center overflow-x-auto whitespace-nowrap no-scrollbar scroll-smooth transition-all'>
             {
                 items !== null ? (
