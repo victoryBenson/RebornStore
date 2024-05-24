@@ -34,7 +34,7 @@ useEffect(() => {
             {
               services.map((data, index) => {
                 return (
-                  <div key={index} className='bg-gray/20 text-white w-full h-48 md:h-52 flex flex-col items-center justify-center cursor-pointer p-2 text-center '>
+                  <div key={index} className='bg-gray/30 text-white w-full h-48 md:h-52 flex flex-col items-center justify-center cursor-pointer p-2 text-center rounded'>
                       <p className='text-4xl md:text-5xl text-ivory'><data.icon /></p>
                       <p className='capitalize p-2 font-semibold text-lg md:text-xl'>{data.title}</p>
                       <p className='text-base text-white/60'>{data.details}</p>
