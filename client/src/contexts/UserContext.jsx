@@ -58,7 +58,7 @@ export const UserProvider = ({children}) => {
             const result = await res.data
             setLoading(false)
             setUsers(result)
-            console.log(result)
+            // console.log(result)
             return result;
 
         } catch (error) {
@@ -87,7 +87,7 @@ export const UserProvider = ({children}) => {
                         config
                     )
                     setCurrentUser(response.data)
-                    console.log(response.data)
+                    // console.log(response.data)
                     setLoading(false)
                     return await response.data;
         

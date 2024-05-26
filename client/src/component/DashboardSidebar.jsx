@@ -24,13 +24,22 @@ export const DashboardSidebar = () => {
         }
     }, []);
 
+    const scrollToTop = () => {
+        window.scrollTo(
+            {
+                top: 0,
+                behavior: 'smooth'
+            }
+        )
+      };
 
   return (
     <div className={`md:relative col-span-5 md:col-span-1 sm:gap-4 transition-all duration-100 md:bg-lightBrown md:text-white py-2 md:py-4`}>
         <div className='md:sticky md:top-24 transition-al flex flex-row md:flex-col items-center md:items-start  md:space-y-4 m-2'>
             <ShowAdmin>
                 <NavLink 
-                    to={'home-dashboard'} 
+                    to={'home-dashboard'}
+                    onClick={scrollToTop} 
                     style={
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
@@ -42,6 +51,7 @@ export const DashboardSidebar = () => {
                 </NavLink>
                 <NavLink 
                     to={'admin-products'} 
+                    onClick={scrollToTop}
                     style={
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
@@ -53,6 +63,7 @@ export const DashboardSidebar = () => {
                 </NavLink>
                 <NavLink 
                     to={'createProduct'} 
+                    onClick={scrollToTop}
                     style={
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
@@ -65,6 +76,7 @@ export const DashboardSidebar = () => {
             </ShowAdmin>
             <NavLink 
                 to={'profile'} 
+                onClick={scrollToTop}
                 style={
                     ({isActive}) => {
                     return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#FFFFF0', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}

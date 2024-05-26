@@ -29,7 +29,7 @@ export const getUser = async (req, res, next) => {
     }
 };
 
-  //getUsersCount
+//getUsersCount
 export const getUsersCount = async (req, res, next) => {
     try {
       const users = await User.find({}).count();
@@ -45,13 +45,14 @@ export const getUsersCount = async (req, res, next) => {
 //deleteUser
 export const deleteUser = async (req, res, next) => {
   try {
-    
     const user = await User.findByIdAndDelete(req.user._id);
+
     if (user) {
-      res.status(200).json({ message: "User deleted" });
+      res.status(200).json({ message: "User deleted successfully" });
     } else {
       res.status(400).json("User not found");
     }
+
   } catch (error) {
     next(error);
   }
@@ -69,12 +70,12 @@ export const updateUser = async (req, res, next) => {
 
       if (user) {
       const { username, email, profilePicture, address, phone, password } = user;
-      user.username = req.body.username || username;
-      user.email = req.body.email || email;
-      user.profilePicture = req.body.profilePicture || profilePicture;
-      user.address = req.body.address || address;
-      user.phone = req.body.phone || phone;
-      user.password = req.body.password || password;
+        user.username = req.body.username || username;
+        user.email = req.body.email || email;
+        user.profilePicture = req.body.profilePicture || profilePicture;
+        user.address = req.body.address || address;
+        user.phone = req.body.phone || phone;
+        user.password = req.body.password || password;
       
 
       const updateProfile = await user.save();

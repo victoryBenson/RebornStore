@@ -19,7 +19,7 @@ export const ProductProvider = ({children}) => {
     } else{
         backendURL = "http://localhost:3000/api/v1/products/";
     }
-    console.log(backendURL)
+    // console.log(backendURL)
 
   //create product
   const createProduct = async (productData) => {
@@ -59,7 +59,6 @@ export const ProductProvider = ({children}) => {
         toast.error(error.response.data.message)
     }
   };
-
 
 
 
@@ -113,10 +112,8 @@ export const ProductProvider = ({children}) => {
           },
         };
 
-        const response = await axios.patch(
-          `${backendURL}deleteProduct`,
-          productData,
-          config
+        const response = await axios.delete(
+          `${backendURL}deleteProduct/:id`,config
         );
         return response.data;
       } catch (error) {

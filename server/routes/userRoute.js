@@ -16,7 +16,7 @@ router.use(protect)
 router.get("/getUsers",adminOnly, getUsers);
 router.get("/getUser", getUser)
 router.get("/getUsersCount", getUsersCount);
-router.delete("/deleteUser", deleteUser); //verifyJWT,
+router.delete("/deleteUser/:id", deleteUser); //verifyJWT,
 router.put("/updateUser", updateUser)
 
 export default router;
