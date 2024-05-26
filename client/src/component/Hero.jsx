@@ -30,6 +30,7 @@ export const Hero = () => {
       };
     }, [index]);
 
+//animation on scroll trigger
     useEffect(() => {
       AOS.init({
         duration: 500

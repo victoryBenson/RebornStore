@@ -5,9 +5,14 @@ import { truncateString } from '../utils';
 import { SearchNotFound } from './NotFound';
 import { TbShoppingBagSearch } from 'react-icons/tb';
 
-
-
 export const tableHead = ["Image", "Username", "Email", "Role"];
+
+let backendURL
+if (process.env.NODE_ENV === 'production') {
+    backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
+} else{
+    backendURL = "http://localhost:3000/api/v1/users/";
+}
 
 const RegisteredUsers = () => {
     const {users, getUserTotal, getUsers} = useContext(UserContext)
@@ -77,7 +82,34 @@ export default RegisteredUsers;
 
 
 export const TableRow = ({item}) => {
-    const { profilePicture, username, email, role} = item
+    const { profilePicture, username, email, role, _id} = item
+    const [loading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+
+         //deleteProduct 
+         const handleDelete = async(e) => {
+            e.preventDefault()
+            setLoading(true)
+    
+            try {
+                const config = {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  };
+          
+                  await axios.delete(`${backendURL}deleteUser/${_id}`, config);
+                   setLoading(false)
+                  toast.success("User deleted successfully")
+                  location.reload()
+                  return
+            } catch (error) {
+                setErrorMsg(error.message)
+                console.log(error.message)
+                toast.error(error.message) 
+                setLoading(false)
+            }
+        }
 
     return( 
         <div className=' rounded border border-gray-light/20 md:px-10 '>
@@ -93,6 +125,9 @@ export const TableRow = ({item}) => {
                 </p>
                 <p className='text-center flex items-center space-x-2 '>
                     <span>{role}</span>
+                </p>
+                <p className='text-center flex items-center space-x-2 '>
+                    {/* <button disabled={loading}>{loading? 'Please wait...' : <p className='text-red'>Delete</p>}</button> */}
                 </p>
             </div>
         </div> 

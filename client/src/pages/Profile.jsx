@@ -70,6 +70,12 @@ export const UserProfile = () => {
         console.log(imageFile)
     }
 
+    const handleClick = () => {
+        inputRef.current.click()
+        
+    };
+
+
   return (
     <section className='text-sm transition-all p-1 bg-brown3'>
         <form onSubmit={handleSubmit} className='h-screen mx-2'>
@@ -77,21 +83,19 @@ export const UserProfile = () => {
                 <div className=' gap-2 items-center justify-center'>
                     <div className='flex flex-col items-center justify-center my-4'>
                         <div className=" rounded-full  mx-auto flex flex-col items-center justify-center text-center">
-                            <img 
-                            // src={currentUser?.profilePicture}
-                            src={imageFile}
-                            className='h-14 w-14 border'
-                            alt="image"
-                            />
-
-                            <label htmlFor='imageUpload'>
+                            <label className='border-dashed border-2 border-gray-300 rounded-lg h-40 flex justify-center items-center cursor-pointer p-4' onDrop={handleDrop} onDragOver={preventDefault} onClick={handleClick}>
+                                {image ? (
+                                <img
+                                    src={URL.createObjectURL(image)}
+                                    alt='eventImage'
+                                    className='max-h-full max-w-full rounded'
+                                />
+                                ) : (
+                                    <p className='text-gray-500'>
+                                        Click or drag &amp; drop to upload
+                                    </p>
+                                )}
                             </label>
-                            <input 
-                                type="file"
-                                onChange={handleImageChange}
-                                accept='image/*'
-                                id='imageUpload'
-                            />
                             <button  onClick={handleImageUpload}>Upload</button>
                         </div>
                     </div>
