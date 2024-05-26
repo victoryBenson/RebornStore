@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import cloudinary from "../utils/cloudinary.js";
 
 
 //getUsers
@@ -59,9 +60,10 @@ export const deleteUser = async (req, res, next) => {
 };
 
 
+
 //updateUser
-export const updateUser = async (req, res, next) => {
-  try { 
+export const updateUser = async (req, res, next) => {   
+    try { 
       const user = await User.findByIdAndUpdate(req.user._id);
 
       if (!user) {
@@ -78,12 +80,50 @@ export const updateUser = async (req, res, next) => {
         user.password = req.body.password || password;
       
 
-      const updateProfile = await user.save();
-      res.status(200).json(updateProfile);
-  
-      } 
-} 
-catch (err) {
-  next(err);
+        const updateProfile = await user.save();
+        res.status(200).json(updateProfile);
+      }
+
+  } catch(error) {
+    next(error);
+
+  }
 }
-};
+
+//updateImage
+// export const uploadImage = async (req, res, next) => {
+//   let uploadedResponse
+//   const image = req.body.profilePicture;
+//   console.log(image)
+
+//   try { 
+//       const user = await User.findByIdAndUpdate(req.user._id);
+//       console.log(req.user._id)
+
+//       if (!user) {
+//       res.status(400).json({ message: `user not found...` }); 
+//       }
+
+//       uploadedResponse = await cloudinary.uploader.upload(image, {
+//         upload_preset: "rebornStore",
+//       })
+      
+
+//       // const { profilePicture} = user;
+
+//       // const newImage = new User({
+//       //     profilePicture: uploadedResponse || profilePicture,
+
+//       // })
+
+//       // const updatedImage = await newImage.save();
+
+//       res.status(200).json({url: uploadedResponse.secure_url});
+//       // console.log(url)
+
+
+//  } catch(error) {
+//     console.log(error)
+//   next(error);
+//   }
+// }

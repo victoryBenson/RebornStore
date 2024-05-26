@@ -4,6 +4,8 @@ import { UserContext } from '../contexts/UserContext';
 import { truncateString } from '../utils';
 import { SearchNotFound } from './NotFound';
 import { TbShoppingBagSearch } from 'react-icons/tb';
+import { Loader } from './Loader';
+import axios from 'axios';
 
 export const tableHead = ["Image", "Username", "Email", "Role"];
 
@@ -15,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const RegisteredUsers = () => {
-    const {users, getUserTotal, getUsers} = useContext(UserContext)
+    const {users, getUserTotal, getUsers, error, isLoading} = useContext(UserContext)
     const [searchUser, setSearchUser] = useState('')
 
     let searchOutput
@@ -37,6 +39,14 @@ const RegisteredUsers = () => {
         }
     }, []);
 
+    if (isLoading) {
+        <div><Loader/></div>
+    }
+
+    if (error) {
+        <div>Error: {error}</div>
+    }
+
   return (
     <div className='relative'>
             <div className='block md:flex  items-center justify-between py-5 sticky top-0 bg-brown3 md:px-2'>
@@ -57,7 +67,7 @@ const RegisteredUsers = () => {
             {/* mapping search result */}
             { (searchOutput.length)? (
                 <div className='relative'>
-                    <div className=' p-1 md:py-5 items-center font-bold flex justify-around w-full text-sm'>
+                    <div className=' p-1 md:py-5 items-center font-bold flex justify-evenly w-full text-sm'>
                         {tableHead.map((head, idx) => (
                             <p key={idx} className=''>{head}</p>
                         ))}

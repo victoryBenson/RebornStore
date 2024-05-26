@@ -18,6 +18,8 @@ export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState({})
     const [users, setUsers] = useState([])
     const [userTotal, setUserTotal] = useState();
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState('')
     
  
      //getUserTotal
@@ -45,9 +47,9 @@ export const UserProvider = ({children}) => {
     };
     
     
-        //getUser
+    //getUser
     const getUsers = async() => {
-        setLoading(true)
+        setIsLoading(true)
         try {
             const config = {
                 headers: {
@@ -56,18 +58,17 @@ export const UserProvider = ({children}) => {
             };
             const res = await axios.get(`${backendURL}getUsers`,config)
             const result = await res.data
-            setLoading(false)
+            setIsLoading(false)
             setUsers(result)
             // console.log(result)
             return result;
 
         } catch (error) {
-            setLoading(false)
-            setErrorMsg(error.message)
+            setIsLoading(false)
+            setError(error.message)
             console.log(error.message)
         }
     };
-
      
     //check active user
     useEffect( () => {
@@ -101,16 +102,6 @@ export const UserProvider = ({children}) => {
         }
     }, []);
 
-    
-    const updateUser = async (userData) => {
-        const config = {
-            headers: {
-            "Content-Type": "application/json",
-            },
-        };
-        await axios.put(`${backendURL}updateUser`,userData,config );
-        
-    };
 
     const Logout = async () => {
         sessionStorage.removeItem('userId')
@@ -123,5 +114,5 @@ export const UserProvider = ({children}) => {
 
 
 
-    return <UserContext.Provider value={{ updateUser,Logout, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{Logout,isLoading, setIsLoading, error, setError, userTotal, users,setUsers, currentUser, setCurrentUser, getUsers, getUserTotal, loading, errorMsg}}>{children}</UserContext.Provider>
 }

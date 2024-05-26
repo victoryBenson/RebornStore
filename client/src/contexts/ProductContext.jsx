@@ -54,9 +54,9 @@ export const ProductProvider = ({children}) => {
 
     } catch (error) {
         setLoading(false)
-        setErrorMsg(error.response.data.message)
-        console.log(error.response.data.message)
-        toast.error(error.response.data.message)
+        setErrorMsg(error.message)
+        console.log(error.message)
+        toast.error(error.message)
     }
   };
 
@@ -83,9 +83,9 @@ export const ProductProvider = ({children}) => {
           return response.data;
         } catch (error) {
             setLoading(false)
-            setErrorMsg(error.response.data.message)
-            console.log(error.response.data.message)
-            // toast.error(error.response.data.message)
+            setErrorMsg(error.message)
+            console.log(error.message)
+            // toast.error(error.message)
         }
     };
     getTotalProduct()
@@ -118,9 +118,9 @@ export const ProductProvider = ({children}) => {
         return response.data;
       } catch (error) {
           setLoading(false)
-          setErrorMsg(error.response.data.message)
-          console.log(error.response.data.message)
-          toast.error(error.response.data.message)
+          setErrorMsg(error.message)
+          console.log(error.message)
+          toast.error(error.message)
       }
   };
 
