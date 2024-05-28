@@ -12,7 +12,8 @@ const userSchema = mongoose.Schema(
       required: [true, "Please add a name"],
       minLength: [2, "minimum 2letters"],
       maxLength: 30,
-      lowercase: true
+      lowercase: true,
+      trim: true
     },
     email: {
       type: String,
@@ -26,23 +27,28 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password!"],
       validate: [validator.isStrongPassword, "Please use a strong password!"],
+      trim: true
     }, 
+
     profilePicture: {
       type: String,
       require: [true, "Please add a profile picture"],
       default:
         "https://img.freepik.com/premium-vector/anonymous-user-circle-icon-vector-illustration-flat-style-with-long-shadow_520826-1931.jpg",
+        trim: true
     },
+    
     role:{
       type: String,
       enum: ['customer', 'admin'],
       default: 'customer',
       required: [true, 'Pls choose a role!'],
-      lowercase: true
+      lowercase: true,
     },
     address: {
       type: String,
-      default: 'Nigeria'
+      default: 'Nigeria',
+      trim: true
       
     },
     phone: {
@@ -52,7 +58,7 @@ const userSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 //hash the password before saving to database!

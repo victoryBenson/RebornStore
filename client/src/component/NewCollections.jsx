@@ -41,14 +41,12 @@ const NewCollections = () => {
     const slideLeft = () =>{
         let slider = document.getElementById('slider');
         slider.scrollLeft = slider.scrollLeft - 200
-        console.log("scrollLeft")
     }
 
         // set sliderRight
     const slideRight = () =>{
         let slider = document.getElementById('slider');
         slider.scrollLeft = slider.scrollLeft + 200
-        console.log("scrollRight")
     }
     
 
@@ -77,7 +75,7 @@ const NewCollections = () => {
                 <Loader/>
             }
         </div>
-        <div className='h-1 w-full relative mt-2'>
+        <div className='h-1 w-full relative mt-2 lg:hidden transition-all'>
             <div className='flex justify-center items-center bg-brown3 absolute top-0 inset-0 z-10 rounded-2xl'>
                 <div className='flex bg-white'>
                     <IoArrowBackCircleOutline onClick={slideLeft} id='slider' size={30} className='mx-2 cursor-pointer' />
