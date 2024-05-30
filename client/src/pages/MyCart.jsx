@@ -8,6 +8,7 @@ import { CartSummary } from "../component/CartSummary";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { GrClose } from "react-icons/gr";
 
 
 
@@ -27,7 +28,7 @@ export const MyCart = () => {
             <div data-aos="fade-right"  className={`z-[999] hamburger-menu lg:w-1/3 w-3/4 md:w-1/2 bg-white fixed shadow-lg right-0 md:-right-0 top-0  h-screen duration-500 transition-all`}>
                 <div className='w-full '>
                     <div className='bg-white rounded py-4 flex items-center mt-1 justify-between m-4  right-0'>
-                        <FaArrowRightLong onClick={handleCart} size={20} />
+                        <GrClose onClick={handleCart} size={20}  className="cursor-pointer"/>
                         <p className=' flex items-center font-bold text-lg'>
                             <BsCartCheck onClick={handleCart}/>
                             <span className='pl-1'>
@@ -40,7 +41,7 @@ export const MyCart = () => {
                         <div className='flex flex-col max-h-[100vh] justify-center items-center font-bold mt-5'>
                             <p className='md:text-lg p-2'>Your cart is currently empty</p>
                             <MdOutlineRemoveShoppingCart size={40}/>
-                            <Link to={`layout/shop`} className=' flex items-center hover:opacity-80 text-sm underline text-gray text-light'>
+                            <Link to={`layout/shop`} onClick={handleCart} className=' flex items-center hover:opacity-80 text-sm underline text-gray text-light'>
                                 continue shopping
                             </Link>
                         </div>

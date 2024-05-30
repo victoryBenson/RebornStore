@@ -67,11 +67,11 @@ const RegisteredUsers = () => {
             {/* mapping search result */}
             { (searchOutput.length)? (
                 <div className='relative'>
-                    <div className=' p-1 md:py-5 items-center font-bold flex justify-evenly w-full text-sm'>
+                    {/* <div className=' p-1 md:py-5 items-center font-bold flex justify-evenly w-full text-sm'>
                         {tableHead.map((head, idx) => (
                             <p key={idx} className=''>{head}</p>
                         ))}
-                    </div>
+                    </div> */}
                     <div className='overflow-y-scroll min-h-screen'>
                         {
                             searchOutput.map(item => (
@@ -131,7 +131,7 @@ export const TableRow = ({item}) => {
                     <span>{username}</span>
                 </p>
                 <p className='text-center flex items-center space-x-2 '>
-                    <span>{truncateString(email,10)}</span>
+                    <span>{truncateString(email,20)}</span>
                 </p>
                 <p className='text-center flex items-center space-x-2 '>
                     <span>{role}</span>

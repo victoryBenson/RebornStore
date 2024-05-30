@@ -33,7 +33,7 @@ export const CartSummary = () => {
                 </span>
             </p>
         </div>
-        <Link to={`/paymentBtn`} className=''>
+        <Link to={`/paymentBtn`} onClick={handleCart} className=''>
             <button className='bg-brown hover:opacity-80 w-full transition-all   text-white rounded p-3 my-2 flex items-center justify-center'>
                 Check-Out (
                 <span className='flex items-center'>

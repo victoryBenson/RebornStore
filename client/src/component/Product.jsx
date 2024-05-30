@@ -12,7 +12,8 @@ import { FaCheck } from "react-icons/fa6";
 import { RiHeart2Line } from "react-icons/ri";
 import { CartContext } from '../contexts/CartContext.jsx';
 import { toast } from 'react-toastify';
-import { ProductContext } from '../contexts/ProductContext.jsx';
+
+
 
 
 export const Product = ({product}) => {
@@ -36,10 +37,10 @@ export const Product = ({product}) => {
     const scrollToTop = () => {
         window.scrollTo(0,0)
     }
-    
+  
 
-  return (
-    <div className='bg-white shadow rounded-xl w-full md:w-72 lg:w-60 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
+return (
+    <div className='bg-white shadow rounded-xl w-full md:w-72 lg:w-64 h-80 relative group m-6 sm:m-4 text-sm md:text-normal'>
         <div className='h-1/2 flex justify-center relative overflow-hidden rounded-t-xl'>
             <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/5 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                 <div className='bottom-4 flex justify-center absolute w-full'>
@@ -53,7 +54,8 @@ export const Product = ({product}) => {
                             Add to bag
                         </button>
                         <Modal open={open} 
-                            onClose={onCloseModal} center 
+                            onClose={onCloseModal}
+                            center 
                             classNames={{
                                 overlay: 'bg-black/60 customOverlay ', 
                                 modal: ' md:w-full w-5/6 mx-auto h-[26rem] no-scrollbar transition-all shadow rounded-xl ',
@@ -121,35 +123,11 @@ export const Product = ({product}) => {
                                         }
                                     </div>
                                     <div className='flex flex-wrap sm:flex-nowrap items-center pt-4'>
-                                        <p className='space-x-3 sm:w-1/3 justify-center flex mx-2 items-center bg-gray-light/50 p-3 rounded-full'>
-                                            <CiCircleMinus 
-                                                size={30} 
-                                                onClick={() => decreaseCart(_id)} 
-                                                className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
-                                            /> 
-                                            <span>{itemAmount}</span>
-                                            <CiCirclePlus 
-                                                size={30} 
-                                                onClick={() => increaseCart(_id)}
-                                                className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
-                                            /> 
-                                        </p>
                                         <p className='w-full py-3'>
-                                            {
-                                                quantity > 0 ? (
-                                                    <button onClick={()=> handleAddToCart(product)} className='hover:opacity-80 transition-all w-full justify-center flex items-center bg-brown p-3 rounded-full text-ivory'>
-                                                        <BsBagCheck className='mx-1'/> 
-                                                        Add to cart
-                                                    </button>
-                                                )
-                                                    :
-                                                    (
-                                                    <button className='cursor-not-allowed transition-all hover:opacity-10 w-full justify-center flex mx-2 items-center bg-gray-light p-3 rounded-full text-white'>
-                                                        <BsCartX className='mx-1 text-[#d94444]'/> 
-                                                        Out of stock
-                                                    </button>
-                                                )
-                                            }
+                                            <button onClick={()=> handleAddToCart(product)} className='hover:shadow-lg transition-all w-full justify-center flex items-center bg-brown p-3 rounded-full text-ivory'>
+                                                <BsBagCheck className='mx-1'/> 
+                                                Add to cart
+                                            </button>
                                         </p>
                                     </div>
                                 </div>

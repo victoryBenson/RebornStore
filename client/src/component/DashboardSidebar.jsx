@@ -44,7 +44,7 @@ export const DashboardSidebar = () => {
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='relative  flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full '>
+                    className='relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full '>
                         <RxDashboard className='md:mx-1' />
                         <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-3  right-5'>{userTotal}</span>
                         <span className='hidden md:flex text-sm lg:text-base'>Overview</span>
@@ -56,7 +56,7 @@ export const DashboardSidebar = () => {
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
+                    className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
                         <IoStorefrontOutline className='mx-1'/>
                         <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-6'>{totalProduct}</span>
                         <span className='hidden md:flex text-sm lg:text-base'>Products</span>
@@ -68,23 +68,12 @@ export const DashboardSidebar = () => {
                         ({isActive}) => {
                         return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='p-2 relative flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
+                    className='p-2 relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
                         <IoCreateOutline className='mx-1'/>
                         <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-6'>{totalProduct}</span>
                         <span className='hidden md:flex text-sm lg:text-base'>Create Product</span>
                 </NavLink>
             </ShowAdmin>
-            <NavLink 
-                to={'profile'} 
-                onClick={scrollToTop}
-                style={
-                    ({isActive}) => {
-                    return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#FFFFF0', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
-                    }} 
-                className='p-2 flex flex-col sm:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
-                    <FaUserCheck size={20} className='mx-1'/>
-                    <span className='hidden md:flex text-sm lg:text-base'>Profile</span>
-            </NavLink>
         </div>
     </div>
   )

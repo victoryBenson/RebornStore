@@ -10,23 +10,32 @@ import { GrHomeRounded } from "react-icons/gr";
 
 
 const Aside = () => {
-  const {handleCart} = useContext(SidebarContext)
-  const {itemAmount} = useContext(CartContext)
+  // const {handleCart} = useContext(SidebarContext)
+  // const {itemAmount} = useContext(CartContext)
 
+
+  const scrollToTop = () => {
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: 'smooth'
+        }
+    )
+  };
 
   return (
     <div className='relative'>
-      <div className="  md:bg-lightBrown text-white flex flex-row md:flex-col gap-4 p-3 transition-all md:w-40 lg:w-72 sticky top-20 md:min-h-screen">
+      <div className="  md:bg-lightBrown text-white flex flex-row md:flex-col gap-4 p-3 transition-all md:w-40 lg:w-64 sticky top-20 md:min-h-screen">
           <NavLink 
               to={'/'} 
               style={
                 ({isActive}) => {
                 return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                 }} 
-                className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full text-brown md:text-white'
+                className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'
                   >
                   <GrHomeRounded className='mx-1'/>
-                  <span className='hidden md:flex'>Home</span>
+                  <span className='hidden md:flex '>Home</span>
           </NavLink>
           <NavLink 
               to={'shop'} 
@@ -34,9 +43,9 @@ const Aside = () => {
                 ({isActive}) => {
                 return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                 }} 
-                className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full text-brown md:text-white'
+                className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'
                   >
-                  <IoStorefrontOutline size={20} className='mx-1'/>
+                  <IoStorefrontOutline  className='mx-1'/>
                   <span className='hidden md:flex'>Products</span>
           </NavLink>
           <NavLink 
@@ -45,21 +54,22 @@ const Aside = () => {
                 ({isActive}) => {
                 return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                 }} 
-            className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full text-brown md:text-white'>
-                  <CiShoppingTag size={20} className='mx-1'/>
+            className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'>
+                  <CiShoppingTag className='mx-1'/>
                   <span className='text-xs md:text-sm absolute md:hidden bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-1  right-10'>90</span>
                   <span className='hidden md:flex'>Orders</span>
           </NavLink>
           <NavLink 
-              to={'profile'} 
-              style={
-                ({isActive}) => {
-                return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
-                }} 
-            className='relative p-2 flex items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full text-brown md:text-white'>
-                  <FaUserCheck size={20} className='mx-1'/>
-                  <span className='hidden md:flex'>Profile</span>
-          </NavLink>
+                to={'profile'} 
+                onClick={scrollToTop}
+                style={
+                    ({isActive}) => {
+                    return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#FFFFF0', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
+                    }} 
+                className='p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full'>
+                    <FaUserCheck className='mx-1'/>
+                    <span className='hidden md:flex '>Account</span>
+            </NavLink>
       </div>
     </div>
   )
