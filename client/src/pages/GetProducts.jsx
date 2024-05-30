@@ -15,14 +15,17 @@ import { WiDirectionLeft } from 'react-icons/wi'
 import Aside from "../component/Shop/Aside";
 
 export const GetProducts = () => {
-  const [isActive, setIsActive] = useState(false)
-  const [mobileFilter, setMobileFilter] = useState(false)
-  const {errorMsg, loading, items} = useContext(ProductContext)
-  const [sorted, setSorted] = useState({sorted: "id", reversed: false});
-  const [searchPhrase, setSearchPhrase] = useState("")
-  const [products, setProducts] = useState(items)
+    const [isActive, setIsActive] = useState(false)
+    const [mobileFilter, setMobileFilter] = useState(false)
+    const {errorMsg, loading, items, getProducts} = useContext(ProductContext)
+    const [sorted, setSorted] = useState({sorted: "id", reversed: false});
+    const [searchPhrase, setSearchPhrase] = useState("")
+    const [products, setProducts] = useState(items)
 
- 
+    
+    useEffect(() => {
+        getProducts()
+    },[])
 
 
     const handleMobileFilter =()=> {
@@ -62,7 +65,7 @@ export const GetProducts = () => {
 
     const search = (e) => {
         const matchedItems = items.filter((item) => {
-        return `${item.name} ${item.category} `.toLowerCase().includes(e.target.value.toLowerCase())
+        return `${item.name} ${item.category}`.toLowerCase().includes(e.target.value.toLowerCase())
         });
         setProducts(matchedItems);
         setSearchPhrase(e.target.value)

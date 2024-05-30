@@ -182,7 +182,7 @@ const handleSubmit = async(e) => {
                             </div> */}
                             <div className="mx-2 self-end space-x-2">
                                 <button disabled={loading} className="bg-lightBrown text-ivory p-3 rounded shadow hover:shadow-lg">
-                                    { loading? 'Saving Changes...Please wait!' : 'Save Changes'}
+                                    { loading? 'Please wait!...' : 'Save Changes'}
                                 </button>
                             </div>
                         </div>
@@ -193,3 +193,4 @@ const handleSubmit = async(e) => {
     </section>
   )
 }
+

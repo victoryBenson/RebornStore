@@ -28,16 +28,16 @@ useEffect(() => {
 },[])
 
   return (
-    <div data-aos="fade-up" className='flex flex-col justify-center items-center bg-brown my-10 md:my-20 text-white'>
+    <div data-aos="fade-up" className='flex flex-col justify-center items-center bg-brown3 my-10 md:my-20 text-'>
         <p className='font-semibold text-xl md:text-3xl font-poppins py-5 mt-5 md:mt-0 md:py-10'>Why choose us?</p>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center py-4 w-[90%] '>
             {
               services.map((data, index) => {
                 return (
-                  <div key={index} className='bg-gray/30 text-white w-full h-48 md:h-52 flex flex-col items-center justify-center cursor-pointer p-2 text-center rounded'>
+                  <div key={index} className='bg-lightBrown text-white w-full h-48 md:h-52 flex flex-col items-center justify-center cursor-pointer p-2 text-center rounded'>
                       <p className='text-4xl md:text-5xl text-ivory'><data.icon /></p>
                       <p className='capitalize p-2 font-semibold text-lg md:text-xl'>{data.title}</p>
-                      <p className='text-base text-white/60'>{data.details}</p>
+                      <p className='text-base'>{data.details}</p>
                   </div>
                 )
               })

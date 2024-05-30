@@ -31,9 +31,9 @@ export const FrequentlyAQ = () => {
             <div data-aos="flip-up" className="md: w-[90%] p-2">
                 {FaqData.map((data, index) => {
                     return (
-                        <div key={index} className="p-2 md:p-4">
+                        <div key={index} className="p-2 md:p-4 space-y-4 md:space-y-6">
                             <div className="flex justify-between items-center cursor-pointer" onClick={() => handleToggle(index)} >
-                                <p className="text-base md:text-xl pr-2 font-semibold">{data.title}</p>
+                                <p className="text-base md:text-xl pr-2">{data.title}</p>
                                 <span className="transition-all duration-200">
                                     {isOpen === index ? <AiOutlineMinus /> : <AiOutlinePlus />}
                                 </span>

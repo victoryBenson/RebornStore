@@ -10,6 +10,7 @@ import authRoute from "./routes/authRoute.js";
 import rateLimitMiddleware from "./middleware/rateLimit.js";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./utils/errorhandler.js";
+// import paymentRoute from './routes/paymentRoute.js'
 
 
 const app = express();
@@ -49,6 +50,7 @@ app.use(cors(corsOptions));
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/auth", authRoute);
+// app.use("/api/paystack", paymentRoute);
 
 
 //view your token

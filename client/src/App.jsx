@@ -14,11 +14,10 @@ import { ConditionRoute } from "./component/ConditionRoute";
 import { Dashboard } from "./pages/Dashboard";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
-import { UserProfile } from "./pages/Profile";
 import { HomeDashboard } from "./pages/DashboardOverview";
 import { AdminProducts } from "./pages/AdminProducts";
 import { Orders } from "./pages/Order";
-// import { PayButton } from "./component/PayButton";
+import { PayButton } from "./component/PayButton";
 import axios from "axios";
 import { PromoDisplay } from "./component/PromoDisplay";
 import { RequireAuth } from "./component/RequireAuth";
@@ -30,7 +29,7 @@ import BottomNavBar from "./component/BottomNavbar";
 import ShopLayout from "./component/Shop/ShopLayout";
 import { GetProducts } from "./pages/GetProducts";
 import { ScrollToTop } from "./shared/ScrollToTop";
-
+import {UserProfile} from "./pages/UserProfile";
 
 
 
@@ -61,17 +60,19 @@ function App() {
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
                 {/* <Route path="/checkout-success" element={<CheckoutSuccess/>}/> */}
-                {/* <Route path="paymentBtn" element={<PayButton/>}/> */}
+                <Route path="paymentBtn" element={<PayButton/>}/>
                 <Route path="*" element={<NotFound/>}/> 
                 <Route path="layout" element={<ShopLayout/>}>
-                    <Route path="profile" element={<RequireAuth><UserProfile/></RequireAuth>}/>
+                    <Route element={<RequireAuth/>}>
+                        <Route path="profile" element={<UserProfile/>}/>
+                    </Route>
                     <Route path="shop" element={<GetProducts/>}/>
                     <Route path="orders" element={<Orders/>}/>
                 </Route>
                 <Route path="dashboard" element={<Dashboard/>}>
                     {/* protected route */}
                     <Route element={<RequireAuth/>}>
-                        <Route path="profile" element={<UserProfile/>}/>
+                        {/* <Route path="profile" element={<UserProfile/>}/> */}
                         <Route path="home-dashboard" element={<HomeDashboard/>}/>
                         <Route path="admin-products" element={<AdminProducts/>}/>
                         <Route path="editProduct/:id" element={<EditProduct/>}/>

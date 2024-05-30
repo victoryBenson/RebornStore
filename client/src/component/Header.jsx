@@ -200,18 +200,11 @@ export const Header = () => {
                                     Dashboard
                                     </Link>
                                     <Link
-                                    to={`/dashboard/products`}
+                                    to={`/dashboard/admin-products`}
                                     className="flex items-center p-2 cursor-pointer hover:underline underline-offset-4"
                                     >
                                     <TbChecklist className="mx-1" />
                                     View Products
-                                    </Link>
-                                    <Link
-                                    to={`dashboard/products`}
-                                    className="flex items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                                    >
-                                    <RxUpdate className="mx-1" />
-                                    Update Product
                                     </Link>
                                 </div>
                             </ShowAdmin>

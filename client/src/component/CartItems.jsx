@@ -11,7 +11,7 @@ export const CartItems = ({item}) => {
   return (
     <div  className='h-24 my-4 mx-2 space-x-2 flex text-sm rounded border border-lightBrown/10 bg-white'>
         <div className=' flex w-1/2 rounded-lg h-full'>
-            <img src={image[0] || image} alt="image" className='h-full w-full object-contain rounded-xl p-2' />
+            <img src={image[0]} alt="image" className='h-full w-full object-contain rounded-xl p-2' />
         </div>
         <div className='flex flex-col items-start justify-center w-full px-1'>
             <p className={`capitalize font-bold`}>{name}</p>

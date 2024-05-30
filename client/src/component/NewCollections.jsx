@@ -201,19 +201,7 @@ export const ProductCollection = ({product}) => {
                                             }
                                         </div>
                                         <div className='flex flex-wrap sm:flex-nowrap items-center pt-4'>
-                                            <p className='space-x-3 sm:w-1/3 justify-center flex mx-2 items-center bg-gray-light/50 p-3 rounded-full'>
-                                                <CiCircleMinus 
-                                                    size={30} 
-                                                    onClick={() => decreaseCart(_id)} 
-                                                    className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
-                                                /> 
-                                                <span>{itemAmount}</span>
-                                                <CiCirclePlus 
-                                                    size={30} 
-                                                    onClick={() => increaseCart(_id)}
-                                                    className='mx-1 cursor-pointer hover:opacity-80 hover:scale-105 transition-all'
-                                                /> 
-                                            </p>
+                                           
                                             <p className='w-full py-3'>
                                                 {
                                                     quantity > 0 ? (
