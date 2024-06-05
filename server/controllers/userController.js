@@ -1,5 +1,4 @@
 import User from "../models/userModel.js";
-import cloudinary from "../utils/cloudinary.js";
 
 
 //getUsers
@@ -60,70 +59,36 @@ export const deleteUser = async (req, res, next) => {
 };
 
 
-
 //updateUser
 export const updateUser = async (req, res, next) => {   
     try { 
-      const user = await User.findByIdAndUpdate(req.user._id);
+
+      const { username, email, address, phone} = req.body;
+      const profilePicture = req.file ? req.file.path : null;
+
+      const user = await User.findByIdAndUpdate(req.user._id, {
+        username,
+        email,
+        address, 
+        phone,
+        ...(profilePicture && { profilePicture }),
+      }, { new: true });
 
       if (!user) {
         res.status(400).json({ message: `user not found` }); 
       }
-
-      if (user) {
-      const { username, email, profilePicture, address, phone, password } = user;
-        user.username = req.body.username || username;
-        user.email = req.body.email || email;
-        user.profilePicture = req.body.profilePicture || profilePicture;
-        user.address = req.body.address || address;
-        user.phone = req.body.phone || phone;
-        user.password = req.body.password || password;
       
+      if (username) user.username = username;
+      if (email) user.email = email;
+      if (address) user.address = address;
+      if (phone) user.phone = phone
+      if (profilePicture) user.profilePicture = profilePicture;
 
-        const updateProfile = await user.save();
-        res.status(200).json(updateProfile);
-      }
+      const updateProfile = await user.save();
 
+      res.status(200).json(updateProfile);
+  
   } catch(error) {
     next(error);
-
   }
 }
-
-//updateImage
-// export const uploadImage = async (req, res, next) => {
-//   let uploadedResponse
-//   const image = req.body.profilePicture;
-//   console.log(image)
-
-//   try { 
-//       const user = await User.findByIdAndUpdate(req.user._id);
-//       console.log(req.user._id)
-
-//       if (!user) {
-//       res.status(400).json({ message: `user not found...` }); 
-//       }
-
-//       uploadedResponse = await cloudinary.uploader.upload(image, {
-//         upload_preset: "rebornStore",
-//       })
-      
-
-//       // const { profilePicture} = user;
-
-//       // const newImage = new User({
-//       //     profilePicture: uploadedResponse || profilePicture,
-
-//       // })
-
-//       // const updatedImage = await newImage.save();
-
-//       res.status(200).json({url: uploadedResponse.secure_url});
-//       // console.log(url)
-
-
-//  } catch(error) {
-//     console.log(error)
-//   next(error);
-//   }
-// }
