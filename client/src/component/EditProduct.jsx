@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'production') {
 } else{
     backendURL = "http://localhost:3000/api/v1/products/";
 }
-console.log(backendURL)
 
 const initialState = {
     name: "",
