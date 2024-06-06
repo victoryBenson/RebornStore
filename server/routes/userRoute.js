@@ -11,6 +11,7 @@ router.use(protect)
 
 // Set up multer with the Cloudinary storage config
 const upload = multer({ storage: storage });
+// console.log(storage)
 
 router.get("/getUsers",adminOnly, getUsers);
 router.get("/getUser", getUser)
