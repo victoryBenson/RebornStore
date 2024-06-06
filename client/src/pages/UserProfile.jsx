@@ -82,14 +82,7 @@ export const UserProfile = () => {
         }
 
         try {
-
-            const config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            };
-
-            await axios.put(`${backendURL}updateUser`, data, config );
+            await axios.put(`${backendURL}updateUser`, data);
 
             toast.success("User Updated Successfully")
             location.reload()
