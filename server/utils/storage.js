@@ -21,5 +21,6 @@ const storage = new CloudinaryStorage({
   },
 });
 
+// console.log(cloudinary)
 
 export default storage;
