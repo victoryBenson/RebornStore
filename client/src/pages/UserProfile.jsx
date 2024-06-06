@@ -91,7 +91,7 @@ export const UserProfile = () => {
 
             await axios.put(`${backendURL}updateUser`, data, config );
 
-            toast.success("User updated successfully")
+            toast.success("User Updated Successfully")
             location.reload()
 
         } catch (error) {
