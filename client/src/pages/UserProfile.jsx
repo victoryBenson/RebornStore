@@ -89,9 +89,9 @@ export const UserProfile = () => {
             location.reload()
 
         } catch (error) {
-            setErrorMsg(error.message)
-            console.log(error.message)
-            toast.error(error.message)
+            setErrorMsg(error)
+            console.log(error)
+            toast.error(error)
 
         } finally{
             setLoading(false)
