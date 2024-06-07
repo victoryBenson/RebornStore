@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { UserContext } from '../contexts/UserContext';
 import { toast } from 'react-toastify';
-import axios from 'axios'
+import { axios } from "@pipedream/platform"
+// import axios from 'axios'
 
 
 let backendURL
