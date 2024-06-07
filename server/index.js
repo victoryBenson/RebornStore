@@ -20,7 +20,7 @@ const MONGO_URL = process.env.MONGO_URL;
 const FRONTEND = process.env.FRONTEND;
 
 
-const allowedOrigin = ['https://rebornstore.vercel.app', 'https://rebornv2api.onrender.com', 'http://localhost:5173', 'http://localhost:3000',]
+const allowedOrigin = ['https://rebornstore.vercel.app', 'http://localhost:5173', 'http://localhost:3000',]
 const corsOptions = {
   origin: (origin, callback) => {
     if(allowedOrigin.indexOf(origin) !== -1 || !origin){
@@ -42,7 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
-
 // app.use(rateLimitMiddleware);
 
 
@@ -53,17 +52,8 @@ app.use("/api/v1/auth", authRoute);
 // app.use("/api/paystack", paymentRoute);
 
 
-//view your token
-// app.get("/get", (req, res) => {
-//   const cookies = req.cookies;
-//   console.log("not singed cookie", cookies);
-
-//   const singedCookies = req.signedCookies;
-//   console.log("signedCookies:", singedCookies);
-// });
 
 app.get("/", (req,res) => res.send('Welcome to Reborn'))
-
 
 
 // Custom ErrorHandler middleware
@@ -73,6 +63,6 @@ mongoose.set("strictQuery", false);
 mongoose.connect(MONGO_URL).then(() => {
   app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}!`);
-    console.log(`Good vibes only!`);
+    console.log(`Cook!`);
   });
 });

@@ -11,13 +11,13 @@ router.use(protect)
 
 // Set up multer with the Cloudinary storage config
 const upload = multer({ storage: storage });
-// console.log(storage)
+
 
 router.get("/getUsers",adminOnly, getUsers);
 router.get("/getUser", getUser)
 router.get("/getUsersCount", getUsersCount);
 router.delete("/deleteUser/:id", deleteUser); //verifyJWT,
-router.put("/updateUser", upload.single('profilePicture'), updateUser)
+router.patch("/updateUser", upload.single('profilePicture'), updateUser)
 
 
 export default router;

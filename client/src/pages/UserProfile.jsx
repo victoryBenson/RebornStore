@@ -52,7 +52,7 @@ export const UserProfile = () => {
         setFormData({ ...formData, [name]: value})
     }
 
-    //image
+    //imageChange
     const handleImageChange = (event) => {
         const imageFile = event.target.files[0]
         if(imageFile){
@@ -82,7 +82,8 @@ export const UserProfile = () => {
         }
 
         try {
-            await axios.put(`${backendURL}updateUser`, data);
+
+            await axios.patch(`${backendURL}updateUser`, data);
 
             toast.success("User Updated Successfully")
             location.reload()
