@@ -11,6 +11,8 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
+// console.log(`output ${process.env.API_SECRET}`)
+
 
 // Configure multer-storage-cloudinary
 const storage = new CloudinaryStorage({
@@ -21,6 +23,5 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// console.log(cloudinary)
 
 export default storage;
