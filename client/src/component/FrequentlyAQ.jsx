@@ -28,7 +28,7 @@ export const FrequentlyAQ = () => {
                     Frequently asked questions
                 </p>
             </div>
-            <div data-aos="flip-up" className="md: w-[90%] p-2">
+            <div data-aos="flip-up" className="md: w-[90%]">
                 {FaqData.map((data, index) => {
                     return (
                         <div key={index} className="p-2 md:p-4 space-y-4 md:space-y-6">

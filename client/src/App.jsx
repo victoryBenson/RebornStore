@@ -30,7 +30,6 @@ import {UserProfile} from "./pages/UserProfile";
 
 
 
-
 function App() {
     axios.defaults.withCredentials = true; 
     const {getProducts} = useContext(ProductContext)
