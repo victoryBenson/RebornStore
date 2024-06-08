@@ -29,7 +29,7 @@ useEffect(() => {
 
   return (
     <div data-aos="fade-up" className='flex flex-col justify-center items-center bg-brown3 my-10 md:my-20 '>
-        <p className='font-semibold text-xl md:text-3xl font-poppins mt-5 md:mt-0 md:py-5'>Why choose us?</p>
+        <p className='font-semibold text-xl md:text-3xl font-poppins mt-5 md:mt-0 md:py-10'>Why choose us?</p>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center w-[90%] overflow-hidden'>
             {
               services.map((data, index) => {
