@@ -22,7 +22,7 @@ const initialState = {
 }
 
 export const UserProfile = () => {
-    const { currentUser} = useContext(UserContext)
+    const {currentUser} = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const [errorMsg, setErrorMsg] = useState()
     const inputRef = useRef();
