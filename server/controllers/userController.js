@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-
+import cloudinary from "../utils/cloudinaryConfig.js";
 
 //getUsers
 export const getUsers = async (req, res, next) => {
@@ -63,8 +63,16 @@ export const deleteUser = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {   
     try { 
 
-      const { username, email, address, phone} = req.body;
-      const profilePicture = req.file ? req.file.path : null;
+      let { username, email, address, phone, profilePicture} = req.body;
+      
+      if (req.file) {
+  
+        const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'profile_images'
+        });
+  
+        profilePicture = result.secure_url;
+      }
 
       const user = await User.findByIdAndUpdate(req.user._id, {
         username,
