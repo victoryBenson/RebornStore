@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaShopify } from 'react-icons/fa6';
 import Typewriter from "typewriter-effect";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 export const Button = () => {
   return (
@@ -13,6 +14,7 @@ export const Button = () => {
                 loop: true,
             }}
             />
+        <HiOutlineExternalLink />
         </button>
     </div>
   )
