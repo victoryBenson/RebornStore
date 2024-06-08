@@ -22,13 +22,7 @@ export const Login = () => {
     const navigate = useNavigate();
     const [viewPwd, setViewPwd] = useState(true)
     const [loading, setLoading] = useState(false)
-    // const [currentUser, setCurrentUser] = useState({})
     const [errorMsg, setErrorMsg] = useState('')
-
-    // useEffect(()=>{
-    //     const user = sessionStorage.getItem('user')
-    //     console.log(`the user is ${user}`)
-    // },[])
     
   
     const handleToggle = () => {
