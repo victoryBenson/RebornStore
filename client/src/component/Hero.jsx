@@ -4,6 +4,7 @@ import { heroData } from '../database/Herodata';
 import AOS from 'aos'
 import "aos/dist/aos.css"
 import {Link} from 'react-router-dom'
+import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 
 export const Hero = () => {
     const [index, setIndex] = useState(0);
@@ -48,7 +49,7 @@ export const Hero = () => {
   
   return (
     <section id='hero' className='overflow-hidden slideshow relative'>
-        <div className=" lg:h-[100vh] h-[70vh] flex w-full slideshowSlider"  style={{ transform: `translate3d(${-index * 100}%, 0, 0)`,transition: "ease-in 600ms"}}>
+        <div className="h-[100vh] flex w-full slideshowSlider"  style={{ transform: `translate3d(${-index * 100}%, 0, 0)`,transition: "ease-in 600ms"}}>
             {heroData.map((data, index)=>{
                 return(
                     <div key={index} className="slide h-full w-full bg-ivory flex-shrink-0 flex items-center justify-start bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${data.image})`}}>
@@ -58,6 +59,7 @@ export const Hero = () => {
                                 <p className='md:font-zeyada font-poppins text-base md:text-4xl'>{data.description}</p>
                                 <Link to="/layout/shop" onClick={scrollToTop}>
                                   <Button/>
+                                  
                                 </Link>
                             </div>
                         </div>
@@ -65,17 +67,26 @@ export const Hero = () => {
                 )
             })}
         </div>
-        <div className='text-center absolute right-0 left-0 bottom-0 space-x-2 '>
-                {
-                    heroData.map((_, idx) => (
-                        <div 
-                            key={idx}
-                            onClick={()=> setIndex(idx)}
-                            className={`slideshowDot${index === idx && " active"} space-x-2 rounded-full h-2 w-5 inline-block cursor-pointer bg-gray`}
-                        ></div>
-                    ))
-                }
-            </div>
+        <div className='text-center absolute right-0 left-0 bottom-4 space-x-2 '>
+            {/* arrow */}
+          <div className='flex justify-center items-center animate-bounce'>
+            <button className='bg-brown/40 text-white rounded-full p-2 font-poppins flex items-center'>
+              view more
+              <MdKeyboardDoubleArrowDown/>
+            </button>
+            
+            {/* indicator */}
+          </div>
+            {/* {
+                heroData.map((_, idx) => (
+                    <div 
+                        key={idx}
+                        onClick={()=> setIndex(idx)}
+                        className={`slideshowDot${index === idx && " active"} space-x-2 rounded-full h-[0.2rem] w-5 inline-block cursor-pointer bg-gray`}
+                    ></div>
+                ))
+            } */}
+        </div>
     </section>
   )
 }
