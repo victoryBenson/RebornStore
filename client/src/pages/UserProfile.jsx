@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios'
 
 
-let backendURL
+let backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
 if (process.env.NODE_ENV === 'production') {
     backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
 } else{
@@ -84,6 +84,7 @@ export const UserProfile = () => {
         try {
 
             await axios.patch(`${backendURL}updateUser`, data);
+            console.log(backendURL)
 
             toast.success("User Updated Successfully")
             location.reload()
@@ -189,7 +190,7 @@ export const UserProfile = () => {
                                 <button disabled={loading} className="bg-lightBrown text-ivory p-3 rounded shadow hover:shadow-lg">
                                     { loading? 'Please wait!...' : 'Save Changes'}
                                 </button>
-                                <span>{errorMsg && `Error: ${errorMsg}`}</span>
+                                <span>{errorMsg && <p className='text-red text-sm'>{`Error: ${errorMsg}`}</p>}</span>
                             </div>
                         </div>
                     </div>
