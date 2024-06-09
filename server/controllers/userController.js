@@ -68,20 +68,13 @@ export const updateUser = async (req, res, next) => {
       
       if (req.file) {
   
-        // const result = await cloudinary.uploader.upload(req.file.path, {
-        //   folder: 'profile_images'
-        // });
-  
-        // profilePicture = result.secure_url;
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
   
-        const cldRes = await handleUpload(dataURI);
-        profilePicture = cldRes.secure_url
+        const result = await handleUpload(dataURI);
+        profilePicture = result.secure_url
          console.log(profilePicture)
       }
-
-      
 
       const user = await User.findByIdAndUpdate(req.user._id, {
         username,
