@@ -4,12 +4,14 @@ import { toast } from 'react-toastify';
 import axios from 'axios'
 
 
-let backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
+let backendURL
 if (process.env.NODE_ENV === 'production') {
     backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
-} else{
-    backendURL = "http://localhost:3000/api/v1/users/";
-}
+} 
+
+// else{
+//     backendURL = "http://localhost:3000/api/v1/users/";
+// }
 
 
 const initialState = {
@@ -65,8 +67,6 @@ export const UserProfile = () => {
         }
     };
 
-
-    // update-user
     const handleSubmit = async(e) => {
         e.preventDefault();
 
