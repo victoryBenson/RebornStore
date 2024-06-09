@@ -46,7 +46,8 @@ export default {
         'hero3': "url('https://i.postimg.cc/PqV6G3W0/background-Image.jpg')",
         'hero4': "url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         'hero5': "url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        'hero6': "url('https://i.postimg.cc/ncYBhZ2d/bg1.png')"
+        'hero6': "url('https://i.postimg.cc/ncYBhZ2d/bg1.png')",
+        'chooseUs': "url('https://i.postimg.cc/264N7jZ6/shopping.png')"
       }
     },
     keyframes: {
