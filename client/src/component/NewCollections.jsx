@@ -119,7 +119,7 @@ export const ProductCollection = ({product}) => {
 
 
     return (
-        <div data-aos="flip-left" className=' bg-white border border-gray-light/20 rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer mx-4'>
+        <div data-aos="flip-left" className=' bg-white border border-gray-light/40 shadow rounded-xl w-56 md:w-72 lg:w-60 h-80 relative group my-4 inline-block cursor-pointer mx-4'>
             <div className='h-1/2 flex justify-center relative  rounded-t-xl overflow-hidden'>
                 <div className='lg:group-hover:flex flex lg:hidden lg:bg-lightBrown/10 bg-ivory/10 transition-all absolute z-10 top-0 right-0 left-0 w-full h-full'>
                     <div className='bottom-4 flex justify-center absolute w-full'>
