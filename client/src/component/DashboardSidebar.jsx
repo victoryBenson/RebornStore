@@ -34,44 +34,41 @@ export const DashboardSidebar = () => {
       };
 
   return (
-    <div className={`md:relative col-span-5 md:col-span-1 sm:gap-4 transition-all duration-100 md:bg-lightBrown md:text-white py-2 md:py-4`}>
-        <div className='md:sticky md:top-24 transition-al flex flex-row md:flex-col items-center md:items-start  md:space-y-4 m-2'>
+    <div className={` md:relative col-span-5 md:col-span-1 sm:gap-4 transition-all duration-100 md:bg-lightBrown md:text-white py-2 md:py-4`}>
+        <div className=' sticky top-24 transition-all flex flex-row md:flex-col items-center md:items-start  md:space-y-4 m-2'>
             <ShowAdmin>
                 <NavLink 
                     to={'home-dashboard'}
                     onClick={scrollToTop} 
                     style={
                         ({isActive}) => {
-                        return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
+                        return { fontWeight: isActive && 'bolder',backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full '>
+                    className=' md:p-2 relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full '>
                         <RxDashboard className='md:mx-1' />
-                        <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-3  right-5'>{userTotal}</span>
-                        <span className='hidden md:flex text-sm lg:text-base'>Overview</span>
+                        <span className=' text-sm lg:text-base'>Overview</span>
                 </NavLink>
                 <NavLink 
                     to={'admin-products'} 
                     onClick={scrollToTop}
                     style={
                         ({isActive}) => {
-                        return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
+                        return { fontWeight: isActive && 'bolder', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
+                    className='md:p-2  relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full '>
                         <IoStorefrontOutline className='mx-1'/>
-                        <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-6'>{totalProduct}</span>
-                        <span className='hidden md:flex text-sm lg:text-base'>Products</span>
+                        <span className='text-sm lg:text-base'>Products</span>
                 </NavLink>
                 <NavLink 
                     to={'createProduct'} 
                     onClick={scrollToTop}
                     style={
                         ({isActive}) => {
-                        return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
+                        return { fontWeight: isActive && 'bolder', backgroundColor: isActive && '#ededed', color: isActive && 'gray', opacity: isActive && '40',borderBottomWidth: isActive && '1px'}
                         }} 
-                    className='p-2 relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
+                    className='md:p-2  relative flex flex-col lg:flex-row items-center justify-center text-base md:text-xl hover:bg-gray/10 rounded w-full'>
                         <IoCreateOutline className='mx-1'/>
-                        <span className='md:hidden text-xs md:text-sm absolute bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-6'>{totalProduct}</span>
-                        <span className='hidden md:flex text-sm lg:text-base'>Create Product</span>
+                        <span className=' text-sm lg:text-base'>Create Product</span>
                 </NavLink>
             </ShowAdmin>
         </div>

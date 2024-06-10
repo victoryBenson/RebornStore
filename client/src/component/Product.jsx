@@ -2,17 +2,12 @@ import React, {useContext, useEffect, useState} from 'react'
 import { TbCurrencyNaira } from "react-icons/tb";
 import { BsBagCheck } from "react-icons/bs";
 import { TiArrowMaximise } from "react-icons/ti";
-import { CiCircleMinus} from "react-icons/ci";
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { truncateString } from '../utils/index.js';
-import { CiCirclePlus } from "react-icons/ci";
-import { BsCartX } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
 import { RiHeart2Line } from "react-icons/ri";
 import { CartContext } from '../contexts/CartContext.jsx';
-import { toast } from 'react-toastify';
-
 
 
 

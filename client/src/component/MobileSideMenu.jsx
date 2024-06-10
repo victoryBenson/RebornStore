@@ -2,14 +2,14 @@ import React from 'react'
 import { CiEdit, CiHome, CiLogin, CiLogout, CiUser } from 'react-icons/ci'
 import { IoArrowUndoOutline } from 'react-icons/io5'
 import { Link, useLocation } from 'react-router-dom'
-import { HomeLogo, Logo } from './Logo'
+import { HomeLogo} from './Logo'
 import { BiPurchaseTag } from 'react-icons/bi'
 import { ShowAdmin, ShowOnLogin, ShowOnLogout } from './hiddenLinks'
 import { MdOutlineConnectWithoutContact } from 'react-icons/md'
 import { SocialMedia } from './SocialMedia'
-import { LuSunMoon } from 'react-icons/lu'
 
-const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
+
+const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, logoutUser}) => {
     const location = useLocation()
     let path = '/'
 
@@ -64,19 +64,19 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                             }   
                             </div>
                             <Link
-                            to={`/layout/profile`}
-                            onClick={scrollToTop}
-                            className="flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                            >
-                            <CiUser className="mx-1" />
-                            My account
+                                to={`/layout/profile`}
+                                onClick={scrollToTop}
+                                className="flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
+                                >
+                                <CiUser className="mx-1" />
+                                My account
                             </Link>
                             <Link
-                            to="/layout/orders"
-                            onClick={scrollToTop}
-                            className=" flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                            >
-                            <BiPurchaseTag className="mx-1" />
+                                to="/layout/orders"
+                                onClick={scrollToTop}
+                                className=" flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
+                                >
+                                <BiPurchaseTag className="mx-1" />
                             My order
                             </Link>
                             <ShowAdmin>
@@ -104,7 +104,7 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                         <ShowOnLogout>
                             <Link
                                 to={`login`}
-                                className="flex items-center p-2 cursor-pointer hover:underline underline-offset-4"
+                                className="flex items-center bg-brown rounded text-white font-bold p-2 cursor-pointer hover:underline underline-offset-4"
                                 >
                                 <CiLogin className="mx-1" />
                                 Login
@@ -112,7 +112,7 @@ const MobileSideMenu = ({clickMobile,scrollToTop, currentUser, Logout}) => {
                         </ShowOnLogout>
                         <ShowOnLogin>
                             <p
-                            onClick={Logout}
+                            onClick={logoutUser}
                             className="flex items-center bg-brown rounded text-white font-bold p-2 cursor-pointer hover:underline underline-offset-4"
                             >
                             <CiLogout className="mx-1" />

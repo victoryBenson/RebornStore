@@ -28,15 +28,16 @@ export const Header = () => {
     const {itemAmount} = useContext(CartContext)
     const {currentUser, Logout} = useContext(UserContext)
     const {username, role, profilePicture} = currentUser
-    const navigate = useNavigate();
     const {isActive } = useContext(SidebarContext)
     const [cartegoryMenu, setCategoryMenu] = useState(false)
     const location = useLocation()
     const {handleCart} = useContext(SidebarContext)
-    let path = '/dashboard' 
+    let path = '/dashboard'
+    let path2 = '/layout' 
 
     
     let check = location.pathname.includes(path)
+    let check2 = location.pathname.includes(path2)
     
    
     const cartegoryDropDown = () => {
@@ -105,11 +106,9 @@ export const Header = () => {
                 <div className="relative text-sm md:text-base">
                     <NavLink
                         to="/layout/shop"
-                        className={({ isActive }) =>
-                            isActive
-                            ? "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"
-                            : "flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4"
-                        }
+                        className={`${ check2 && "flex rounded-full items-center p-2 cursor-pointer underline underline-offset-4 decoration-brown decoration-2 font-bold"}
+                        flex rounded-full items-center p-2 cursor-pointer hover:underline underline-offset-4
+                    `}
                         >
                         <FaShopify className="mx-1"/>
                         Shop
@@ -133,13 +132,13 @@ export const Header = () => {
                 {/* profile */}
                 <div className="px-2 relative items-center space-x-4 hidden  md:flex">
                     <div  onClick={() => setMenu(!menu)} className="flex items-center cursor-pointer space-x-3 transition-all">
-                        <p className={`${isActive ? 'rounded-full h-14 w-14 flex items-center justify-center ' : 'hidden'} transition-all duration-200`}>
+                        <p className={`${isActive ? 'rounded-full h-10 w-10 flex items-center justify-center ' : 'hidden'} transition-all duration-200`}>
                             <img
                             src={
                                 currentUser
                                 ? `${isActive && `${profilePicture}`} ` : null
                             }
-                            className="rounded-full"
+                            className="rounded-full h-full w-full object-cover"
                             />
                         </p>
                         <h1 className="capitalize">
@@ -154,7 +153,7 @@ export const Header = () => {
                         {menu && (
                         <div onMouseLeave={()=> setMenu(!menu)} className="drop-shadow w-80 rounded-xl p-4 bg-white">
                             <div className="border-b border-gray/20 p-2 flex">
-                                <p className="rounded-full h-14 w-14 flex items-center justify-center">
+                                <p className="rounded-full h-10 w-10 flex items-center justify-center">
                                     <img
                                     src={
                                         currentUser
@@ -163,6 +162,7 @@ export const Header = () => {
                                         `https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg`
                                     }
                                     alt="image"
+                                    className="h-full w-full rounded-full object-cover"
                                     />
                                 </p>
                                 <p className="flex flex-col px-2">

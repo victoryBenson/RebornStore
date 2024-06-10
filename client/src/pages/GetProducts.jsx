@@ -19,8 +19,8 @@ export const GetProducts = () => {
     const [mobileFilter, setMobileFilter] = useState(false)
     const {errorMsg, loading, items, getProducts} = useContext(ProductContext)
     const [sorted, setSorted] = useState({sorted: "id", reversed: false});
-    const [searchPhrase, setSearchPhrase] = useState("")
-    const [products, setProducts] = useState(items)
+    const [searchPhrase, setSearchPhrase] = useState([])
+    const [product, setProducts] = useState(items)
 
     
     useEffect(() => {
@@ -34,7 +34,7 @@ export const GetProducts = () => {
 
     const sortByPrice = () => {
         setSorted({sorted: "price", reversed: !sorted.reversed});
-        const itemsCopy = [...products];
+        const itemsCopy = [...product];
         itemsCopy.sort((itemA, itemB) => {
         const priceA = `${itemA.price}`
         const priceB = `${itemB.price}`;
@@ -50,7 +50,7 @@ export const GetProducts = () => {
 
     const sortByName = () => {
         setSorted({sorted: "name", reversed: !sorted.reversed});
-        const itemsCopy = [...products];
+        const itemsCopy = [...product];
         itemsCopy.sort((itemA, itemB) => {
         const nameA = `${itemA.name}`
         const nameB = `${itemB.name}`;
@@ -63,12 +63,13 @@ export const GetProducts = () => {
         setProducts(itemsCopy)
     }
 
-    const search = (e) => {
-        const matchedItems = items.filter((item) => {
-        return `${item.name} ${item.category}`.toLowerCase().includes(e.target.value.toLowerCase())
-        });
-        setProducts(matchedItems);
-        setSearchPhrase(e.target.value)
+    let matchedItems
+    if(items !== null){
+        matchedItems = items.filter((item) => {
+            if(searchPhrase == "" || `${item.name} ${item.category} ${item.brand}`.toLowerCase().includes(searchPhrase.toLowerCase())){
+                return item
+            }
+        })
     }
 
     useEffect(()=> {
@@ -96,45 +97,48 @@ export const GetProducts = () => {
                         className="search-input cursor-pointer p-4 border text-brown border-gray/10 flex w-full transition-all outline-none rounded"
                         placeholder="Search for Products, Category, Brands etc..."
                         value={searchPhrase}
-                        onChange={search}
+                        onChange={(e) => setSearchPhrase(e.target.value)}
                     />
+                     {/* <div className="flex gap-2 items-center justify-between" >
+                        <div className="border rounded border-gray/20">
+                            <select  onChange={fill}  className="w-full p-2 outline-none rounded transition-all bg-white border border-gray/5 text-sm font-poppins" >
+                                <option value="All">-Select-</option>
+                                <option value="men">men</option>
+                                <option value="women">women</option>
+                                <option value="unisex">unisex</option>
+                                <option value="kids">kids</option>
+                            </select>
+                        </div>
+                        <div className="flex gap-2">
+                            <button type="button" onClick={sortByName} className="border-brown/10 border rounded p-1 text-sm" >sortbyname</button>
+                            <button type="button" onClick={sortByPrice} className="border-brown/10 border rounded text-sm p-1" >sortprice</button>
+                        </div>
+                    </div> */}
                 </div>
                 <div>
-                    {searchPhrase.length && products.length > -1 ? (
+                    {searchPhrase.length && matchedItems.length > 1 ? (
                         <p className="flex items-center md:p-3 text-sm"> <TbShoppingBagSearch />search result for - {searchPhrase}</p>
                     ): null}
                 </div>
-                <div className="flex gap-2 items-center justify-between w-full" >
-                    <div className="border rounded border-gray/20">
-                        <select  onChange={search}  className="w-full p-2 outline-none rounded transition-all bg-white border border-gray/5 text-sm font-poppins" >
-                            <option value="All">-Select-</option>
-                            <option value="men">men</option>
-                            <option value="women">women</option>
-                            <option value="unisex">unisex</option>
-                            <option value="kids">kids</option>
-                        </select>
-                    </div>
-                    <div className="flex gap-2">
-                        <button type="button" onClick={sortByName} className="border-brown/10 border rounded p-1 text-sm" >sortbyname</button>
-                        <button type="button" onClick={sortByPrice} className="border-brown/10 border rounded text-sm p-1" >sortprice</button>
-                    </div>
-                </div>
             </div>
-            {!loading && products.length > -1 && (
+            {matchedItems.length ? (
                 <div className=" ">
                     <div className=" grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 items-center mx-2">
                         {
-                            products.length !== 0 && !loading ? products.map((product) => {
-                                    return <Product key={product._id} product={product} />
-                                })
-                            :
-                            (
-                                <SearchNotFound/>
-                            )
+                            matchedItems.map((product) => {
+                                return <Product key={product._id} product={product} />
+                            })
                         }
                     </div>                        
                 </div>
-            )}
+            )
+            :
+            (
+                <div className="h-screen mt-10">
+                    <SearchNotFound/>
+                </div>
+            )
+        }
         </div>
     );
 };

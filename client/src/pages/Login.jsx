@@ -61,7 +61,7 @@ export const Login = () => {
             userData.email = userData.email.toLowerCase();
             await Login(userData)
             setLoading(false)
-            navigate('/')
+            navigate('/layout/shop')
             location.reload()
             toast.success('Logged in Successfully')
 
