@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaqData } from "../database/FAQ";
 import AOS from 'aos'
 import "aos/dist/aos.css"
@@ -28,7 +27,7 @@ export const FrequentlyAQ = () => {
                     Frequently asked questions
                 </p>
             </div>
-            <div data-aos="flip-up" className="md: w-[90%]">
+            <div data-aos="flip-up" className="w-[80%]">
                 {FaqData.map((data, index) => {
                     return (
                         <div key={index} className="p-2 md:p-4 space-y-4 md:space-y-6">

@@ -73,7 +73,7 @@ export const updateUser = async (req, res, next) => {
   
         const result = await handleUpload(dataURI);
         profilePicture = result.secure_url
-         console.log(profilePicture)
+        //  console.log(profilePicture)
       }
 
       const user = await User.findByIdAndUpdate(req.user._id, {

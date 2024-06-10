@@ -53,7 +53,7 @@ export const Register = () => {
             userData.email = userData.email.toLowerCase();
             await Register(userData)
             setLoading(false)
-            navigate('/')
+            navigate('/layout/shop')
             location.reload()
             toast.success('Registered Successfully')
 

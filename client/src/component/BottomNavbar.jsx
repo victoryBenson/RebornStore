@@ -123,19 +123,21 @@ const BottomNavBar = () => {
                 : " cursor-pointer relative text-sm flex flex-col items-center"
               }
               >
-                  <CiShoppingTag size={30} className='mx-1'/>
-                  <span className='text-xs md:text-sm absolute md:hidden bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-2  right-5'>9</span>
-                  Orders
+                  <CiShoppingTag size={20} className='mx-1'/>
+                  Order
           </NavLink>
-          <div onClick={handleCart}  className="px-1 text-sm cursor-pointer flex flex-col items-center">
-              <p  className="relative">
-                  <BsCartCheck size={20} />
-                  <span className="absolute -top-3 -right-3 px-1 text-sm z-10 bg-brown text-white rounded-full flex item-center justify-center ">
-                      {itemAmount}
-                  </span>
-              </p>
-              Cart
-          </div>
+          <NavLink 
+              to={'/layout/profile'}
+              onClick={scrollToTop} 
+              className={({ isActive }) =>
+                isActive
+                ? " cursor-pointer border-b font-extrabold relative flex flex-col items-center"
+                : " cursor-pointer relative text-sm flex flex-col items-center"
+              }
+              >
+                  <FaUserCheck size={20} className='mx-1'/>
+                  Account
+          </NavLink>
       </div>
     </div>
   )

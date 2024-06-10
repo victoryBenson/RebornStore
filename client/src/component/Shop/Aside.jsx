@@ -2,17 +2,11 @@ import React, { useContext } from 'react'
 import { CiShoppingTag, CiViewList } from 'react-icons/ci'
 import { FaUserCheck } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
-import { BsCartCheck } from 'react-icons/bs'
-import { CartContext } from '../../contexts/CartContext'
-import { SidebarContext } from '../../contexts/SidebarContext'
 import { IoStorefrontOutline } from "react-icons/io5";
 import { GrHomeRounded } from "react-icons/gr";
 
 
 const Aside = () => {
-  // const {handleCart} = useContext(SidebarContext)
-  // const {itemAmount} = useContext(CartContext)
-
 
   const scrollToTop = () => {
     window.scrollTo(
@@ -35,7 +29,7 @@ const Aside = () => {
                 className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'
                   >
                   <GrHomeRounded className='mx-1'/>
-                  <span className='hidden md:flex '>Home</span>
+                  <span >Home</span>
           </NavLink>
           <NavLink 
               to={'shop'} 
@@ -46,7 +40,7 @@ const Aside = () => {
                 className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'
                   >
                   <IoStorefrontOutline  className='mx-1'/>
-                  <span className='hidden md:flex'>Products</span>
+                  <span>Products</span>
           </NavLink>
           <NavLink 
               to={'orders'} 
@@ -56,20 +50,19 @@ const Aside = () => {
                 }} 
             className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'>
                   <CiShoppingTag className='mx-1'/>
-                  <span className='text-xs md:text-sm absolute md:hidden bg-brown text-ivory rounded-full p-[1px] px-[2px] -top-1  right-10'>90</span>
-                  <span className='hidden md:flex'>Orders</span>
+                  <span>Order</span>
           </NavLink>
           <NavLink 
-                to={'profile'} 
-                onClick={scrollToTop}
-                style={
-                    ({isActive}) => {
-                    return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#FFFFF0', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
-                    }} 
-                className='p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full'>
-                    <FaUserCheck className='mx-1'/>
-                    <span className='hidden md:flex '>Account</span>
-            </NavLink>
+              to={'profile'} 
+              onClick={scrollToTop}
+              style={
+                  ({isActive}) => {
+                  return { fontWeight: isActive && 'bolder', padding: isActive && '0.5rem',backgroundColor: isActive && '#FFFFF0', color: isActive && 'gray', opacity: isActive && '40', borderBottomWidth: isActive && '1px'}
+                  }} 
+                  className='relative p-2 flex flex-col lg:flex-row items-center justify-center text-sm lg:text-base hover:bg-gray/10 rounded w-full text-brown md:text-white'>
+                  <FaUserCheck className='mx-1'/>
+                  <span>Account</span>
+          </NavLink>
       </div>
     </div>
   )

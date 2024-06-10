@@ -7,11 +7,9 @@ import axios from 'axios'
 let backendURL
 if (process.env.NODE_ENV === 'production') {
     backendURL = "https://rebornv2api.onrender.com/api/v1/users/";
-} 
-
-// else{
-//     backendURL = "http://localhost:3000/api/v1/users/";
-// }
+}  else{
+    backendURL = "http://localhost:3000/api/v1/users/";
+}
 
 
 const initialState = {

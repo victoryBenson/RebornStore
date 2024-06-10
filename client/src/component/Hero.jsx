@@ -67,7 +67,7 @@ export const Hero = () => {
                 )
             })}
         </div>
-        <div className='text-center absolute right-0 left-0 bottom-10 md:bottom-4 space-x-2 '>
+        <div className='text-center absolute right-0 left-0 bottom-20 md:bottom-4 space-x-2 '>
             {/* arrow */}
           <div className='flex justify-center items-center animate-bounce'>
             <button className='bg-brown/40 text-white rounded-full p-2 font-poppins flex items-center'>

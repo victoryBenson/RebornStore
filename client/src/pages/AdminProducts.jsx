@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { BsPlusLg } from "react-icons/bs";
-import Modal from "react-responsive-modal";
-import { CreateProduct } from "../component/CreateProduct";
 import { ProductContext } from "../contexts/ProductContext";
 import { Items } from "../component/Items";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
 import { SearchNotFound } from "../component/NotFound";
 import { TbShoppingBagSearch } from "react-icons/tb";
 
@@ -72,8 +69,7 @@ export const AdminProducts = () => {
                         value={searchResult}
                         onChange={(e) => setSearchResult(e.target.value)} 
                         placeholder='search name brand category here...' 
-                        className='p-3  border-brown/5 rounded border outline-none w-full flex'
-                        // autoFocus 
+                        className='p-3  border-brown/5 rounded border outline-none w-full flex' 
                     />
                 </div>
             </div>
