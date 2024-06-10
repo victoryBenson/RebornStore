@@ -3,6 +3,7 @@ import {FaTwitter, FaFacebookF, FaInstagram,FaWhatsapp} from 'react-icons/fa'
 import "aos/dist/aos.css"
 import { PiLinkThin } from "react-icons/pi";
 import { FaPhone } from 'react-icons/fa6'
+import { LuHeart } from "react-icons/lu";
 
 export const Footer = () => {
 
@@ -45,7 +46,8 @@ export const Footer = () => {
                             <FaPhone size={20}/>
                         </a>
                     </div>
-                    <p className='text-ivory/50'> &copy;<span className=''>Reborn 2024</span>. All right reserved</p>
+                    <p className='text-ivory/50 flex items-center py-5'>Build with <LuHeart className='mx-1' /> by Kennytech</p>
+                    {/* <p className='text-ivory/50'> &copy;<span className=''>Reborn 2024</span>. All right reserved</p> */}
                 </div>
             </div>
         </div>
