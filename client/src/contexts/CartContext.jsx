@@ -7,7 +7,23 @@ export const CartContext = createContext()
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [itemAmount, setItemAmount] = useState(0)
-    const [total, setTotal] = useState(0)
+    const [total, setTotal] = useState(0);
+
+
+       //getting cartItems to sessionStorage
+      useEffect(() => {
+        const cartData = JSON.parse(sessionStorage.getItem('cart'))
+        
+        if (cartData) {
+            setCart(cartData)
+        }
+      }, [])
+    
+    // setting cartItems from sessionStorage
+    useEffect(() => {
+        sessionStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
+
 
      // add to cart  
      const addToCart = (product,id) => {
@@ -30,7 +46,6 @@ export const CartProvider = ({children}) => {
 
         } else {
             setCart([...cart, newItem])
-            // sessionStorage.setItem("cart", JSON.stringify(cart))
             toast.success(`Product is added to Cart`)
         }
 

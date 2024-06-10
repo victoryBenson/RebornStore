@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 export const ProductContext = createContext()
@@ -19,7 +18,6 @@ export const ProductProvider = ({children}) => {
     } else{
         backendURL = "http://localhost:3000/api/v1/products/";
     }
-    // console.log(backendURL)
 
   //create product
   const createProduct = async (productData) => {
