@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
 import validator from 'validator'
-// import pkg from 'validator';
-// const {isEmail, isStrongPassword} = pkg;
 
 
 const userSchema = mongoose.Schema(
