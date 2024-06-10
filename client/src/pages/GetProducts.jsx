@@ -123,7 +123,7 @@ export const GetProducts = () => {
             </div>
             {matchedItems.length ? (
                 <div className=" ">
-                    <div className=" grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 items-center mx-2">
+                    <div className=" grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-4 items-center mx-2">
                         {
                             matchedItems.map((product) => {
                                 return <Product key={product._id} product={product} />
